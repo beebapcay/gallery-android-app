@@ -3,4 +3,11 @@
 
     <string name="msg_image_description">Image Description</string>
     <string name="msg_welcome">Welcome</string>
+
+    <string name="msg_pictures">Pictures</string>
+    <string name="msg_albums">Albums</string>
+    <string name="msg_videos">Videos</string>
+    <string name="msg_privacy">Privacy</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

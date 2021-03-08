@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/picturesFragment"
+        android:title="@string/msg_pictures"
+        android:icon="@drawable/ic_menu_pictures" />
+    <item
+        android:id="@+id/albumsFragment"
+        android:title="@string/msg_albums"
+        android:icon="@drawable/ic_menu_albums"/>
+    <item
+        android:id="@+id/videosFragment"
+        android:title="@string/msg_videos"
+        android:icon="@drawable/ic_menu_videos"/>
+    <item
+        android:id="@+id/privacyFragment"
+        android:title="@string/msg_privacy"
+        android:icon="@drawable/ic_menu_privacy"/>
+</menu>
