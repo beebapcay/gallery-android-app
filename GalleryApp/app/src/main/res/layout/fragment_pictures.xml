@@ -26,114 +26,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
+            <include
+                android:id="@+id/fragment_option_nav_bar"
+                layout="@layout/fragment_option_nav_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="50dp"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_pictures">
+                app:layout_constraintTop_toBottomOf="@+id/text_pictures" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:gravity="center">
 
-                    <ImageButton
-                        android:id="@+id/button_favourites"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/btn_circle"
-                        android:backgroundTint="@color/gray_1"
-                        android:contentDescription="@string/msg_image_description"
-                        app:srcCompat="@drawable/ic_heart" />
-
-                    <TextView
-                        android:id="@+id/text_favourites"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/msg_favourites"
-                        android:labelFor="@id/button_favourites"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:id="@+id/button_recent"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/btn_circle"
-                        android:backgroundTint="@color/gray_1"
-                        android:contentDescription="@string/msg_image_description"
-                        app:srcCompat="@drawable/ic_clock" />
-
-                    <TextView
-                        android:id="@+id/text_recent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/msg_recent"
-                        android:labelFor="@id/button_recent"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:id="@+id/button_people"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/btn_circle"
-                        android:backgroundTint="@color/gray_1"
-                        android:contentDescription="@string/msg_image_description"
-                        app:srcCompat="@drawable/ic_person_check" />
-
-                    <TextView
-                        android:id="@+id/text_people"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/msg_people"
-                        android:labelFor="@id/button_people"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageButton
-                        android:id="@+id/button_locations"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:background="@drawable/btn_circle"
-                        android:backgroundTint="@color/gray_1"
-                        android:contentDescription="@string/msg_image_description"
-                        app:srcCompat="@drawable/ic_location" />
-
-                    <TextView
-                        android:id="@+id/text_locations"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/msg_locations"
-                        android:labelFor="@id/button_locations"/>
-                </LinearLayout>
-
-            </LinearLayout>
+            <include
+                android:id="@+id/fragment_option_sticky_bar"
+                layout="@layout/fragment_option_sticky_bar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_option_nav_bar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

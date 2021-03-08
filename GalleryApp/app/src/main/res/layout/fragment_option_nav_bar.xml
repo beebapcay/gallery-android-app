@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_favourites"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/gray_1"
+                android:contentDescription="@string/msg_image_description"
+                app:srcCompat="@drawable/ic_heart" />
+
+            <TextView
+                android:id="@+id/text_favourites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/button_favourites"
+                android:text="@string/msg_favourites" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_recent"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/gray_1"
+                android:contentDescription="@string/msg_image_description"
+                app:srcCompat="@drawable/ic_clock" />
+
+            <TextView
+                android:id="@+id/text_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/button_recent"
+                android:text="@string/msg_recent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_people"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/gray_1"
+                android:contentDescription="@string/msg_image_description"
+                app:srcCompat="@drawable/ic_person_check" />
+
+            <TextView
+                android:id="@+id/text_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/button_people"
+                android:text="@string/msg_people" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_locations"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_circle"
+                android:backgroundTint="@color/gray_1"
+                android:contentDescription="@string/msg_image_description"
+                app:srcCompat="@drawable/ic_location" />
+
+            <TextView
+                android:id="@+id/text_locations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/button_locations"
+                android:text="@string/msg_locations" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

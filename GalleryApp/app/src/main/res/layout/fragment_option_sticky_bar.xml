@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/button_camera"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/msg_image_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_camera" />
+
+    <ImageButton
+        android:id="@+id/button_setting"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="25dp"
+        android:scaleType="fitCenter"
+        android:background="@color/white"
+        android:contentDescription="@string/msg_image_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_setting" />
+
+    <ImageButton
+        android:id="@+id/button_recycleBin"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        android:background="@color/white"
+        android:contentDescription="@string/msg_image_description"
+        app:layout_constraintEnd_toStartOf="@+id/button_setting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_recycle_bin" />
+
+    <ImageButton
+        android:id="@+id/button_filter"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        android:background="@color/white"
+        android:contentDescription="@string/msg_image_description"
+        app:layout_constraintEnd_toStartOf="@+id/button_recycleBin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_filter" />
+
+    <ImageButton
+        android:id="@+id/button_search"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:scaleType="fitCenter"
+        android:background="@color/white"
+        android:contentDescription="@string/msg_image_description"
+        app:layout_constraintEnd_toStartOf="@+id/button_filter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_search" />
+
+    <ImageButton
+        android:id="@+id/button_layoutMode"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="fitCenter"
+        android:background="@color/white"
+        android:contentDescription="@string/msg_image_description"
+        app:layout_constraintEnd_toStartOf="@+id/button_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_layout_grid" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
