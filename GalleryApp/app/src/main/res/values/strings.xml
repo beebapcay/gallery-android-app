@@ -8,6 +8,13 @@
     <string name="msg_albums">Albums</string>
     <string name="msg_videos">Videos</string>
     <string name="msg_privacy">Privacy</string>
+
+    <string name="msg_favourites">Favourites</string>
+    <string name="msg_recent">Recent</string>
+    <string name="msg_people">People</string>
+    <string name="msg_locations">Locations</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
