@@ -35,7 +35,7 @@
         android:layout_marginTop="180dp"
         android:fontFamily="@font/akaya_telivigala_regular"
         android:text="@string/msg_welcome"
-        android:textColor="@color/black"
+        android:textColor="@color/dark_blue"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

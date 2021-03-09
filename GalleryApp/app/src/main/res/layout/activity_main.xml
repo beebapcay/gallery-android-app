@@ -7,31 +7,42 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        style="@style/Widget.App.BottomNavigationView"
-        android:id="@+id/bottomNavigationView"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        app:labelVisibilityMode="labeled"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:elevation="0dp"
-        app:menu="@menu/bottom_navigation_bar" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    </FrameLayout>
+
+    <nl.joery.animatedbottombar.AnimatedBottomBar
+        android:id="@+id/nav_bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_menu_navigation_bottom"
+        android:backgroundTint="@color/gray_2"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/main" />
+        app:abb_selectedTabType="text"
+        app:abb_tabColor="@color/gray_3"
+        app:abb_tabColorSelected="@color/dark_blue"
+        app:abb_textStyle="bold"
+        app:abb_indicatorMargin="15dp"
+        app:abb_indicatorColor="@color/dark_blue"
+        app:abb_indicatorAppearance="round"
+        app:abb_tabs="@menu/navigation_bottom"/>
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
