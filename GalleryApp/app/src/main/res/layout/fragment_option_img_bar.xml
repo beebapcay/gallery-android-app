@@ -30,7 +30,7 @@
         android:contentDescription="@string/msg_image_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_three_dots" />
+        app:srcCompat="@drawable/ic_setting" />
 
     <ImageButton
         android:id="@+id/button_i"
