@@ -12,9 +12,12 @@ import com.beebapcay.galleryapp.R;
 
 public class VideosFragment extends Fragment {
 
+    public static VideosFragment newInstance() {
+        return new VideosFragment();
+    }
 
     public VideosFragment() {
-
+        super(R.layout.fragment_videos);
     }
 
 

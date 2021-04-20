@@ -13,8 +13,12 @@ import com.beebapcay.galleryapp.R;
 
 public class HomeFragment extends Fragment {
 
-    public HomeFragment() {
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
 
+    public HomeFragment() {
+        super(R.layout.fragment_home);
     }
 
     @Override

@@ -12,10 +12,13 @@ import com.beebapcay.galleryapp.R;
 
 public class PicturesFragment extends Fragment {
 
-    public PicturesFragment() {
-
+    public static PicturesFragment newInstance() {
+        return new PicturesFragment();
     }
 
+    public PicturesFragment() {
+        super(R.layout.fragment_pictures);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
