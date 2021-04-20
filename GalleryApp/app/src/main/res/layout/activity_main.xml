@@ -4,47 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
-    <nl.joery.animatedbottombar.AnimatedBottomBar
-        android:id="@+id/nav_bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/bg_menu_navigation_bottom"
-        android:backgroundTint="@color/gray_2"
-        android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:abb_iconSize="24sp"
-        app:abb_selectedTabType="text"
-        app:abb_tabColor="@color/gray_3"
-        app:abb_tabColorSelected="@color/dark_blue"
-        app:abb_textStyle="bold"
-        app:abb_indicatorMargin="15dp"
-        app:abb_indicatorColor="@color/dark_blue"
-        app:abb_indicatorAppearance="round"
-        app:abb_indicatorLocation="bottom"
-        app:abb_tabs="@menu/navigation_bottom"/>
-
-
-
-
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
