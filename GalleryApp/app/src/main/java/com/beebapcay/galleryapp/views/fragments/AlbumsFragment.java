@@ -13,13 +13,8 @@ import com.beebapcay.galleryapp.R;
 
 public class AlbumsFragment extends Fragment {
 
-    public static AlbumsFragment newInstance() {
-        return new AlbumsFragment();
-    }
 
-    public AlbumsFragment() {
-        super(R.layout.fragment_albums);
-    }
+    public AlbumsFragment() { }
 
 
     @Override

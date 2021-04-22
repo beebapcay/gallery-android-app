@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dest_all"
+        android:icon="@drawable/ic_menu_nav_bottom_home"
+        android:title="@string/title_nav_bottom_all" />
+
+    <item
+        android:id="@+id/dest_pictures"
+        android:icon="@drawable/ic_menu_nav_bottom_pictures"
+        android:title="@string/title_nav_bottom_pictures" />
+
+    <item
+        android:id="@+id/dest_videos"
+        android:icon="@drawable/ic_menu_nav_bottom_videos"
+        android:title="@string/title_nav_bottom_videos" />
+
+    <item
+        android:id="@+id/dest_albums"
+        android:icon="@drawable/ic_menu_nav_bottom_albums"
+        android:title="@string/title_nav_bottom_albums" />
+</menu>

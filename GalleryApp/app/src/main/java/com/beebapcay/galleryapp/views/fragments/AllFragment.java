@@ -11,15 +11,10 @@ import android.view.ViewGroup;
 import com.beebapcay.galleryapp.R;
 
 
-public class HomeFragment extends Fragment {
+public class AllFragment extends Fragment {
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
 
-    public HomeFragment() {
-        super(R.layout.fragment_home);
-    }
+    public AllFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +25,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_all, container, false);
     }
 }

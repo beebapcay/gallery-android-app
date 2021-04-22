@@ -12,13 +12,8 @@ import com.beebapcay.galleryapp.R;
 
 public class PicturesFragment extends Fragment {
 
-    public static PicturesFragment newInstance() {
-        return new PicturesFragment();
-    }
 
-    public PicturesFragment() {
-        super(R.layout.fragment_pictures);
-    }
+    public PicturesFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

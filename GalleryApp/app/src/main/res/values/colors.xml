@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--    Normal Color-->
+    <!--    Normal Color    -->
     <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!--    Custom Color-->
+    <!--    Custom Color Theme    -->
     <color name="colorPrimary">#F2F2F2</color>
     <color name="colorPrimaryVariant">#E4E4E4</color>
     <color name="colorOnPrimary">#2E2E2E</color>
 
     <color name="colorSecondary">#EF5650</color>
-    <color name="colorSecondaryVariant">#C80055</color>
+    <color name="colorSecondaryVariant">#D3004F</color>
     <color name="colorOnSecondary">#FFFFFF</color>
-    
+
+    <color name="colorBackground">#F2F2F2</color>
+
+    <!--    Title   -->
     <color name="colorTitleHighlight">#011640</color>
     <color name="colorTitleNormal">#252525</color>
     <color name="colorTitleDialog">#252525</color>
 
-    <color name="colorFavourite">#D92555</color>
-    <color name="colorLocation">#2d88ff</color>
+    <!--    Text    -->
+    <color name="colorTextHighlight">#011640</color>
+    <color name="colorTextPrimary">#252525</color>
+    <color name="colorTextSecondary">#505050</color>
+    <color name="colorTextTertiary">#636363</color>
+    <color name="colorTextQuaternary">#787878</color>
+    <color name="colorTextQuinary">#858585</color>
 
-    <!--    Quick Option Button -->
+    <!--    Quick Option Button    -->
     <color name="colorQuickOptionButtonBackground">#E4E4E4</color>
     <color name="colorQuickOptionButtonIcon">#E9474646</color>
     <color name="colorQuickOptionButtonLabel">#3E3E3E</color>
 
-    <!--    Sticky Action Bar -->
+    <!--    Sticky Action Bar   -->
     <color name="colorStickyActionBarBackground">#F2F2F2</color>
     <color name="colorStickyActionBarIcon">#252525</color>
 
-    <!--    Menu Navigation Bar Bottom-->
+    <!--    Menu Navigation Bar Bottom    -->
     <color name="colorMenuNavBarBottomBackground">#F2F2F2</color>
-    <color name="colorMenuNavBarBottomItemNormal">#888888</color>
-    <color name="colorMenuNavBarBottomItemPressed">#252525</color>
+    <color name="colorMenuNavBarBottomItemNormal">#CC011640</color>
     <color name="colorMenuNavBarBottomItemActive">#011640</color>
+
+    <!--    Other    -->
+    <color name="colorFavourite">#D92555</color>
+    <color name="colorLocation">#2d88ff</color>
 
 </resources>
