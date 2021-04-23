@@ -2,6 +2,12 @@
     <!--    General    -->
     <string name="app_name">Gallery App</string>
 
+    <!--    Title   -->
+    <string name="title_gallery">Gallery</string>
+    <string name="title_pictures">Pictures</string>
+    <string name="title_videos">Videos</string>
+    <string name="title_albums">Albums</string>
+
     <!--    Quick Option Button    -->
     <string name="label_favourites">Favourites</string>
     <string name="label_recent">Recent</string>
@@ -10,7 +16,7 @@
 
 
     <!--    Bottom Navigation View    -->
-    <string name="title_nav_bottom_all">All</string>
+    <string name="title_nav_bottom_gallery">Gallery</string>
     <string name="title_nav_bottom_pictures">Pictures</string>
     <string name="title_nav_bottom_videos">Videos</string>
     <string name="title_nav_bottom_albums">Albums</string>

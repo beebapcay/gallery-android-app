@@ -14,13 +14,13 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp">
+        android:paddingStart="@dimen/_9sdp"    
+        android:paddingEnd="@dimen/_9sdp">
 
         <ImageButton
             android:id="@+id/btn_favourite"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
             android:backgroundTint="@color/colorQuickOptionButtonBackground"
             android:scaleType="center"
@@ -37,7 +37,7 @@
             android:labelFor="@id/btn_favourite"
             android:text="@string/label_favourites"
             android:textColor="@color/colorQuickOptionButtonLabel"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,13 +46,13 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp">
+        android:paddingStart="@dimen/_9sdp"
+        android:paddingEnd="@dimen/_9sdp">
 
         <ImageButton
             android:id="@+id/btn_recent"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
             android:backgroundTint="@color/colorQuickOptionButtonBackground"
             android:scaleType="center"
@@ -65,11 +65,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:background="@null"
+            
             android:includeFontPadding="false"
             android:labelFor="@id/btn_recent"
             android:text="@string/label_recent"
             android:textColor="@color/colorQuickOptionButtonLabel"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,13 +79,13 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp">
+        android:paddingStart="@dimen/_9sdp"
+        android:paddingEnd="@dimen/_9sdp">
 
         <ImageButton
             android:id="@+id/btn_people"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
             android:backgroundTint="@color/colorQuickOptionButtonBackground"
             android:scaleType="center"
@@ -101,7 +102,7 @@
             android:labelFor="@id/btn_people"
             android:text="@string/label_people"
             android:textColor="@color/colorQuickOptionButtonLabel"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
     <LinearLayout
@@ -110,13 +111,13 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp">
+        android:paddingStart="@dimen/_9sdp"
+        android:paddingEnd="@dimen/_9sdp">
 
         <ImageButton
             android:id="@+id/btn_location"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
             android:backgroundTint="@color/colorQuickOptionButtonBackground"
             android:scaleType="center"
@@ -133,7 +134,7 @@
             android:labelFor="@id/btn_location"
             android:text="@string/label_locations"
             android:textColor="@color/colorQuickOptionButtonLabel"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
 </LinearLayout>

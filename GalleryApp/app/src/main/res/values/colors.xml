@@ -21,6 +21,7 @@
 
     <!--    Title   -->
     <color name="colorTitleHighlight">#011640</color>
+    <color name="colorTitleDestination">#011640</color>
     <color name="colorTitleNormal">#252525</color>
     <color name="colorTitleDialog">#252525</color>
 

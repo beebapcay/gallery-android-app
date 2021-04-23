@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dest_all"
+        android:id="@+id/dest_gallery"
         android:icon="@drawable/ic_menu_nav_bottom_home"
-        android:title="@string/title_nav_bottom_all" />
+        android:title="@string/title_nav_bottom_gallery" />
 
     <item
         android:id="@+id/dest_pictures"

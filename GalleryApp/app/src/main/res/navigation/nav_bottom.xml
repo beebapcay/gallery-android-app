@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main_menu_bottom"
-    app:startDestination="@id/dest_all">
+    app:startDestination="@id/dest_gallery">
 
     <fragment
-        android:id="@+id/dest_all"
-        android:name="com.beebapcay.galleryapp.views.fragments.AllFragment"
+        android:id="@+id/dest_gallery"
+        android:name="com.beebapcay.galleryapp.views.fragments.GalleryFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_all" />
+        tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/dest_pictures"
         android:name="com.beebapcay.galleryapp.views.fragments.PicturesFragment"

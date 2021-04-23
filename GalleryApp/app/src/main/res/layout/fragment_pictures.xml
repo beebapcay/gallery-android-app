@@ -1,10 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FF00"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground"
+    android:animateLayoutChanges="true"
     tools:context=".views.fragments.PicturesFragment">
 
+    <com.amar.library.ui.StickyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:stickyHeader="@id/view_sticky_action_bar"
+        android:clipToPadding="false">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <LinearLayout
+                android:id="@+id/view_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_45sdp">
+
+                <TextView
+                    android:id="@+id/text_title_dest"
+                    android:layout_width="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="@string/title_pictures"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/_25ssp"
+                    android:textColor="@color/colorTitleDestination"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/view_quick_option_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:name="com.beebapcay.galleryapp.views.fragments.QuickOptionButtonFragment"
+                    tools:layout="@layout/fragment_quick_option_button"
+                    android:layout_marginTop="@dimen/_20sdp" />
+
+            </LinearLayout>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/view_sticky_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.beebapcay.galleryapp.views.fragments.StickyActionBarFragment"
+                tools:layout="@layout/fragment_sticky_action_bar"
+                app:layout_constraintTop_toBottomOf="@id/view_header"
+
+                android:layout_marginTop="@dimen/_30sdp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/view_recycler_gallery_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/view_sticky_action_bar"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.amar.library.ui.StickyScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

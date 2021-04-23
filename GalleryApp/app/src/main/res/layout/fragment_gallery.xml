@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
     android:animateLayoutChanges="true"
-    tools:context=".views.fragments.VideosFragment">
+    tools:context=".views.fragments.GalleryFragment">
 
     <com.amar.library.ui.StickyScrollView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:id="@+id/text_title_dest"
                     android:layout_width="wrap_content"
                     android:includeFontPadding="false"
-                    android:text="@string/title_videos"
+                    android:text="@string/title_gallery"
                     android:layout_gravity="center"
                     android:textSize="@dimen/_25ssp"
                     android:textColor="@color/colorTitleDestination"
