@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorStickyActionBarBackground"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_5sdp"
+    tools:context=".views.fragments.StickyActionBarFragment">
+
+    <ImageButton
+        android:id="@+id/btn_camera"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorStickyActionBarBackground"
+        android:padding="@dimen/_8sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_camera"
+        android:tint="@color/colorStickyActionBarCameraIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <ImageButton
+        android:id="@+id/btn_search"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorStickyActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_search"
+        android:tint="@color/colorStickyActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_filter"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <ImageButton
+        android:id="@+id/btn_filter"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorStickyActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_filter"
+        android:tint="@color/colorStickyActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <ImageButton
+        android:id="@+id/btn_layout"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorStickyActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_grid_3x3"
+        android:tint="@color/colorStickyActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_setting"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <ImageButton
+        android:id="@+id/btn_setting"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorStickyActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_setting"
+        android:tint="@color/colorStickyActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_more"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+    <ImageButton
+        android:id="@+id/btn_more"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorStickyActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_more"
+        android:tint="@color/colorStickyActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,UnusedAttribute" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,8 @@
     <color name="colorOnSecondary">#FFFFFF</color>
 
     <color name="colorBackground">#F2F2F2</color>
+    
+    <color name="colorControlHighlight">#1AFFFFFF</color>
 
     <!--    Title   -->
     <color name="colorTitleHighlight">#011640</color>
@@ -38,6 +40,7 @@
     <!--    Sticky Action Bar   -->
     <color name="colorStickyActionBarBackground">#F2F2F2</color>
     <color name="colorStickyActionBarIcon">#252525</color>
+    <color name="colorStickyActionBarCameraIcon">#011640</color>
 
     <!--    Menu Navigation Bar Bottom    -->
     <color name="colorMenuNavBarBottomBackground">#F2F2F2</color>
@@ -47,5 +50,6 @@
     <!--    Other    -->
     <color name="colorFavourite">#D92555</color>
     <color name="colorLocation">#2d88ff</color>
+    <color name="colorRippleEffect">#C8C8C8</color>
 
 </resources>

@@ -2,12 +2,19 @@
     <!--    General    -->
     <string name="app_name">Gallery App</string>
 
+    <!--    Quick Option Button    -->
+    <string name="label_favourites">Favourites</string>
+    <string name="label_recent">Recent</string>
+    <string name="label_people">People</string>
+    <string name="label_locations">Locations</string>
+
+
     <!--    Bottom Navigation View    -->
     <string name="title_nav_bottom_all">All</string>
     <string name="title_nav_bottom_pictures">Pictures</string>
     <string name="title_nav_bottom_videos">Videos</string>
     <string name="title_nav_bottom_albums">Albums</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 </resources>
