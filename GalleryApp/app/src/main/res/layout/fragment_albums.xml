@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBackground"
     android:animateLayoutChanges="true"
+    android:background="@color/colorBackground"
     tools:context=".views.fragments.AlbumsFragment">
 
     <com.amar.library.ui.StickyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:stickyHeader="@id/view_sticky_action_bar"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        app:stickyHeader="@id/view_sticky_action_bar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,55 +23,50 @@
                 android:id="@+id/view_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_45sdp"
                 android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="@dimen/_45sdp">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/text_title_dest"
                     android:layout_width="wrap_content"
-                    android:includeFontPadding="false"
-                    android:text="@string/title_albums"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textSize="@dimen/_25ssp"
+                    android:includeFontPadding="false"
+                    android:text="@string/title_dest_albums"
                     android:textColor="@color/colorTitleDestination"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="@dimen/_25ssp" />
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/view_quick_option_button"
+                    android:name="com.beebapcay.galleryapp.views.fragments.QuickOptionButtonFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:name="com.beebapcay.galleryapp.views.fragments.QuickOptionButtonFragment"
-                    tools:layout="@layout/fragment_quick_option_button"
-                    android:layout_marginTop="@dimen/_20sdp" />
-
+                    android:layout_marginTop="@dimen/_20sdp"
+                    tools:layout="@layout/fragment_quick_option_button" />
             </LinearLayout>
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/view_sticky_action_bar"
+                android:name="com.beebapcay.galleryapp.views.fragments.StickyActionBarFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:name="com.beebapcay.galleryapp.views.fragments.StickyActionBarFragment"
-                tools:layout="@layout/fragment_sticky_action_bar"
+                android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintTop_toBottomOf="@id/view_header"
-
-                android:layout_marginTop="@dimen/_30sdp"/>
+                tools:layout="@layout/fragment_sticky_action_bar" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/view_recycler_gallery_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:paddingTop="@dimen/_15sdp"
-                android:paddingBottom="@dimen/_15sdp"
+                android:clipToPadding="false"
                 android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_15sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@id/view_sticky_action_bar"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
+                android:paddingBottom="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_sticky_action_bar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.amar.library.ui.StickyScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

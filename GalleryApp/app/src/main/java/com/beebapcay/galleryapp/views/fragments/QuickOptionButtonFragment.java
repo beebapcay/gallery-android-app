@@ -11,9 +11,7 @@ import com.beebapcay.galleryapp.R;
 
 
 public class QuickOptionButtonFragment extends Fragment {
-
     public QuickOptionButtonFragment() { }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -1,21 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!--    Base application theme    -->
     <style name="Theme.GalleryApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-        <!-- Primary brand color. -->
+        <!--    Primary brand color    -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
 
-        <!-- Secondary brand color. -->
+        <!--    Secondary brand color    -->
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
-        <!-- Status bar color. -->
+        <!--    Status bar color    -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
 
-        <!-- Customize your theme here. -->
+        <!--    Customize your theme here    -->
+        <!--    Popup Menu    -->
+        <item name="popupMenuStyle">@style/Theme.Gallery.PopupMenu</item>
+    </style>
+
+    <!--    Popup Menu Custom    -->
+    <style name="Theme.Gallery.PopupMenu" parent="@style/Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_popup_menu</item>
+        <item name="android:popupElevation">@dimen/_5sdp</item>
     </style>
 </resources>

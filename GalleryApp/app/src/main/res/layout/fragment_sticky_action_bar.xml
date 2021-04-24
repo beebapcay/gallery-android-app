@@ -27,8 +27,8 @@
 
     <ImageButton
         android:id="@+id/btn_search"
-        android:layout_width="@dimen/_37sdp"
-        android:layout_height="@dimen/_37sdp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
         android:background="@drawable/bg_ripple_circle"
         android:backgroundTint="@color/colorStickyActionBarBackground"
         android:padding="@dimen/_10sdp"
@@ -42,8 +42,8 @@
 
     <ImageButton
         android:id="@+id/btn_filter"
-        android:layout_width="@dimen/_37sdp"
-        android:layout_height="@dimen/_37sdp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
         android:background="@drawable/bg_ripple_circle"
         android:backgroundTint="@color/colorStickyActionBarBackground"
         android:padding="@dimen/_10sdp"
@@ -57,8 +57,8 @@
 
     <ImageButton
         android:id="@+id/btn_layout"
-        android:layout_width="@dimen/_37sdp"
-        android:layout_height="@dimen/_37sdp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
         android:background="@drawable/bg_ripple_circle"
         android:backgroundTint="@color/colorStickyActionBarBackground"
         android:padding="@dimen/_10sdp"
@@ -66,29 +66,15 @@
         android:src="@drawable/ic_grid_3x3"
         android:tint="@color/colorStickyActionBarIcon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_setting"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,UnusedAttribute" />
-
-    <ImageButton
-        android:id="@+id/btn_setting"
-        android:layout_width="@dimen/_37sdp"
-        android:layout_height="@dimen/_37sdp"
-        android:background="@drawable/bg_ripple_circle"
-        android:backgroundTint="@color/colorStickyActionBarBackground"
-        android:padding="@dimen/_10sdp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_setting"
-        android:tint="@color/colorStickyActionBarIcon"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_more"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,UnusedAttribute" />
+    
 
     <ImageButton
         android:id="@+id/btn_more"
-        android:layout_width="@dimen/_37sdp"
-        android:layout_height="@dimen/_37sdp"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:background="@drawable/bg_ripple_circle"
         android:backgroundTint="@color/colorStickyActionBarBackground"
@@ -100,5 +86,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,UnusedAttribute" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_select_all"
+        android:title="@string/menu_sticky_action_bar_more_select_all" />
+
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/menu_sticky_action_bar_more_share" />
+
+    <item
+        android:id="@+id/action_slideshow"
+        android:title="@string/menu_sticky_action_bar_more_slideshow" />
+
+    <item
+        android:id="@+id/action_privacy"
+        android:title="@string/menu_sticky_action_bar_more_privacy" />
+
+    <item
+        android:id="@+id/action_recycle_bin"
+        android:title="@string/menu_sticky_action_bar_more_recycle_bin" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/menu_sticky_action_bar_more_settings" />
+
+    <item
+        android:id="@+id/action_about_us"
+        android:title="@string/menu_sticky_action_bar_more_about_us" />
+</menu>

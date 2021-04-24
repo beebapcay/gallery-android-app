@@ -3,10 +3,10 @@
     <string name="app_name">Gallery App</string>
 
     <!--    Title   -->
-    <string name="title_gallery">Gallery</string>
-    <string name="title_pictures">Pictures</string>
-    <string name="title_videos">Videos</string>
-    <string name="title_albums">Albums</string>
+    <string name="title_dest_gallery">Gallery</string>
+    <string name="title_dest_pictures">Pictures</string>
+    <string name="title_dest_videos">Videos</string>
+    <string name="title_dest_albums">Albums</string>
 
     <!--    Quick Option Button    -->
     <string name="label_favourites">Favourites</string>
@@ -14,13 +14,18 @@
     <string name="label_people">People</string>
     <string name="label_locations">Locations</string>
 
+    <!--    Popup Menu Dest Fragment More    -->
+    <string name="menu_sticky_action_bar_more_select_all">Select all</string>
+    <string name="menu_sticky_action_bar_more_share">Share</string>
+    <string name="menu_sticky_action_bar_more_slideshow">Slideshow</string>
+    <string name="menu_sticky_action_bar_more_privacy">Privacy</string>
+    <string name="menu_sticky_action_bar_more_recycle_bin">Recycle bin</string>
+    <string name="menu_sticky_action_bar_more_settings">Settings</string>
+    <string name="menu_sticky_action_bar_more_about_us">About us</string>
 
     <!--    Bottom Navigation View    -->
-    <string name="title_nav_bottom_gallery">Gallery</string>
-    <string name="title_nav_bottom_pictures">Pictures</string>
-    <string name="title_nav_bottom_videos">Videos</string>
-    <string name="title_nav_bottom_albums">Albums</string>
-
-
-
+    <string name="menu_nav_bottom_gallery">Gallery</string>
+    <string name="menu_nav_bottom_pictures">Pictures</string>
+    <string name="meu_nav_bottom_videos">Videos</string>
+    <string name="meu_nav_bottom_albums">Albums</string>
 </resources>

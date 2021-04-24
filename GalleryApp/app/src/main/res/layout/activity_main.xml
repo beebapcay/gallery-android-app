@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context=".views.activities.MainActivity">
-
     <fragment
         android:id="@+id/view_dest_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -34,5 +33,4 @@
         app:menu="@menu/menu_nav_bottom" >
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

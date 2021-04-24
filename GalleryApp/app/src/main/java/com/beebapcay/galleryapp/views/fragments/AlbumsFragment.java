@@ -12,10 +12,7 @@ import com.beebapcay.galleryapp.R;
 
 
 public class AlbumsFragment extends Fragment {
-
-
     public AlbumsFragment() { }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,7 +22,6 @@ public class AlbumsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_albums, container, false);
     }
 }

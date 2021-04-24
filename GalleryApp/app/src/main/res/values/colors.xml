@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--    Normal Color    -->
     <color name="transparent">#00000000</color>
     <color name="black">#FF000000</color>
@@ -15,8 +14,8 @@
     <color name="colorSecondaryVariant">#D3004F</color>
     <color name="colorOnSecondary">#FFFFFF</color>
 
+    <!--    Custom Color Component    -->
     <color name="colorBackground">#F2F2F2</color>
-    
     <color name="colorControlHighlight">#1AFFFFFF</color>
 
     <!--    Title   -->
@@ -52,5 +51,4 @@
     <color name="colorFavourite">#D92555</color>
     <color name="colorLocation">#2d88ff</color>
     <color name="colorRippleEffect">#C8C8C8</color>
-
 </resources>
