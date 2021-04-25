@@ -21,7 +21,7 @@
     </style>
 
     <!--    Popup Menu Custom    -->
-    <style name="Theme.Gallery.PopupMenu" parent="@style/Widget.MaterialComponents.PopupMenu">
+    <style name="Theme.Gallery.PopupMenu" parent="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small">
         <item name="android:popupBackground">@drawable/bg_popup_menu</item>
         <item name="android:popupElevation">@dimen/_5sdp</item>
     </style>
