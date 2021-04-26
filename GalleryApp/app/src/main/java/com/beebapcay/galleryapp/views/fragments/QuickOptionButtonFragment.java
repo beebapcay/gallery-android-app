@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import com.beebapcay.galleryapp.R;
 
-
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class QuickOptionButtonFragment extends Fragment {
+    private static final String TAG = QuickOptionButtonFragment.class.getSimpleName();
+
     public QuickOptionButtonFragment() { }
 
     @Override

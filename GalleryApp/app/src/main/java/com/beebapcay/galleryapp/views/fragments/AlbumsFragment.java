@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 
 import com.beebapcay.galleryapp.R;
 
-
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class AlbumsFragment extends Fragment {
+    private static final String TAG = AlbumsFragment.class.getSimpleName();
+
     public AlbumsFragment() { }
 
     @Override
