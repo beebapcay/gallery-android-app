@@ -8,11 +8,10 @@
     android:background="@color/colorBackground"
     tools:context=".views.fragments.VideosFragment">
 
-    <com.amar.library.ui.StickyScrollView
+    <com.emilsjolander.components.StickyScrollViewItems.StickyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        app:stickyHeader="@id/view_sticky_action_bar">
+        android:clipToPadding="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_25sdp"
+                android:tag="sticky"
                 app:layout_constraintTop_toBottomOf="@id/view_header"
                 tools:layout="@layout/fragment_sticky_action_bar" />
 
@@ -59,14 +59,12 @@
                 android:id="@+id/view_recycler_gallery_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:clipToPadding="false"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingTop="@dimen/_15sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_sticky_action_bar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.amar.library.ui.StickyScrollView>
+    </com.emilsjolander.components.StickyScrollViewItems.StickyScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

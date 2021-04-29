@@ -9,46 +9,44 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.beebapcay.galleryapp.models.AlbumModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
 
-@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal", "UnusedReturnValue"})
 public class MediaDataRepository {
 	private static final String TAG = MediaDataRepository.class.getSimpleName();
 
 	@SuppressLint("StaticFieldLeak")
-	private static MediaDataRepository mSingletonInstance = null;
+	private static MediaDataRepository sSingletonInstance = null;
 
 	private final Context mContext;
-
-	private final List<PictureModel> mPictureModels = new ArrayList<>();
-	private final List<VideoModel> mVideoModels = new ArrayList<>();
-	private final List<AlbumModel> mAlbumModels = new ArrayList<>();
 
 	private MediaDataRepository(Context context) {
 		mContext = context;
 	}
 
 	public static MediaDataRepository getInstance(Context context) {
-		if (mSingletonInstance == null) mSingletonInstance = new MediaDataRepository(context);
-		return mSingletonInstance;
+		if (sSingletonInstance == null) sSingletonInstance = new MediaDataRepository(context);
+		return sSingletonInstance;
 	}
 
+	public Single<List<PictureModel>> loadPictures() {
+		List<PictureModel> mDataPictures = new ArrayList<>();
 
-	public void fetchMediaData() {
-		fetchPictures();
-		fetchVideos();
-	}
-
-	public void fetchPictures() {
-		mPictureModels.clear();
-
-		Uri collection = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+		Uri collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 		String[] projection = new String[]{
 				MediaStore.Images.Media._ID,
 				MediaStore.Images.Media.DISPLAY_NAME,
@@ -86,16 +84,17 @@ public class MediaDataRepository {
 				int width = cursor.getInt(widthColumn);
 
 				PictureModel pictureModel = new PictureModel(id, uri, name, size, dateAdded, dateModified, height, width);
-				mPictureModels.add(pictureModel);
+				mDataPictures.add(pictureModel);
 			}
 		}
 
-		Log.d(TAG, "Found: " + mPictureModels.size() + " pictures");
+		Log.d(TAG, "Found: " + mDataPictures.size() + " pictures");
+		return Single.just(mDataPictures);
 	}
 
 
-	public void fetchVideos() {
-		mVideoModels.clear();
+	public Single<List<VideoModel>> loadVideos() {
+		List<VideoModel> mDataVideos = new ArrayList<>();
 
 		Uri collection = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
 
@@ -140,28 +139,28 @@ public class MediaDataRepository {
 				int width = cursor.getInt(widthColumn);
 
 				VideoModel videoModel = new VideoModel(id, uri, name, size, duration, dateAdded, dateModified, height, width);
-				mVideoModels.add(videoModel);
+				mDataVideos.add(videoModel);
 			}
 		}
 
-		Log.d(TAG, "Found: " + mVideoModels.size() + " videos");
+		Log.d(TAG, "Found: " + mDataVideos.size() + " videos");
+		return Single.just(mDataVideos);
 	}
 
-	public void fetchAlbums() {
-		mAlbumModels.clear();
+	public Single<List<AlbumModel>> loadAlbums() {
+		List<AlbumModel> mDataAlbums = new ArrayList<>();
 
-		Log.d(TAG, "Found: " + mAlbumModels.size() + " albums");
+		Uri collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
+		Log.d(TAG, "Found: " + mDataAlbums.size() + " albums");
+		return Single.just(mDataAlbums);
 	}
 
-	public List<PictureModel> getPictureModels() {
-		return mPictureModels;
-	}
-
-	public List<VideoModel> getVideoModels() {
-		return mVideoModels;
-	}
-
-	public List<AlbumModel> getAlbumModels() {
-		return mAlbumModels;
+	public Single<List<Integer>> load() {
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		return Single.just(list);
 	}
 }

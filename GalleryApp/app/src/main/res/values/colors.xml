@@ -15,7 +15,7 @@
     <color name="colorOnSecondary">#FFFFFF</color>
 
     <!--    Custom Color Component    -->
-    <color name="colorBackground">#F2F2F2</color>
+    <color name="colorBackground">@color/colorPrimary</color>
     <color name="colorControlHighlight">#1AFFFFFF</color>
 
     <!--    Title   -->
@@ -27,28 +27,33 @@
     <!--    Text    -->
     <color name="colorTextHighlight">#011640</color>
     <color name="colorTextPrimary">#252525</color>
-    <color name="colorTextSecondary">#505050</color>
-    <color name="colorTextTertiary">#636363</color>
-    <color name="colorTextQuaternary">#787878</color>
-    <color name="colorTextQuinary">#858585</color>
+    <color name="colorTextSecondary">#3E3E3E</color>
+    <color name="colorTextTertiary">#505050</color>
+    <color name="colorTextQuaternary">#636363</color>
+    <color name="colorTextQuinary">#787878</color>
 
     <!--    Quick Option Button    -->
     <color name="colorQuickOptionButtonBackground">#E4E4E4</color>
     <color name="colorQuickOptionButtonIcon">#E9474646</color>
-    <color name="colorQuickOptionButtonLabel">#3E3E3E</color>
+    <color name="colorQuickOptionButtonLabel">@color/colorTextSecondary</color>
 
     <!--    Sticky Action Bar   -->
-    <color name="colorStickyActionBarBackground">#F2F2F2</color>
+    <color name="colorStickyActionBarBackground">@color/colorBackground</color>
     <color name="colorStickyActionBarIcon">#252525</color>
     <color name="colorStickyActionBarCameraIcon">#011640</color>
 
     <!--    Menu Navigation Bar Bottom    -->
-    <color name="colorMenuNavBarBottomBackground">#F2F2F2</color>
+    <color name="colorMenuNavBarBottomBackground">@color/colorBackground</color>
     <color name="colorMenuNavBarBottomItemNormal">#CC011640</color>
     <color name="colorMenuNavBarBottomItemActive">#011640</color>
 
+    <!--    Placeholder Item    -->
+    <color name="colorPlaceholderBackground">#DEDEDE</color>
+    <color name="colorPlaceholderIcon">#A0A0A0</color>
+
     <!--    Other    -->
     <color name="colorFavourite">#D92555</color>
-    <color name="colorLocation">#2d88ff</color>
+    <color name="colorLocation">#4081EC</color>
     <color name="colorRippleEffect">#C8C8C8</color>
+
 </resources>

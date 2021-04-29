@@ -25,7 +25,6 @@ public class VideoModel implements Parcelable {
 	private String mName;
 	private long mSize;
 	private long mDuration;
-
 	private Date mDateAdded;
 	private Date mDateModified;
 	private int mHeight;
@@ -52,7 +51,6 @@ public class VideoModel implements Parcelable {
 		mName = in.readString();
 		mSize = in.readLong();
 		mDuration = in.readLong();
-
 		mDateAdded = new Date(in.readLong());
 		mDateModified = new Date(in.readLong());
 		mHeight = in.readInt();
@@ -71,7 +69,6 @@ public class VideoModel implements Parcelable {
 		dest.writeString(mName);
 		dest.writeLong(mSize);
 		dest.writeLong(mDuration);
-
 		dest.writeLong(mDateAdded.getTime());
 		dest.writeLong(mDateModified.getTime());
 		dest.writeInt(mHeight);

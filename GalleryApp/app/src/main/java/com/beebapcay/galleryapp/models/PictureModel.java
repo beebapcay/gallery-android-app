@@ -24,12 +24,10 @@ public class PictureModel implements Parcelable {
 	private Uri mUri;
 	private String mName;
 	private long mSize;
-
 	private Date mDateAdded;
 	private Date mDateModified;
 	private int mHeight;
 	private int mWidth;
-
 
 	public PictureModel() {
 	}
@@ -39,7 +37,6 @@ public class PictureModel implements Parcelable {
 		mUri = uri;
 		mName = name;
 		mSize = size;
-
 		mDateAdded = dateAdded;
 		mDateModified = dateModified;
 		mHeight = height;
@@ -51,7 +48,6 @@ public class PictureModel implements Parcelable {
 		mUri = in.readParcelable(Uri.class.getClassLoader());
 		mName = in.readString();
 		mSize = in.readLong();
-
 		mDateAdded = new Date(in.readLong());
 		mDateModified = new Date(in.readLong());
 		mHeight = in.readInt();
@@ -69,7 +65,6 @@ public class PictureModel implements Parcelable {
 		dest.writeParcelable(mUri, flags);
 		dest.writeString(mName);
 		dest.writeLong(mSize);
-
 		dest.writeLong(mDateAdded.getTime());
 		dest.writeLong(mDateModified.getTime());
 		dest.writeInt(mHeight);
