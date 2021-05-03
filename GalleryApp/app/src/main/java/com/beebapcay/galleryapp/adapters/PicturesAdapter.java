@@ -1,7 +1,6 @@
 package com.beebapcay.galleryapp.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,29 +17,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureHolder> {
-	private final List<PictureModel> mDataPictures;
+public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.PictureViewHolder> {
 	private final Context mContext;
+	private final List<PictureModel> mDataPictures;
 
-	public PictureAdapter(Context context, List<PictureModel> dataPictures) {
+	public PicturesAdapter(Context context, List<PictureModel> dataPictures) {
 		mContext = context;
 		mDataPictures = new ArrayList<>(dataPictures);
 	}
 
 	@NonNull
 	@Override
-	public PictureHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		return new PictureHolder(
+	public PictureViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		return new PictureViewHolder(
 				LayoutInflater.from(parent.getContext()).inflate(
 						R.layout.item_picture,
 						parent,
 						false
-				));
+				)
+		);
 	}
 
 	@Override
-	public void onBindViewHolder(@NonNull PictureHolder holder, int position) {
-		holder.bind(mDataPictures.get(position));
+	public void onBindViewHolder(@NonNull PictureViewHolder holder, int position) {
+		holder.onBind(mDataPictures.get(position));
 	}
 
 	@Override
@@ -48,15 +48,15 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.PictureH
 		return mDataPictures.size();
 	}
 
-	class PictureHolder extends RecyclerView.ViewHolder {
+	static class PictureViewHolder extends RecyclerView.ViewHolder {
 		private final ImageView mImageThumbnail;
 
-		public PictureHolder(@NonNull View itemView) {
+		public PictureViewHolder(@NonNull View itemView) {
 			super(itemView);
 			mImageThumbnail = itemView.findViewById(R.id.image_thumbnail);
 		}
 
-		public void bind(PictureModel pictureModel) {
+		public void onBind(PictureModel pictureModel) {
 			Glide.with(mImageThumbnail.getContext())
 					.load(pictureModel.getUri())
 					.placeholder(R.drawable.ic_placeholder)

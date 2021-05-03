@@ -5,27 +5,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.beebapcay.galleryapp.R;
-import com.beebapcay.galleryapp.adapters.PictureAdapter;
+import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
-import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
-
-import java.util.List;
-import java.util.Objects;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class PicturesFragment extends Fragment {
@@ -35,7 +27,7 @@ public class PicturesFragment extends Fragment {
 
     private MediaViewModelFactory mMediaViewModelFactory;
     private MediaViewModel mMediaViewModel;
-    private PictureAdapter mPictureAdapter;
+    private PicturesAdapter mPicturesAdapter;
 
     public PicturesFragment() { }
 
@@ -66,7 +58,7 @@ public class PicturesFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        mPictureAdapter = new PictureAdapter(requireContext(), mMediaViewModel.getLiveDataPictures().getValue());
-        mRecyclerView.setAdapter(mPictureAdapter);
+        mPicturesAdapter = new PicturesAdapter(requireContext(), mMediaViewModel.getLiveDataPictures().getValue());
+        mRecyclerView.setAdapter(mPicturesAdapter);
     }
 }

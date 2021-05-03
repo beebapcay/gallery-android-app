@@ -70,9 +70,10 @@ dependencies {
     //StickyScrollView
     implementation 'se.emilsjolander:StickyScrollViewItems:1.1.0'
 
-    implementation 'com.github.didikk:sticky-nestedscrollview:1.0.1'
-
     //RxAndroid & RxJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
+    //ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.13.3'
 }

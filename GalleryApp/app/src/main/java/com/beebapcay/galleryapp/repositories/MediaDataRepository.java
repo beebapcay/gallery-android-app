@@ -44,6 +44,7 @@ public class MediaDataRepository {
 	}
 
 	public Single<List<PictureModel>> loadPictures() {
+		Log.d("TrackLoadData", "Reposity start");
 		List<PictureModel> mDataPictures = new ArrayList<>();
 
 		Uri collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
@@ -89,6 +90,7 @@ public class MediaDataRepository {
 		}
 
 		Log.d(TAG, "Found: " + mDataPictures.size() + " pictures");
+		Log.d("TrackLoadData", "Reposity end");
 		return Single.just(mDataPictures);
 	}
 
@@ -138,7 +140,7 @@ public class MediaDataRepository {
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 
-				VideoModel videoModel = new VideoModel(id, uri, name, size, duration, dateAdded, dateModified, height, width);
+				VideoModel videoModel = new VideoModel(id, uri, name, size, dateAdded, dateModified, height, width, duration);
 				mDataVideos.add(videoModel);
 			}
 		}
@@ -154,13 +156,5 @@ public class MediaDataRepository {
 
 		Log.d(TAG, "Found: " + mDataAlbums.size() + " albums");
 		return Single.just(mDataAlbums);
-	}
-
-	public Single<List<Integer>> load() {
-		List<Integer> list = new ArrayList<>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		return Single.just(list);
 	}
 }

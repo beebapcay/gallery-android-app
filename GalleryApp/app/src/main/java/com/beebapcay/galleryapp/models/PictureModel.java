@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import java.util.Date;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class PictureModel implements Parcelable {
+public class PictureModel extends GalleryModel implements Parcelable {
 	public static final Creator<PictureModel> CREATOR = new Creator<PictureModel>() {
 		@Override
 		public PictureModel createFromParcel(Parcel in) {
@@ -20,27 +20,12 @@ public class PictureModel implements Parcelable {
 		}
 	};
 
-	private long mId;
-	private Uri mUri;
-	private String mName;
-	private long mSize;
-	private Date mDateAdded;
-	private Date mDateModified;
-	private int mHeight;
-	private int mWidth;
-
 	public PictureModel() {
+		super();
 	}
 
 	public PictureModel(long id, Uri uri, String name, long size, Date dateAdded, Date dateModified, int height, int width) {
-		mId = id;
-		mUri = uri;
-		mName = name;
-		mSize = size;
-		mDateAdded = dateAdded;
-		mDateModified = dateModified;
-		mHeight = height;
-		mWidth = width;
+		super(id, uri, name, size, dateAdded, dateModified, height, width);
 	}
 
 	protected PictureModel(Parcel in) {
@@ -71,67 +56,5 @@ public class PictureModel implements Parcelable {
 		dest.writeInt(mWidth);
 	}
 
-	public long getId() {
-		return mId;
-	}
 
-	public void setId(long id) {
-		mId = id;
-	}
-
-	public String getName() {
-		return mName;
-	}
-
-	public void setName(String name) {
-		mName = name;
-	}
-
-	public long getSize() {
-		return mSize;
-	}
-
-	public void setSize(long size) {
-		mSize = size;
-	}
-
-	public Date getDateAdded() {
-		return mDateAdded;
-	}
-
-	public void setDateAdded(Date dateAdded) {
-		mDateAdded = dateAdded;
-	}
-
-	public Date getDateModified() {
-		return mDateModified;
-	}
-
-	public void setDateModified(Date dateModified) {
-		mDateModified = dateModified;
-	}
-
-	public Uri getUri() {
-		return mUri;
-	}
-
-	public void setUri(Uri uri) {
-		mUri = uri;
-	}
-
-	public int getHeight() {
-		return mHeight;
-	}
-
-	public void setHeight(int height) {
-		mHeight = height;
-	}
-
-	public int getWidth() {
-		return mWidth;
-	}
-
-	public void setWidth(int width) {
-		mWidth = width;
-	}
 }

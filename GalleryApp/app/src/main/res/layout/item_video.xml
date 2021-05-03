@@ -19,6 +19,43 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/bg_rectangle"
+        android:backgroundTint="@color/colorDurationBackground"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="@id/image_thumbnail"
+        app:layout_constraintStart_toStartOf="@id/image_thumbnail">
+
+        <ImageView
+            android:id="@+id/image_play"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_play"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorDurationText"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:includeFontPadding="false"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorDurationText"
+            app:layout_constraintBottom_toBottomOf="@id/image_play"
+            app:layout_constraintStart_toEndOf="@id/image_play"
+            app:layout_constraintTop_toTopOf="@id/image_play"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageView
         android:id="@+id/btn_favourite"
         android:layout_width="@dimen/_18sdp"
@@ -26,9 +63,9 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:background="@null"
+        android:visibility="gone"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_heart_filled"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/image_thumbnail"
         app:layout_constraintTop_toTopOf="@id/image_thumbnail"
         app:tint="@color/colorFavourite"
@@ -41,9 +78,9 @@
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         android:background="@null"
+        android:visibility="gone"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_location_filled"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/image_thumbnail"
         app:layout_constraintEnd_toEndOf="@id/image_thumbnail"
         app:tint="@color/colorLocation"

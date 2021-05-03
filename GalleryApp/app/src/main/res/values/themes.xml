@@ -18,6 +18,9 @@
         <!--    Customize your theme here    -->
         <!--    Popup Menu    -->
         <item name="popupMenuStyle">@style/Theme.Gallery.PopupMenu</item>
+
+        <!--    Component    -->
+
     </style>
 
     <!--    Popup Menu Custom    -->

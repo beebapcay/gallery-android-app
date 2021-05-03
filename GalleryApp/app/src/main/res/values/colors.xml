@@ -55,5 +55,8 @@
     <color name="colorFavourite">#D92555</color>
     <color name="colorLocation">#4081EC</color>
     <color name="colorRippleEffect">#C8C8C8</color>
+    <color name="colorDurationBackground">#80000000</color>
+    <color name="colorDurationText">#FFFFFF</color>
+
 
 </resources>

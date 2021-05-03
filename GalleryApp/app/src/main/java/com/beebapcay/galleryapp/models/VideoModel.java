@@ -7,7 +7,7 @@ import android.os.Parcelable;
 import java.util.Date;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class VideoModel implements Parcelable {
+public class VideoModel extends GalleryModel implements Parcelable {
 	public static final Creator<VideoModel> CREATOR = new Creator<VideoModel>() {
 		@Override
 		public VideoModel createFromParcel(Parcel in) {
@@ -20,29 +20,15 @@ public class VideoModel implements Parcelable {
 		}
 	};
 
-	private long mId;
-	private Uri mUri;
-	private String mName;
-	private long mSize;
 	private long mDuration;
-	private Date mDateAdded;
-	private Date mDateModified;
-	private int mHeight;
-	private int mWidth;
 
 	public VideoModel() {
+		super();
 	}
 
-	public VideoModel(long id, Uri uri, String name, long size, long duration, Date dateAdded, Date dateModified, int height, int width) {
-		mId = id;
-		mUri = uri;
-		mName = name;
-		mSize = size;
+	public VideoModel(long id, Uri uri, String name, long size, Date dateAdded, Date dateModified, int height, int width,long duration) {
+		super(id, uri, name, size, dateAdded, dateModified, height, width);
 		mDuration = duration;
-		mDateAdded = dateAdded;
-		mDateModified = dateModified;
-		mHeight = height;
-		mWidth = width;
 	}
 
 	protected VideoModel(Parcel in) {
@@ -75,54 +61,6 @@ public class VideoModel implements Parcelable {
 		dest.writeInt(mWidth);
 	}
 
-	public long getId() {
-		return mId;
-	}
-
-	public void setId(long id) {
-		mId = id;
-	}
-
-	public String getName() {
-		return mName;
-	}
-
-	public void setName(String name) {
-		mName = name;
-	}
-
-	public long getSize() {
-		return mSize;
-	}
-
-	public void setSize(long size) {
-		mSize = size;
-	}
-
-	public Date getDateAdded() {
-		return mDateAdded;
-	}
-
-	public void setDateAdded(Date dateAdded) {
-		mDateAdded = dateAdded;
-	}
-
-	public Date getDateModified() {
-		return mDateModified;
-	}
-
-	public void setDateModified(Date dateModified) {
-		mDateModified = dateModified;
-	}
-
-	public Uri getUri() {
-		return mUri;
-	}
-
-	public void setUri(Uri uri) {
-		mUri = uri;
-	}
-
 	public long getDuration() {
 		return mDuration;
 	}
@@ -131,19 +69,4 @@ public class VideoModel implements Parcelable {
 		mDuration = duration;
 	}
 
-	public int getHeight() {
-		return mHeight;
-	}
-
-	public void setHeight(int height) {
-		mHeight = height;
-	}
-
-	public int getWidth() {
-		return mWidth;
-	}
-
-	public void setWidth(int width) {
-		mWidth = width;
-	}
 }

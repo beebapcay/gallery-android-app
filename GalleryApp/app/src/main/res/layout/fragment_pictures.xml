@@ -33,6 +33,7 @@
                     android:layout_gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/title_dest_pictures"
+
                     android:textColor="@color/colorTitleDestination"
                     android:textSize="@dimen/_25ssp" />
 

@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -21,6 +23,10 @@ import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
+import com.beebapcay.galleryapp.views.fragments.AlbumsFragment;
+import com.beebapcay.galleryapp.views.fragments.GalleryFragment;
+import com.beebapcay.galleryapp.views.fragments.PicturesFragment;
+import com.beebapcay.galleryapp.views.fragments.VideosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -59,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
 		mMediaViewModel = new ViewModelProvider(this, mMediaViewModelFactory).get(MediaViewModel.class);
 
 		checkReadExternalStoragePermission();
+		loadMediaData();
 
 		//Set Navigate of NavigationBottomView
 		mBottomNavigationView = findViewById(R.id.view_bottom_nav);
 		mNavController = Navigation.findNavController(this, R.id.view_dest_container);
 		NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
 	}
-
 
 	@SuppressLint("NewApi")
 	private void checkReadExternalStoragePermission() {
@@ -90,19 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
 	public void loadMediaData() {
 		mMediaViewModel.loadPictures()
-				.subscribeOn(Schedulers.newThread())
-				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(dataPictures -> mMediaViewModel.getLiveDataPictures().setValue(dataPictures));
 
 		mMediaViewModel.loadVideos()
-				.subscribeOn(Schedulers.newThread())
-				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(dataVideos -> mMediaViewModel.getLiveDataVideos().setValue(dataVideos));
 
 		mMediaViewModel.loadAlbums()
-				.subscribeOn(Schedulers.newThread())
-				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(dataAlbums -> mMediaViewModel.getLiveDataAlbums().setValue(dataAlbums));
-
 	}
 }
