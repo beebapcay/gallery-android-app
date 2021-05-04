@@ -17,6 +17,7 @@
     <!--    Custom Color Component    -->
     <color name="colorBackground">@color/colorPrimary</color>
     <color name="colorControlHighlight">#1AFFFFFF</color>
+    <color name="colorEdgeEffect">#80E91E63</color>
 
     <!--    Title   -->
     <color name="colorTitleHighlight">#011640</color>

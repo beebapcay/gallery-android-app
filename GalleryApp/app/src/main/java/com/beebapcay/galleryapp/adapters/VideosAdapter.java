@@ -10,16 +10,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
+import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
-import com.beebapcay.galleryapp.utils.DurationFormat;
+import com.beebapcay.galleryapp.utils.PictureDiffCallback;
+import com.beebapcay.galleryapp.utils.VideoDiffCallback;
 import com.bumptech.glide.Glide;
 
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
@@ -27,9 +32,9 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 	private final Context mContext;
 	private final List<VideoModel> mDataVideos;
 
-	public VideosAdapter(Context context, List<VideoModel> dataVideos) {
+	public VideosAdapter(Context context) {
 		mContext = context;
-		mDataVideos = new ArrayList<>(dataVideos);
+		mDataVideos = new ArrayList<>();
 	}
 
 	@NonNull
@@ -53,6 +58,25 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 	@Override
 	public int getItemCount() {
 		return mDataVideos.size();
+	}
+
+	public void sortFilter(FilterType filterType) {
+		if (filterType == FilterType.DATE)
+			Collections.sort(mDataVideos, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
+		else if (filterType == FilterType.NAME)
+			Collections.sort(mDataVideos, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+		else
+			Collections.sort(mDataVideos, (o1, o2) -> (int) (o1.getSize() - o2.getSize()));
+	}
+
+	public void loadData(List<VideoModel> dataVideos) {
+		final VideoDiffCallback videoDiffCallback = new VideoDiffCallback(mDataVideos, dataVideos);
+		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(videoDiffCallback);
+
+		mDataVideos.clear();
+		mDataVideos.addAll(dataVideos);
+
+		diffResult.dispatchUpdatesTo(this);
 	}
 
 

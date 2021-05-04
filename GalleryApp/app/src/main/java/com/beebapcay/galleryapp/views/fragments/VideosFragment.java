@@ -13,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.adapters.VideosAdapter;
+import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
@@ -27,6 +29,7 @@ import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 public class VideosFragment extends Fragment {
     private static final String TAG = VideosFragment.class.getSimpleName();
 
+    TextView mDestTitle;
     RecyclerView mRecyclerView;
 
     private MediaViewModelFactory mMediaViewModelFactory;
@@ -53,15 +56,24 @@ public class VideosFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mDestTitle = view.findViewById(R.id.text_title_dest);
+        mDestTitle.setText(R.string.title_dest_videos);
+
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        mVideosAdapter = new VideosAdapter(requireContext(), mMediaViewModel.getLiveDataVideos().getValue());
+        mVideosAdapter = new VideosAdapter(requireContext());
         mRecyclerView.setAdapter(mVideosAdapter);
+
+        mMediaViewModel.getLiveDataVideos().observe(requireActivity(), dataVideos -> {
+            mVideosAdapter.loadData(dataVideos);
+            mVideosAdapter.sortFilter(FilterType.DATE);
+            mRecyclerView.smoothScrollToPosition(0);
+        });
     }
 }

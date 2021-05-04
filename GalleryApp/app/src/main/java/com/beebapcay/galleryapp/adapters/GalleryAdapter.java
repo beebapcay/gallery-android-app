@@ -1,39 +1,40 @@
 package com.beebapcay.galleryapp.adapters;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
+import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
+import com.beebapcay.galleryapp.utils.GalleryDiffCallback;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class GalleryAdapter extends RecyclerView.Adapter {
+	private static final int TYPE_LAYOUT_PICTURE = 0;
+	private static final int TYPE_LAYOUT_VIDEO = 1;
+
 	private final Context mContext;
 	private final List<GalleryModel> mDataGallery;
 
-	public GalleryAdapter(Context context, List<PictureModel> dataPictures, List<VideoModel> dataVideos) {
+	public GalleryAdapter(Context context) {
 		mContext = context;
 		mDataGallery = new ArrayList<>();
-		mDataGallery.addAll(dataPictures);
-		mDataGallery.addAll(dataVideos);
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		if (mDataGallery.get(position) instanceof PictureModel) return 0;
-		return 1;
+		if (mDataGallery.get(position) instanceof PictureModel) return TYPE_LAYOUT_PICTURE;
+		return TYPE_LAYOUT_VIDEO;
 	}
 
 	@NonNull
@@ -57,8 +58,10 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-		if (holder instanceof PicturesAdapter.PictureViewHolder) ((PicturesAdapter.PictureViewHolder) holder).onBind((PictureModel) mDataGallery.get(position));
-		else ((VideosAdapter.VideoViewHolder) holder).onBind((VideoModel) mDataGallery.get(position));
+		if (holder instanceof PicturesAdapter.PictureViewHolder)
+			((PicturesAdapter.PictureViewHolder) holder).onBind((PictureModel) mDataGallery.get(position));
+		else
+			((VideosAdapter.VideoViewHolder) holder).onBind((VideoModel) mDataGallery.get(position));
 	}
 
 	@Override
@@ -66,7 +69,22 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 		return mDataGallery.size();
 	}
 
-	public void sortedByDate() {
-		Collections.sort(mDataGallery, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
+	public void sortFilter(FilterType filterType) {
+		if (filterType == FilterType.DATE)
+			Collections.sort(mDataGallery, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
+		else if (filterType == FilterType.NAME)
+			Collections.sort(mDataGallery, (o1, o2) -> o1.getName().compareTo(o2.getName()));
+		else
+			Collections.sort(mDataGallery, (o1, o2) -> (int) (o1.getSize() - o2.getSize()));
+	}
+
+	public void loadData(List<GalleryModel> dataGallery) {
+		final GalleryDiffCallback galleryDiffCallback = new GalleryDiffCallback(mDataGallery, dataGallery);
+		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(galleryDiffCallback);
+
+		mDataGallery.clear();
+		mDataGallery.addAll(dataGallery);
+
+		diffResult.dispatchUpdatesTo(this);
 	}
 }

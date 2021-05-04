@@ -16,10 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
+import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
@@ -30,6 +32,7 @@ import io.reactivex.rxjava3.core.Completable;
 public class GalleryFragment extends Fragment {
     private static final String TAG = GalleryFragment.class.getSimpleName();
 
+    TextView mDestTitle;
     RecyclerView mRecyclerView;
 
     private MediaViewModelFactory mMediaViewModelFactory;
@@ -56,16 +59,25 @@ public class GalleryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mDestTitle = view.findViewById(R.id.text_title_dest);
+        mDestTitle.setText(R.string.title_dest_gallery);
+
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        mGalleryAdapter = new GalleryAdapter(requireContext(), mMediaViewModel.getLiveDataPictures().getValue(), mMediaViewModel.getLiveDataVideos().getValue());
-        mGalleryAdapter.sortedByDate();
+        mGalleryAdapter = new GalleryAdapter(requireContext());
         mRecyclerView.setAdapter(mGalleryAdapter);
+
+        mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery -> {
+            mGalleryAdapter.loadData(dataGallery);
+            mGalleryAdapter.sortFilter(FilterType.DATE);
+            mRecyclerView.smoothScrollToPosition(0);
+        });
     }
+
 }

@@ -7,22 +7,33 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.beebapcay.galleryapp.models.AlbumModel;
+import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.rxjava3.core.Single;
 
 public class MediaViewModel extends ViewModel {
 	private final MediaDataRepository mMediaDataRepository;
+	private final MutableLiveData<List<GalleryModel>> mLiveDataGallery = new MutableLiveData<>();
 	private final MutableLiveData<List<PictureModel>> mLiveDataPictures = new MutableLiveData<>();
 	private final MutableLiveData<List<VideoModel>> mLiveDataVideos = new MutableLiveData<>();
 	private final MutableLiveData<List<AlbumModel>> mLiveDataAlbums = new MutableLiveData<>();
 
 	public MediaViewModel(MediaDataRepository mediaDataRepository) {
 		mMediaDataRepository = mediaDataRepository;
+	}
+
+	public Single<List<GalleryModel>> loadGallery() {
+		List<GalleryModel> dataGallery = new ArrayList<>();
+		dataGallery.addAll(Objects.requireNonNull(mLiveDataPictures.getValue()));
+		dataGallery.addAll(Objects.requireNonNull(mLiveDataVideos.getValue()));
+		return Single.just(dataGallery);
 	}
 
 	public Single<List<PictureModel>> loadPictures() {
@@ -37,6 +48,10 @@ public class MediaViewModel extends ViewModel {
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public Single<List<AlbumModel>> loadAlbums() {
 		return mMediaDataRepository.loadAlbums();
+	}
+
+	public MutableLiveData<List<GalleryModel>> getLiveDataGallery() {
+		return mLiveDataGallery;
 	}
 
 	public MutableLiveData<List<PictureModel>> getLiveDataPictures() {

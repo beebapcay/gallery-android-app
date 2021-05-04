@@ -1,6 +1,6 @@
 <resources>
     <!--    General    -->
-    <string name="app_name">Gallery App</string>
+    <string name="app_name">Gallery</string>
 
     <!--    Title   -->
     <string name="title_dest_gallery">Gallery</string>
@@ -28,7 +28,6 @@
     <string name="menu_sticky_action_bar_filter_date">Date</string>
     <string name="menu_sticky_action_bar_filter_size">Size</string>
     <string name="menu_sticky_action_bar_filter_name">Name</string>
-    <string name="menu_sticky_action_bar_filter_reverse">Reverse</string>
 
     <!--    Bottom Navigation View    -->
     <string name="menu_nav_bottom_gallery">Gallery</string>

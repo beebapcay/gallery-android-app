@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 	protected void onStart() {
 		super.onStart();
 
-		Log.d(TAG + "track", "onStart: loadmedia");
 		loadMediaData();
 	}
 
@@ -71,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
 		mMediaViewModel = new ViewModelProvider(this, mMediaViewModelFactory).get(MediaViewModel.class);
 
 		checkReadExternalStoragePermission();
-		Log.d(TAG + "track", "onInit: loadmedia");
-		loadMediaData();
 
 		//Set Navigate of NavigationBottomView
 		mBottomNavigationView = findViewById(R.id.view_bottom_nav);
@@ -103,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public void loadMediaData() {
-		Log.d(TAG + "track", "loadmedia0");
 		mMediaViewModel.loadPictures()
 				.subscribe(dataPictures -> mMediaViewModel.getLiveDataPictures().setValue(dataPictures));
 
@@ -112,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
 		mMediaViewModel.loadAlbums()
 				.subscribe(dataAlbums -> mMediaViewModel.getLiveDataAlbums().setValue(dataAlbums));
-		Log.d(TAG + "track", "loadmedia1");
+
+		mMediaViewModel.loadGallery()
+				.subscribe(dataGallery -> mMediaViewModel.getLiveDataGallery().setValue(dataGallery));
 	}
 }

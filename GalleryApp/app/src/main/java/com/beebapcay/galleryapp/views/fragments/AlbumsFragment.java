@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.AlbumsAdapter;
@@ -23,6 +24,7 @@ import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 public class AlbumsFragment extends Fragment {
     private static final String TAG = AlbumsFragment.class.getSimpleName();
 
+    TextView mDestTitle;
     RecyclerView mRecyclerView;
 
     private MediaViewModelFactory mMediaViewModelFactory;
@@ -48,6 +50,9 @@ public class AlbumsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mDestTitle = view.findViewById(R.id.text_title_dest);
+        mDestTitle.setText(R.string.title_dest_albums);
 
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));

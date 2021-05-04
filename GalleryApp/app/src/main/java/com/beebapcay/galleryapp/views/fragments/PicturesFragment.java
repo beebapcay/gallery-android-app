@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
+import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
@@ -24,6 +26,7 @@ import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 public class PicturesFragment extends Fragment {
     private static final String TAG = PicturesFragment.class.getSimpleName();
 
+    TextView mDestTitle;
     RecyclerView mRecyclerView;
 
     private MediaViewModelFactory mMediaViewModelFactory;
@@ -50,16 +53,24 @@ public class PicturesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mDestTitle = view.findViewById(R.id.text_title_dest);
+        mDestTitle.setText(R.string.title_dest_pictures);
+
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
     }
 
-
     @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG + "track", "onStart: loadAdapter");
-        mPicturesAdapter = new PicturesAdapter(requireContext(), mMediaViewModel.getLiveDataPictures().getValue());
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mPicturesAdapter = new PicturesAdapter(requireContext());
         mRecyclerView.setAdapter(mPicturesAdapter);
+
+        mMediaViewModel.getLiveDataPictures().observe(requireActivity(), dataPictures -> {
+            mPicturesAdapter.loadData(dataPictures);
+            mPicturesAdapter.sortFilter(FilterType.DATE);
+            mRecyclerView.smoothScrollToPosition(0);
+        });
     }
 }
