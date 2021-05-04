@@ -3,12 +3,14 @@ package com.beebapcay.galleryapp.views.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 	BottomNavigationView mBottomNavigationView;
 	NavController mNavController;
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,19 +55,23 @@ public class MainActivity extends AppCompatActivity {
 		doInitialization();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
 	protected void onStart() {
 		super.onStart();
 
+		Log.d(TAG + "track", "onStart: loadmedia");
 		loadMediaData();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	private void doInitialization() {
 		//MediaViewModel
 		mMediaViewModelFactory = new MediaViewModelFactory(MediaDataRepository.getInstance(this));
 		mMediaViewModel = new ViewModelProvider(this, mMediaViewModelFactory).get(MediaViewModel.class);
 
 		checkReadExternalStoragePermission();
+		Log.d(TAG + "track", "onInit: loadmedia");
 		loadMediaData();
 
 		//Set Navigate of NavigationBottomView
@@ -94,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public void loadMediaData() {
+		Log.d(TAG + "track", "loadmedia0");
 		mMediaViewModel.loadPictures()
 				.subscribe(dataPictures -> mMediaViewModel.getLiveDataPictures().setValue(dataPictures));
 
@@ -103,5 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
 		mMediaViewModel.loadAlbums()
 				.subscribe(dataAlbums -> mMediaViewModel.getLiveDataAlbums().setValue(dataAlbums));
+		Log.d(TAG + "track", "loadmedia1");
 	}
 }

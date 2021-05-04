@@ -17,6 +17,8 @@ import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.utils.DurationFormat;
 import com.bumptech.glide.Glide;
 
+import org.apache.commons.lang3.time.DurationFormatUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,13 +66,13 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 			mTextDuration = itemView.findViewById(R.id.text_duration);
 		}
 
-		@RequiresApi(api = Build.VERSION_CODES.O)
 		public void onBind(VideoModel videoModel) {
 			Glide.with(mImageThumbnail.getContext())
 					.load(videoModel.getUri())
 					.placeholder(R.drawable.ic_placeholder)
 					.into(mImageThumbnail);
-			mTextDuration.setText(DurationFormat.getDuration(videoModel.getDuration()));
+			String duration = DurationFormatUtils.formatDuration(videoModel.getDuration(), "mm:ss");
+			mTextDuration.setText(duration);
 		}
 	}
 }

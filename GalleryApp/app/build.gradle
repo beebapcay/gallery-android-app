@@ -76,4 +76,7 @@ dependencies {
 
     //ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.13.3'
+
+    //CommonLang
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 }

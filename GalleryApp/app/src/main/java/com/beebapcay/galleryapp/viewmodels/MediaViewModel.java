@@ -1,5 +1,8 @@
 package com.beebapcay.galleryapp.viewmodels;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -26,10 +29,12 @@ public class MediaViewModel extends ViewModel {
 		return mMediaDataRepository.loadPictures();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public Single<List<VideoModel>> loadVideos() {
 		return mMediaDataRepository.loadVideos();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public Single<List<AlbumModel>> loadAlbums() {
 		return mMediaDataRepository.loadAlbums();
 	}

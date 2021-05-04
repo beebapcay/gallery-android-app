@@ -65,7 +65,7 @@ public class GalleryFragment extends Fragment {
         super.onStart();
 
         mGalleryAdapter = new GalleryAdapter(requireContext(), mMediaViewModel.getLiveDataPictures().getValue(), mMediaViewModel.getLiveDataVideos().getValue());
-        mGalleryAdapter.sortedByDate(false);
+        mGalleryAdapter.sortedByDate();
         mRecyclerView.setAdapter(mGalleryAdapter);
     }
 }

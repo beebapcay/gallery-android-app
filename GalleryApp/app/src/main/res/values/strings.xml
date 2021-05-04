@@ -24,6 +24,11 @@
     <string name="menu_sticky_action_bar_more_about_us">About us</string>
 
     <!--    Popup Menu Dest Fragment Filter    -->
+    <string name="menu_sticky_action_bar_filter_order_by">Order by</string>
+    <string name="menu_sticky_action_bar_filter_date">Date</string>
+    <string name="menu_sticky_action_bar_filter_size">Size</string>
+    <string name="menu_sticky_action_bar_filter_name">Name</string>
+    <string name="menu_sticky_action_bar_filter_reverse">Reverse</string>
 
     <!--    Bottom Navigation View    -->
     <string name="menu_nav_bottom_gallery">Gallery</string>

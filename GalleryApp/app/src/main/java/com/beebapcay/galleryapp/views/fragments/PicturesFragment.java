@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class PicturesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        Log.d(TAG + "track", "onStart: loadAdapter");
         mPicturesAdapter = new PicturesAdapter(requireContext(), mMediaViewModel.getLiveDataPictures().getValue());
         mRecyclerView.setAdapter(mPicturesAdapter);
     }

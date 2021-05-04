@@ -57,6 +57,8 @@
     <color name="colorRippleEffect">#C8C8C8</color>
     <color name="colorDurationBackground">#80000000</color>
     <color name="colorDurationText">#FFFFFF</color>
+    <color name="colorAlbumItemName">@color/colorTextPrimary</color>
+    <color name="colorAlbumItemQuantity">@color/colorTextTertiary</color>
 
 
 </resources>

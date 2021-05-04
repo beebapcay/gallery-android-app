@@ -32,9 +32,8 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public int getItemViewType(int position) {
-		boolean s = (mDataGallery.get(position) instanceof PictureModel);
-		if (s == true) return 0;
-		else return 1;
+		if (mDataGallery.get(position) instanceof PictureModel) return 0;
+		return 1;
 	}
 
 	@NonNull
@@ -56,7 +55,6 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 		);
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.O)
 	@Override
 	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 		if (holder instanceof PicturesAdapter.PictureViewHolder) ((PicturesAdapter.PictureViewHolder) holder).onBind((PictureModel) mDataGallery.get(position));
@@ -68,10 +66,7 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 		return mDataGallery.size();
 	}
 
-	public void sortedByDate(boolean increase) {
-		if (increase)
-			Collections.sort(mDataGallery, (o1, o2) -> o1.getDateModified().compareTo(o2.getDateModified()));
-		else
-			Collections.sort(mDataGallery, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
+	public void sortedByDate() {
+		Collections.sort(mDataGallery, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
 	}
 }

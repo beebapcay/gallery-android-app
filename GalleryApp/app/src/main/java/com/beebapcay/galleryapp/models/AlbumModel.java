@@ -20,23 +20,23 @@ public class AlbumModel implements Parcelable {
 
 	private Uri mUri;
 	private String mName;
-	private PictureModel mPictureRepresent;
+	private Uri mImageThumbnailUri;
 	private int mQuantity;
 
 	public AlbumModel() {
 	}
 
-	public AlbumModel(Uri uri, String name, PictureModel pictureRepresent, int quantity) {
+	public AlbumModel(Uri uri, String name, Uri imageThumbnailUri, int quantity) {
 		mUri = uri;
 		mName = name;
-		mPictureRepresent = pictureRepresent;
+		mImageThumbnailUri = imageThumbnailUri;
 		mQuantity = quantity;
 	}
 
 	protected AlbumModel(Parcel in) {
 		mUri = in.readParcelable(Uri.class.getClassLoader());
 		mName = in.readString();
-		mPictureRepresent = in.readParcelable(PictureModel.class.getClassLoader());
+		mImageThumbnailUri = in.readParcelable(Uri.class.getClassLoader());
 		mQuantity = in.readInt();
 	}
 
@@ -49,7 +49,7 @@ public class AlbumModel implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeParcelable(mUri, flags);
 		dest.writeString(mName);
-		dest.writeParcelable(mPictureRepresent, flags);
+		dest.writeParcelable(mImageThumbnailUri, flags);
 		dest.writeInt(mQuantity);
 	}
 
@@ -69,12 +69,12 @@ public class AlbumModel implements Parcelable {
 		mName = name;
 	}
 
-	public PictureModel getPictureRepresent() {
-		return mPictureRepresent;
+	public Uri getImageThumbnailUri() {
+		return mImageThumbnailUri;
 	}
 
-	public void setPictureRepresent(PictureModel pictureRepresent) {
-		mPictureRepresent = pictureRepresent;
+	public void setImageThumbnailUri(Uri imageThumbnailUri) {
+		mImageThumbnailUri = imageThumbnailUri;
 	}
 
 	public int getQuantity() {
@@ -83,5 +83,9 @@ public class AlbumModel implements Parcelable {
 
 	public void setQuantity(int quantity) {
 		mQuantity = quantity;
+	}
+
+	public void increaseQuantity(int amount) {
+		mQuantity += amount;
 	}
 }
