@@ -29,11 +29,18 @@ public class MediaViewModel extends ViewModel {
 		mMediaDataRepository = mediaDataRepository;
 	}
 
-	public Single<List<GalleryModel>> loadGallery() {
-		List<GalleryModel> dataGallery = new ArrayList<>();
-		dataGallery.addAll(Objects.requireNonNull(mLiveDataPictures.getValue()));
-		dataGallery.addAll(Objects.requireNonNull(mLiveDataVideos.getValue()));
-		return Single.just(dataGallery);
+	public void updateGalleryFromPictures(List<PictureModel> dataPictures) {
+		List<GalleryModel> dataGallery = mLiveDataGallery.getValue();
+		if (dataGallery == null) dataGallery = new ArrayList<>();
+		dataGallery.addAll(dataPictures);
+		mLiveDataGallery.setValue(dataGallery);
+	}
+
+	public void updateGalleryFromVideos(List<VideoModel> dataVideos) {
+		List<GalleryModel> dataGallery = mLiveDataGallery.getValue();
+		if (dataGallery == null) dataGallery = new ArrayList<>();
+		dataGallery.addAll(dataVideos);
+		mLiveDataGallery.setValue(dataGallery);
 	}
 
 	public Single<List<PictureModel>> loadPictures() {

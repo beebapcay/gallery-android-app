@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 
 import com.beebapcay.galleryapp.models.AlbumModel;
+import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +26,7 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal", "UnusedReturnValue"})
@@ -93,7 +95,6 @@ public class MediaDataRepository {
 		Log.d(TAG, "Found: " + dataPictures.size() + " pictures");
 		return Single.just(dataPictures);
 	}
-
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public Single<List<VideoModel>> loadVideos() {

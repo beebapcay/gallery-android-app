@@ -23,6 +23,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
+import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 import com.beebapcay.galleryapp.views.fragments.AlbumsFragment;
@@ -30,6 +31,9 @@ import com.beebapcay.galleryapp.views.fragments.GalleryFragment;
 import com.beebapcay.galleryapp.views.fragments.PicturesFragment;
 import com.beebapcay.galleryapp.views.fragments.VideosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
@@ -101,15 +105,24 @@ public class MainActivity extends AppCompatActivity {
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public void loadMediaData() {
 		mMediaViewModel.loadPictures()
-				.subscribe(dataPictures -> mMediaViewModel.getLiveDataPictures().setValue(dataPictures));
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(dataPictures -> {
+					mMediaViewModel.updateGalleryFromPictures(dataPictures);
+					mMediaViewModel.getLiveDataPictures().setValue(dataPictures);
+				});
 
 		mMediaViewModel.loadVideos()
-				.subscribe(dataVideos -> mMediaViewModel.getLiveDataVideos().setValue(dataVideos));
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(dataVideos -> {
+					mMediaViewModel.updateGalleryFromVideos(dataVideos);
+					mMediaViewModel.getLiveDataVideos().setValue(dataVideos);
+				});
 
 		mMediaViewModel.loadAlbums()
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(dataAlbums -> mMediaViewModel.getLiveDataAlbums().setValue(dataAlbums));
-
-		mMediaViewModel.loadGallery()
-				.subscribe(dataGallery -> mMediaViewModel.getLiveDataGallery().setValue(dataGallery));
 	}
 }
