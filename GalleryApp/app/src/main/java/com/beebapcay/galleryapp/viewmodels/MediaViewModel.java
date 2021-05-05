@@ -29,6 +29,13 @@ public class MediaViewModel extends ViewModel {
 		mMediaDataRepository = mediaDataRepository;
 	}
 
+	public void clearData() {
+		mLiveDataGallery.setValue(new ArrayList<>());
+		mLiveDataPictures.setValue(new ArrayList<>());
+		mLiveDataVideos.setValue(new ArrayList<>());
+		mLiveDataAlbums.setValue(new ArrayList<>());
+	}
+
 	public void updateGalleryFromPictures(List<PictureModel> dataPictures) {
 		List<GalleryModel> dataGallery = mLiveDataGallery.getValue();
 		if (dataGallery == null) dataGallery = new ArrayList<>();

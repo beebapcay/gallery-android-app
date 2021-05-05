@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public void loadMediaData() {
+		mMediaViewModel.clearData();
 		mMediaViewModel.loadPictures()
 				.subscribeOn(Schedulers.newThread())
 				.observeOn(AndroidSchedulers.mainThread())
