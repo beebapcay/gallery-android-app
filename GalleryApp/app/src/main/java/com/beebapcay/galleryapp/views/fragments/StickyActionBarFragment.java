@@ -21,8 +21,8 @@ import com.beebapcay.galleryapp.R;
 public class StickyActionBarFragment extends Fragment {
     private static final String TAG = StickyActionBarFragment.class.getSimpleName();
 
-    ImageButton mCameraButton, mFilterButton, mMoreButton;
-    PopupMenu mFilterPopupMenu, mMorePopupMenu;
+    ImageButton mCameraButton, mMoreButton;
+    PopupMenu mMorePopupMenu;
 
     public StickyActionBarFragment() { }
 
@@ -44,9 +44,6 @@ public class StickyActionBarFragment extends Fragment {
         mCameraButton = view.findViewById(R.id.btn_camera);
         mCameraButton.setOnClickListener(v -> onCameraButtonClicked());
 
-        mFilterButton = view.findViewById(R.id.btn_filter);
-        mFilterButton.setOnClickListener(v -> onFilterButtonClicked());
-
         mMoreButton = view.findViewById(R.id.btn_more);
         mMoreButton.setOnClickListener(v -> onMoreButtonClicked());
     }
@@ -54,14 +51,6 @@ public class StickyActionBarFragment extends Fragment {
     private void onCameraButtonClicked() {
         Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
         startActivity(intent);
-    }
-
-    private void onFilterButtonClicked() {
-        if (mFilterPopupMenu == null) {
-            mFilterPopupMenu = new PopupMenu(requireContext(), mFilterButton);
-            mFilterPopupMenu.inflate(R.menu.menu_sticky_action_bar_filter);
-        }
-        mFilterPopupMenu.show();
     }
 
     private void onMoreButtonClicked() {

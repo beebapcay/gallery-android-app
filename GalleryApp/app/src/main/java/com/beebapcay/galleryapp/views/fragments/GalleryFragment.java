@@ -23,6 +23,8 @@ import com.beebapcay.galleryapp.adapters.GalleryAdapter;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
+import com.beebapcay.galleryapp.listeners.GalleryListener;
+import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 
@@ -79,5 +81,4 @@ public class GalleryFragment extends Fragment {
             mRecyclerView.smoothScrollToPosition(0);
         });
     }
-
 }

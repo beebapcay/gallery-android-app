@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.listeners.VideoListener;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.utils.PictureDiffCallback;
@@ -28,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> {
+public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> implements VideoListener {
 	private final Context mContext;
 	private final List<VideoModel> mDataVideos;
 
@@ -53,6 +55,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 	@Override
 	public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
 		holder.onBind(mDataVideos.get(position));
+		holder.mImageThumbnail.setOnClickListener(v -> onVideoListener(mDataVideos.get(position), position));
 	}
 
 	@Override
@@ -79,10 +82,15 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 		diffResult.dispatchUpdatesTo(this);
 	}
 
+	@Override
+	public void onVideoListener(VideoModel video, int position) {
+		Toast.makeText(mContext, video.getUri().toString(), Toast.LENGTH_SHORT).show();
+	}
+
 
 	static class VideoViewHolder extends RecyclerView.ViewHolder {
-		private final TextView mTextDuration;
-		private final ImageView mImageThumbnail;
+		TextView mTextDuration;
+		ImageView mImageThumbnail;
 
 		public VideoViewHolder(@NonNull View itemView) {
 			super(itemView);

@@ -39,7 +39,7 @@
             android:includeFontPadding="false"
             android:labelFor="@id/btn_favourite"
             android:text="@string/label_favourites"
-            android:textColor="@color/colorQuickOptionButtonLabel"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
@@ -71,7 +71,7 @@
             android:includeFontPadding="false"
             android:labelFor="@id/btn_recent"
             android:text="@string/label_recent"
-            android:textColor="@color/colorQuickOptionButtonLabel"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
@@ -103,7 +103,7 @@
             android:includeFontPadding="false"
             android:labelFor="@id/btn_people"
             android:text="@string/label_people"
-            android:textColor="@color/colorQuickOptionButtonLabel"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 
@@ -135,7 +135,7 @@
             android:includeFontPadding="false"
             android:labelFor="@id/btn_location"
             android:text="@string/label_locations"
-            android:textColor="@color/colorQuickOptionButtonLabel"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/_9ssp" />
     </LinearLayout>
 </LinearLayout>

@@ -30,4 +30,10 @@
         <item name="android:popupElevation">@dimen/_5sdp</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+    <style name="Theme.GalleryApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.GalleryApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.GalleryApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

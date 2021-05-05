@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".views.activities.AlbumListActivity">
+
+    <LinearLayout
+        android:id="@+id/view_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/colorTitleHighlight"
+            android:textSize="@dimen/_24ssp" />
+
+        <TextView
+            android:id="@+id/text_album_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/_14ssp" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/view_action_bar"
+        layout="@layout/partial_album_list_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        app:layout_constraintTop_toBottomOf="@id/view_header" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view_recycler_gallery_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/view_action_bar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

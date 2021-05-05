@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:name=".GalleryApplication"
         android:allowBackup="true"
@@ -14,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GalleryApp">
+        <activity android:name=".views.activities.AlbumListActivity"></activity>
+        <activity android:name=".views.activities.OptionListActivity" />
         <activity android:name=".views.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,4 +23,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

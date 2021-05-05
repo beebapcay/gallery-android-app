@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.listeners.PictureListener;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.utils.GalleryDiffCallback;
@@ -23,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.PictureViewHolder> {
+public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.PictureViewHolder> implements PictureListener {
 	private final Context mContext;
 	private final List<PictureModel> mDataPictures;
 
@@ -47,6 +49,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 	@Override
 	public void onBindViewHolder(@NonNull PictureViewHolder holder, int position) {
 		holder.onBind(mDataPictures.get(position));
+		holder.mImageThumbnail.setOnClickListener(v -> onPictureListener(mDataPictures.get(position), position));
 	}
 
 	@Override
@@ -73,8 +76,13 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 		diffResult.dispatchUpdatesTo(this);
 	}
 
+	@Override
+	public void onPictureListener(PictureModel picture, int position) {
+		Toast.makeText(mContext, picture.getUri().toString(), Toast.LENGTH_SHORT).show();
+	}
+
 	static class PictureViewHolder extends RecyclerView.ViewHolder {
-		private final ImageView mImageThumbnail;
+		ImageView mImageThumbnail;
 
 		public PictureViewHolder(@NonNull View itemView) {
 			super(itemView);

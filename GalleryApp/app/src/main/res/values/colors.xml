@@ -36,7 +36,6 @@
     <!--    Quick Option Button    -->
     <color name="colorQuickOptionButtonBackground">#E4E4E4</color>
     <color name="colorQuickOptionButtonIcon">#E9474646</color>
-    <color name="colorQuickOptionButtonLabel">@color/colorTextSecondary</color>
 
     <!--    Sticky Action Bar   -->
     <color name="colorStickyActionBarBackground">@color/colorBackground</color>
@@ -51,6 +50,14 @@
     <!--    Placeholder Item    -->
     <color name="colorPlaceholderBackground">#DEDEDE</color>
     <color name="colorPlaceholderIcon">#A0A0A0</color>
+
+    <!--    Option List Action Bar   -->
+    <color name="colorOptionListActionBarBackground">@color/colorBackground</color>
+    <color name="colorOptionListActionBarIcon">#252525</color>
+
+    <!--    Album List Action Bar    -->
+    <color name="colorAlbumListActionBarBackground">@color/colorBackground</color>
+    <color name="colorAlbumListActionBarIcon">#252525</color>
 
     <!--    Other    -->
     <color name="colorFavourite">#D92555</color>

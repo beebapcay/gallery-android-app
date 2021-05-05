@@ -3,6 +3,7 @@ package com.beebapcay.galleryapp.adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.listeners.GalleryListener;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GalleryAdapter extends RecyclerView.Adapter {
+public class GalleryAdapter extends RecyclerView.Adapter implements GalleryListener {
 	private static final int TYPE_LAYOUT_PICTURE = 0;
 	private static final int TYPE_LAYOUT_VIDEO = 1;
 
@@ -58,15 +60,26 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-		if (holder instanceof PicturesAdapter.PictureViewHolder)
+		if (holder instanceof PicturesAdapter.PictureViewHolder) {
 			((PicturesAdapter.PictureViewHolder) holder).onBind((PictureModel) mDataGallery.get(position));
-		else
+			((PicturesAdapter.PictureViewHolder) holder).mImageThumbnail
+					.setOnClickListener(v -> onGalleryClicked(mDataGallery.get(position), position));
+		}
+		else {
 			((VideosAdapter.VideoViewHolder) holder).onBind((VideoModel) mDataGallery.get(position));
+			((VideosAdapter.VideoViewHolder) holder).mImageThumbnail
+					.setOnClickListener(v -> onGalleryClicked(mDataGallery.get(position), position));
+		}
 	}
 
 	@Override
 	public int getItemCount() {
 		return mDataGallery.size();
+	}
+
+	@Override
+	public void onGalleryClicked(GalleryModel gallery, int position) {
+		Toast.makeText(mContext, gallery.getUri().toString(), Toast.LENGTH_SHORT).show();
 	}
 
 	public void sortFilter(FilterType filterType) {

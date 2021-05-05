@@ -8,6 +8,11 @@
     <string name="title_dest_videos">Videos</string>
     <string name="title_dest_albums">Albums</string>
 
+    <string name="title_favorites">Favourites</string>
+    <string name="title_recent">Recent</string>
+    <string name="title_people">People</string>
+    <string name="title_locations">Locations</string>
+
     <!--    Quick Option Button    -->
     <string name="label_favourites">Favourites</string>
     <string name="label_recent">Recent</string>
@@ -32,6 +37,10 @@
     <!--    Bottom Navigation View    -->
     <string name="menu_nav_bottom_gallery">Gallery</string>
     <string name="menu_nav_bottom_pictures">Pictures</string>
-    <string name="meu_nav_bottom_videos">Videos</string>
-    <string name="meu_nav_bottom_albums">Albums</string>
+    <string name="menu_nav_bottom_videos">Videos</string>
+    <string name="menu_nav_bottom_albums">Albums</string>
+
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

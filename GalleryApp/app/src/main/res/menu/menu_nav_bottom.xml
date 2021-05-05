@@ -13,10 +13,10 @@
     <item
         android:id="@+id/dest_videos"
         android:icon="@drawable/ic_menu_nav_bottom_videos"
-        android:title="@string/meu_nav_bottom_videos" />
+        android:title="@string/menu_nav_bottom_videos" />
 
     <item
         android:id="@+id/dest_albums"
         android:icon="@drawable/ic_menu_nav_bottom_albums"
-        android:title="@string/meu_nav_bottom_albums" />
+        android:title="@string/menu_nav_bottom_albums" />
 </menu>
