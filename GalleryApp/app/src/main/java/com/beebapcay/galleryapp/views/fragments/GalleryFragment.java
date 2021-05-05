@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
@@ -31,7 +32,7 @@ import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 import io.reactivex.rxjava3.core.Completable;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class GalleryFragment extends Fragment {
+public class GalleryFragment extends Fragment implements GalleryListener{
     private static final String TAG = GalleryFragment.class.getSimpleName();
 
     TextView mDestTitle;
@@ -72,7 +73,7 @@ public class GalleryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mGalleryAdapter = new GalleryAdapter(requireContext());
+        mGalleryAdapter = new GalleryAdapter(requireContext(), this);
         mRecyclerView.setAdapter(mGalleryAdapter);
 
         mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery -> {
@@ -80,5 +81,10 @@ public class GalleryFragment extends Fragment {
             mGalleryAdapter.sortFilter(FilterType.DATE);
             mRecyclerView.smoothScrollToPosition(0);
         });
+    }
+
+    @Override
+    public void onGalleryClicked(GalleryModel gallery, int position) {
+        Toast.makeText(requireActivity(), gallery.getUri().toString(), Toast.LENGTH_SHORT).show();
     }
 }

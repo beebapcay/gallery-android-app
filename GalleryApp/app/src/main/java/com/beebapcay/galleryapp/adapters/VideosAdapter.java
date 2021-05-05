@@ -30,13 +30,15 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> implements VideoListener {
+public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> {
 	private final Context mContext;
 	private final List<VideoModel> mDataVideos;
+	private final VideoListener mVideoListener;
 
-	public VideosAdapter(Context context) {
+	public VideosAdapter(Context context, VideoListener videoListener) {
 		mContext = context;
 		mDataVideos = new ArrayList<>();
+		mVideoListener = videoListener;
 	}
 
 	@NonNull
@@ -55,7 +57,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 	@Override
 	public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
 		holder.onBind(mDataVideos.get(position));
-		holder.mImageThumbnail.setOnClickListener(v -> onVideoListener(mDataVideos.get(position), position));
+		holder.mImageThumbnail.setOnClickListener(v -> mVideoListener.onVideoListener(mDataVideos.get(position), position));
 	}
 
 	@Override
@@ -81,12 +83,6 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 
 		diffResult.dispatchUpdatesTo(this);
 	}
-
-	@Override
-	public void onVideoListener(VideoModel video, int position) {
-		Toast.makeText(mContext, video.getUri().toString(), Toast.LENGTH_SHORT).show();
-	}
-
 
 	static class VideoViewHolder extends RecyclerView.ViewHolder {
 		TextView mTextDuration;

@@ -8,24 +8,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.listeners.AlbumListener;
 import com.beebapcay.galleryapp.models.AlbumModel;
+import com.beebapcay.galleryapp.models.GalleryModel;
+import com.beebapcay.galleryapp.utils.ALbumDiffCallback;
+import com.beebapcay.galleryapp.utils.GalleryDiffCallback;
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder> implements AlbumListener {
-	private Context mContext;
-	private List<AlbumModel> mDataAlbums;
+public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder> {
+	private final Context mContext;
+	private final  List<AlbumModel> mDataAlbums;
+	private final AlbumListener mAlbumListener;
 
-	public AlbumsAdapter(Context context, List<AlbumModel> dataAlbums) {
+	public AlbumsAdapter(Context context, AlbumListener albumListener) {
 		mContext = context;
-		mDataAlbums = new ArrayList<>(dataAlbums);
+		mDataAlbums = new ArrayList<>();
+		mAlbumListener = albumListener;
 	}
 
 	@NonNull
@@ -43,7 +49,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
 	@Override
 	public void onBindViewHolder(@NonNull AlbumViewHolder holder, int position) {
 		holder.onBind(mDataAlbums.get(position));
-		holder.mImageThumbnail.setOnClickListener(v -> onAlbumClicked(mDataAlbums.get(position), position));
+		holder.mImageThumbnail.setOnClickListener(v -> mAlbumListener.onAlbumClicked(mDataAlbums.get(position), position));
 	}
 
 	@Override
@@ -51,11 +57,15 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
 		return mDataAlbums.size();
 	}
 
-	@Override
-	public void onAlbumClicked(AlbumModel album, int position) {
-		Toast.makeText(mContext, album.getUri().toString(), Toast.LENGTH_SHORT).show();
-	}
+	public void loadData(List<AlbumModel> dataAlbums) {
+		final ALbumDiffCallback galleryDiffCallback = new ALbumDiffCallback(mDataAlbums, dataAlbums);
+		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(galleryDiffCallback);
 
+		mDataAlbums.clear();
+		mDataAlbums.addAll(dataAlbums);
+
+		diffResult.dispatchUpdatesTo(this);
+	}
 
 	static class AlbumViewHolder extends RecyclerView.ViewHolder {
 		RoundedImageView mImageThumbnail;

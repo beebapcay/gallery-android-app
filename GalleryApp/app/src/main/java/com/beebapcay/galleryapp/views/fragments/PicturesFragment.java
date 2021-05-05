@@ -14,16 +14,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
+import com.beebapcay.galleryapp.listeners.PictureListener;
+import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class PicturesFragment extends Fragment {
+public class PicturesFragment extends Fragment implements PictureListener {
     private static final String TAG = PicturesFragment.class.getSimpleName();
 
     TextView mDestTitle;
@@ -64,7 +67,7 @@ public class PicturesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mPicturesAdapter = new PicturesAdapter(requireContext());
+        mPicturesAdapter = new PicturesAdapter(requireContext(), this);
         mRecyclerView.setAdapter(mPicturesAdapter);
 
         mMediaViewModel.getLiveDataPictures().observe(requireActivity(), dataPictures -> {
@@ -72,5 +75,10 @@ public class PicturesFragment extends Fragment {
             mPicturesAdapter.sortFilter(FilterType.DATE);
             mRecyclerView.smoothScrollToPosition(0);
         });
+    }
+
+    @Override
+    public void onPictureListener(PictureModel picture, int position) {
+        Toast.makeText(requireActivity(), picture.getUri().toString(), Toast.LENGTH_SHORT).show();
     }
 }

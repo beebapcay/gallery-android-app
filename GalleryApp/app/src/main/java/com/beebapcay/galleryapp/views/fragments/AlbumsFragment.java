@@ -13,15 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.AlbumsAdapter;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
+import com.beebapcay.galleryapp.listeners.AlbumListener;
+import com.beebapcay.galleryapp.models.AlbumModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class AlbumsFragment extends Fragment {
+public class AlbumsFragment extends Fragment implements AlbumListener {
     private static final String TAG = AlbumsFragment.class.getSimpleName();
 
     TextView mDestTitle;
@@ -59,10 +62,20 @@ public class AlbumsFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        mAlbumsAdapter = new AlbumsAdapter(requireContext(), mMediaViewModel.getLiveDataAlbums().getValue());
+        mAlbumsAdapter = new AlbumsAdapter(requireContext(), this);
         mRecyclerView.setAdapter(mAlbumsAdapter);
+
+        mMediaViewModel.getLiveDataAlbums().observe(requireActivity(), dataAlbums -> {
+            mAlbumsAdapter.loadData(dataAlbums);
+            mRecyclerView.smoothScrollToPosition(0);
+        });
+    }
+
+    @Override
+    public void onAlbumClicked(AlbumModel album, int position) {
+        Toast.makeText(requireActivity(), album.getUri().toString(), Toast.LENGTH_SHORT).show();
     }
 }

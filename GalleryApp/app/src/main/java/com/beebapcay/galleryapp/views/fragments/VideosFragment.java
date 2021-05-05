@@ -22,11 +22,13 @@ import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.adapters.VideosAdapter;
 import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
+import com.beebapcay.galleryapp.listeners.VideoListener;
+import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class VideosFragment extends Fragment {
+public class VideosFragment extends Fragment implements VideoListener {
     private static final String TAG = VideosFragment.class.getSimpleName();
 
     TextView mDestTitle;
@@ -67,7 +69,7 @@ public class VideosFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mVideosAdapter = new VideosAdapter(requireContext());
+        mVideosAdapter = new VideosAdapter(requireContext(), this);
         mRecyclerView.setAdapter(mVideosAdapter);
 
         mMediaViewModel.getLiveDataVideos().observe(requireActivity(), dataVideos -> {
@@ -75,5 +77,10 @@ public class VideosFragment extends Fragment {
             mVideosAdapter.sortFilter(FilterType.DATE);
             mRecyclerView.smoothScrollToPosition(0);
         });
+    }
+
+    @Override
+    public void onVideoListener(VideoModel video, int position) {
+        Toast.makeText(requireActivity(), video.getUri().toString(), Toast.LENGTH_SHORT).show();
     }
 }

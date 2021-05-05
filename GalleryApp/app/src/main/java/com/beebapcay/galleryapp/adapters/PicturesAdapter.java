@@ -25,13 +25,15 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.PictureViewHolder> implements PictureListener {
+public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.PictureViewHolder> {
 	private final Context mContext;
 	private final List<PictureModel> mDataPictures;
+	private final PictureListener mPictureListener;
 
-	public PicturesAdapter(Context context) {
+	public PicturesAdapter(Context context, PictureListener pictureListener) {
 		mContext = context;
 		mDataPictures = new ArrayList<>();
+		mPictureListener = pictureListener;
 	}
 
 	@NonNull
@@ -49,7 +51,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 	@Override
 	public void onBindViewHolder(@NonNull PictureViewHolder holder, int position) {
 		holder.onBind(mDataPictures.get(position));
-		holder.mImageThumbnail.setOnClickListener(v -> onPictureListener(mDataPictures.get(position), position));
+		holder.mImageThumbnail.setOnClickListener(v -> mPictureListener.onPictureListener(mDataPictures.get(position), position));
 	}
 
 	@Override
@@ -74,11 +76,6 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 		mDataPictures.addAll(dataPictures);
 
 		diffResult.dispatchUpdatesTo(this);
-	}
-
-	@Override
-	public void onPictureListener(PictureModel picture, int position) {
-		Toast.makeText(mContext, picture.getUri().toString(), Toast.LENGTH_SHORT).show();
 	}
 
 	static class PictureViewHolder extends RecyclerView.ViewHolder {

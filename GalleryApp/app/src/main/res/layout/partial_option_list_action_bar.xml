@@ -43,7 +43,7 @@
             android:background="@null"
             android:includeFontPadding="false"
             android:textColor="@color/colorTitleHighlight"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_14ssp" />
 
         <TextView
             android:id="@+id/text_summary"
@@ -55,7 +55,7 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:textColor="@color/colorTextSecondary"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_10ssp" />
     </LinearLayout>
 
     <ImageButton

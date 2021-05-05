@@ -21,16 +21,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GalleryAdapter extends RecyclerView.Adapter implements GalleryListener {
+public class GalleryAdapter extends RecyclerView.Adapter {
 	private static final int TYPE_LAYOUT_PICTURE = 0;
 	private static final int TYPE_LAYOUT_VIDEO = 1;
 
 	private final Context mContext;
 	private final List<GalleryModel> mDataGallery;
+	private final GalleryListener mGalleryListener;
 
-	public GalleryAdapter(Context context) {
+	public GalleryAdapter(Context context, GalleryListener galleryListener) {
 		mContext = context;
 		mDataGallery = new ArrayList<>();
+		mGalleryListener = galleryListener;
 	}
 
 	@Override
@@ -63,23 +65,18 @@ public class GalleryAdapter extends RecyclerView.Adapter implements GalleryListe
 		if (holder instanceof PicturesAdapter.PictureViewHolder) {
 			((PicturesAdapter.PictureViewHolder) holder).onBind((PictureModel) mDataGallery.get(position));
 			((PicturesAdapter.PictureViewHolder) holder).mImageThumbnail
-					.setOnClickListener(v -> onGalleryClicked(mDataGallery.get(position), position));
+					.setOnClickListener(v -> mGalleryListener.onGalleryClicked(mDataGallery.get(position), position));
 		}
 		else {
 			((VideosAdapter.VideoViewHolder) holder).onBind((VideoModel) mDataGallery.get(position));
 			((VideosAdapter.VideoViewHolder) holder).mImageThumbnail
-					.setOnClickListener(v -> onGalleryClicked(mDataGallery.get(position), position));
+					.setOnClickListener(v -> mGalleryListener.onGalleryClicked(mDataGallery.get(position), position));
 		}
 	}
 
 	@Override
 	public int getItemCount() {
 		return mDataGallery.size();
-	}
-
-	@Override
-	public void onGalleryClicked(GalleryModel gallery, int position) {
-		Toast.makeText(mContext, gallery.getUri().toString(), Toast.LENGTH_SHORT).show();
 	}
 
 	public void sortFilter(FilterType filterType) {
