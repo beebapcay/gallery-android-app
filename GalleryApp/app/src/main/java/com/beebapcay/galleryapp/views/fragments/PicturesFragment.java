@@ -76,8 +76,6 @@ public class PicturesFragment extends Fragment implements PictureListener {
 
         mMediaViewModel.getLiveDataPictures().observe(requireActivity(), dataPictures -> {
             mPicturesAdapter.loadData(dataPictures);
-            mPicturesAdapter.sortFilter(FilterType.DATE);
-            mRecyclerView.smoothScrollToPosition(0);
         });
     }
 

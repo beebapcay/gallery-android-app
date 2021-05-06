@@ -7,20 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".views.activities.HeroItemActivity">
 
-    <include layout="@layout/partial_hero_item_action_bar"
-        android:id="@+id/view_action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/view_fragment_container"
+        android:background="@color/colorHeroItemBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <include layout="@layout/partial_hero_item_option_bar"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/view_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.beebapcay.galleryapp.views.fragments.HeroItemActionBarFragment"
+        tools:layout="@layout/fragment_hero_item_action_bar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:name="com.beebapcay.galleryapp.views.fragments.HeroItemOptionBarFragment"
+        tools:layout="@layout/fragment_hero_item_option_bar"
         android:id="@+id/view_option_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -28,7 +28,7 @@ public class ALbumDiffCallback extends DiffUtil.Callback {
 
 	@Override
 	public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-		return oldList.get(oldItemPosition).getUri() == newList.get(newItemPosition).getUri();
+		return oldList.get(oldItemPosition).getId() == newList.get(newItemPosition).getId();
 	}
 
 	@Override

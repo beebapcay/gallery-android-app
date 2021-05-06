@@ -40,9 +40,9 @@
     <string name="menu_nav_bottom_videos">Videos</string>
     <string name="menu_nav_bottom_albums">Albums</string>
 
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--    Popup Menu Hero Item Action Bar More    -->
+    <string name="menu_hero_item_action_bar_more_details">Details</string>
+    <string name="menu_hero_item_action_bar_more_edit_location">Edit Location</string>
+    <string name="menu_hero_item_action_bar_more_set_as_wallpaper">Set as wallpaper</string>
+    <string name="menu_hero_item_action_bar_more_move_to_privacy_folder">Move to Privacy Folder</string>
 </resources>

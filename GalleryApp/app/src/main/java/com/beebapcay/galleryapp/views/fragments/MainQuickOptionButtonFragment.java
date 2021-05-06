@@ -16,12 +16,12 @@ import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.views.activities.OptionListActivity;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class QuickOptionButtonFragment extends Fragment {
-    private static final String TAG = QuickOptionButtonFragment.class.getSimpleName();
+public class MainQuickOptionButtonFragment extends Fragment {
+    private static final String TAG = MainQuickOptionButtonFragment.class.getSimpleName();
 
     ImageButton mFavouritesButton, mRecentButton, mPeopleButton, mLocationsButton;
 
-    public QuickOptionButtonFragment() { }
+    public MainQuickOptionButtonFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class QuickOptionButtonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_quick_option_button, container, false);
+        return inflater.inflate(R.layout.fragment_main_quick_option_button, container, false);
     }
 
     @Override

@@ -7,7 +7,8 @@
     android:background="@color/colorOptionListActionBarBackground"
     android:paddingTop="@dimen/_5sdp"
     android:paddingBottom="@dimen/_5sdp"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".views.fragments.HeroItemActionBarFragment">
 
     <ImageButton
         android:id="@+id/btn_back"

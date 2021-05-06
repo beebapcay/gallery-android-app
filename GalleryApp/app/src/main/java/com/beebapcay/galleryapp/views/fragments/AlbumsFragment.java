@@ -73,7 +73,6 @@ public class AlbumsFragment extends Fragment implements AlbumListener {
 
         mMediaViewModel.getLiveDataAlbums().observe(requireActivity(), dataAlbums -> {
             mAlbumsAdapter.loadData(dataAlbums);
-            mRecyclerView.smoothScrollToPosition(0);
         });
     }
 

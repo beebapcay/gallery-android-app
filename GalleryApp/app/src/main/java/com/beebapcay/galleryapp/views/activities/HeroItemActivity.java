@@ -3,6 +3,8 @@ package com.beebapcay.galleryapp.views.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
@@ -14,7 +16,6 @@ public class HeroItemActivity extends AppCompatActivity {
 	private static final String TAG = HeroItemActivity.class.getSimpleName();
 
 	private Bundle mBundle;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,4 +47,5 @@ public class HeroItemActivity extends AppCompatActivity {
 		}
 		else throw new IllegalArgumentException("Hero Item Unknown");
 	}
+
 }

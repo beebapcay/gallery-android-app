@@ -18,13 +18,13 @@ import android.widget.ImageButton;
 import com.beebapcay.galleryapp.R;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class StickyActionBarFragment extends Fragment {
-    private static final String TAG = StickyActionBarFragment.class.getSimpleName();
+public class MainStickyActionBarFragment extends Fragment {
+    private static final String TAG = MainStickyActionBarFragment.class.getSimpleName();
 
     ImageButton mCameraButton, mMoreButton;
     PopupMenu mMorePopupMenu;
 
-    public StickyActionBarFragment() { }
+    public MainStickyActionBarFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class StickyActionBarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sticky_action_bar, container, false);
+        return inflater.inflate(R.layout.fragment_main_sticky_action_bar, container, false);
     }
 
     @Override

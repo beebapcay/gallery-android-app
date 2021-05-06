@@ -12,13 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
+import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class RecentFragment extends Fragment {
 	private static final String TAG = RecentFragment.class.getSimpleName();
 
 	Bundle mBundle;
-	TextView mTitle, mSummary;
 	RecyclerView mRecyclerView;
 
 	public RecentFragment() {
@@ -38,11 +38,12 @@ public class RecentFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		mTitle = view.findViewById(R.id.text_title);
-		mTitle.setText(getString(R.string.title_recent));
-
-		mSummary = view.findViewById(R.id.text_summary);
-		mSummary.setText("0 pictures 0 videos");
+		Bundle bundle = new Bundle();
+		bundle.putString(ExtraIntentKey.EXTRA_OPTION_GALLERY_LIST_TYPE, getString(R.string.title_recent));
+		getChildFragmentManager().beginTransaction()
+				.setReorderingAllowed(true)
+				.add(R.id.view_action_bar, OptionListActionBarFragment.class, bundle)
+				.commit();
 	}
 }
 

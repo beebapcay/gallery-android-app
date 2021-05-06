@@ -77,8 +77,6 @@ public class VideosFragment extends Fragment implements VideoListener {
 
         mMediaViewModel.getLiveDataVideos().observe(requireActivity(), dataVideos -> {
             mVideosAdapter.loadData(dataVideos);
-            mVideosAdapter.sortFilter(FilterType.DATE);
-            mRecyclerView.smoothScrollToPosition(0);
         });
     }
 

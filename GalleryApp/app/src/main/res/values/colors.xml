@@ -34,13 +34,13 @@
     <color name="colorTextQuinary">#787878</color>
 
     <!--    Quick Option Button    -->
-    <color name="colorQuickOptionButtonBackground">#E4E4E4</color>
-    <color name="colorQuickOptionButtonIcon">#E9474646</color>
+    <color name="colorMainQuickOptionButtonBackground">#E4E4E4</color>
+    <color name="colorMainQuickOptionButtonIcon">#E9474646</color>
 
     <!--    Sticky Action Bar   -->
-    <color name="colorStickyActionBarBackground">@color/colorBackground</color>
-    <color name="colorStickyActionBarIcon">#252525</color>
-    <color name="colorStickyActionBarCameraIcon">#011640</color>
+    <color name="colorMainStickyActionBarBackground">@color/colorBackground</color>
+    <color name="colorMainStickyActionBarIcon">#252525</color>
+    <color name="colorMainStickyActionBarCameraIcon">#011640</color>
 
     <!--    Menu Navigation Bar Bottom    -->
     <color name="colorMenuNavBarBottomBackground">@color/colorBackground</color>
@@ -56,8 +56,8 @@
     <color name="colorOptionListActionBarIcon">#252525</color>
 
     <!--    Album List Action Bar    -->
-    <color name="colorAlbumListActionBarBackground">@color/colorBackground</color>
-    <color name="colorAlbumListActionBarIcon">#252525</color>
+    <color name="colorAlbumListStickyActionBarBackground">@color/colorBackground</color>
+    <color name="colorAlbumListStickyActionBarIcon">#252525</color>
 
     <!--    Hero Item Action Bar    -->
     <color name="colorHeroItemActionBarBackground">#40000000</color>
@@ -75,6 +75,7 @@
     <color name="colorDurationBackground">#80000000</color>
     <color name="colorDurationText">#FFFFFF</color>
     <color name="colorAlbumItemBorder">#787878</color>
+    <color name="colorHeroItemBackground">@color/colorBackground</color>
 
 
 </resources>

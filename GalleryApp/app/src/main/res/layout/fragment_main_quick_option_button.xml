@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     android:paddingStart="@dimen/_30sdp"
     android:paddingEnd="@dimen/_30sdp"
-    tools:context=".views.fragments.QuickOptionButtonFragment"
+    tools:context=".views.fragments.MainQuickOptionButtonFragment"
     tools:ignore="DisableBaselineAlignment">
 
     <LinearLayout
@@ -24,11 +24,11 @@
             android:layout_width="@dimen/_37sdp"
             android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
-            android:backgroundTint="@color/colorQuickOptionButtonBackground"
+            android:backgroundTint="@color/colorMainQuickOptionButtonBackground"
             android:padding="@dimen/_10sdp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_heart_outlined"
-            android:tint="@color/colorQuickOptionButtonIcon"
+            android:tint="@color/colorMainQuickOptionButtonIcon"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -56,11 +56,11 @@
             android:layout_width="@dimen/_37sdp"
             android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
-            android:backgroundTint="@color/colorQuickOptionButtonBackground"
+            android:backgroundTint="@color/colorMainQuickOptionButtonBackground"
             android:padding="@dimen/_10sdp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_clock"
-            android:tint="@color/colorQuickOptionButtonIcon"
+            android:tint="@color/colorMainQuickOptionButtonIcon"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -88,11 +88,11 @@
             android:layout_width="@dimen/_37sdp"
             android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
-            android:backgroundTint="@color/colorQuickOptionButtonBackground"
+            android:backgroundTint="@color/colorMainQuickOptionButtonBackground"
             android:padding="@dimen/_10sdp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_people"
-            android:tint="@color/colorQuickOptionButtonIcon"
+            android:tint="@color/colorMainQuickOptionButtonIcon"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -120,11 +120,11 @@
             android:layout_width="@dimen/_37sdp"
             android:layout_height="@dimen/_37sdp"
             android:background="@drawable/bg_ripple_circle"
-            android:backgroundTint="@color/colorQuickOptionButtonBackground"
+            android:backgroundTint="@color/colorMainQuickOptionButtonBackground"
             android:padding="@dimen/_10sdp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_location_outlined"
-            android:tint="@color/colorQuickOptionButtonIcon"
+            android:tint="@color/colorMainQuickOptionButtonIcon"
             tools:ignore="ContentDescription" />
 
         <TextView

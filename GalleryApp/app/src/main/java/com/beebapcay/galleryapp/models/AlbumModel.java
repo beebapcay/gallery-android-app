@@ -18,7 +18,7 @@ public class AlbumModel implements Parcelable {
 		}
 	};
 
-	private Uri mUri;
+	private long mId;
 	private String mName;
 	private Uri mImageThumbnailUri;
 	private int mQuantity;
@@ -26,15 +26,15 @@ public class AlbumModel implements Parcelable {
 	public AlbumModel() {
 	}
 
-	public AlbumModel(Uri uri, String name, Uri imageThumbnailUri, int quantity) {
-		mUri = uri;
+	public AlbumModel(long id, String name, Uri imageThumbnailUri, int quantity) {
+		mId = id;
 		mName = name;
 		mImageThumbnailUri = imageThumbnailUri;
 		mQuantity = quantity;
 	}
 
 	protected AlbumModel(Parcel in) {
-		mUri = in.readParcelable(Uri.class.getClassLoader());
+		mId = in.readLong();
 		mName = in.readString();
 		mImageThumbnailUri = in.readParcelable(Uri.class.getClassLoader());
 		mQuantity = in.readInt();
@@ -47,18 +47,18 @@ public class AlbumModel implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeParcelable(mUri, flags);
+		dest.writeLong(mId);
 		dest.writeString(mName);
 		dest.writeParcelable(mImageThumbnailUri, flags);
 		dest.writeInt(mQuantity);
 	}
 
-	public Uri getUri() {
-		return mUri;
+	public long getId() {
+		return mId;
 	}
 
-	public void setUri(Uri uri) {
-		mUri = uri;
+	public void setId(long id) {
+		mId = id;
 	}
 
 	public String getName() {

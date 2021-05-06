@@ -84,7 +84,6 @@ public class GalleryFragment extends Fragment implements GalleryListener{
         mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery -> {
             mGalleryAdapter.loadData(dataGallery);
             mGalleryAdapter.sortFilter(FilterType.DATE);
-            mRecyclerView.smoothScrollToPosition(0);
         });
     }
 

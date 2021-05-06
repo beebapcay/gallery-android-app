@@ -7,9 +7,9 @@
     android:background="@color/colorBackground"
     tools:context=".views.activities.OptionListActivity">
 
-    <include
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/view_action_bar"
-        layout="@layout/partial_option_list_action_bar"
+        tools:layout="@layout/fragment_option_list_action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
