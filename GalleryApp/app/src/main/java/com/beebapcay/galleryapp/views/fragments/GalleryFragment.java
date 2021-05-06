@@ -1,30 +1,28 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
-import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.configs.PrefKey;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.GalleryListener;
 import com.beebapcay.galleryapp.models.GalleryModel;
@@ -33,8 +31,6 @@ import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 import com.beebapcay.galleryapp.views.activities.HeroItemActivity;
-
-import io.reactivex.rxjava3.core.Completable;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class GalleryFragment extends Fragment implements GalleryListener{
@@ -79,6 +75,7 @@ public class GalleryFragment extends Fragment implements GalleryListener{
         super.onActivityCreated(savedInstanceState);
 
         mGalleryAdapter = new GalleryAdapter(requireContext(), this);
+
         mRecyclerView.setAdapter(mGalleryAdapter);
 
         mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery -> {

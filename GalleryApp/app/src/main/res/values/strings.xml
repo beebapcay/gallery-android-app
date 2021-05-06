@@ -45,4 +45,9 @@
     <string name="menu_hero_item_action_bar_more_edit_location">Edit Location</string>
     <string name="menu_hero_item_action_bar_more_set_as_wallpaper">Set as wallpaper</string>
     <string name="menu_hero_item_action_bar_more_move_to_privacy_folder">Move to Privacy Folder</string>
+
+    <!--    Dialog    -->
+    <string name="dialog_delete_item_message">Move 1 item to the Recycle bin?</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_move_to_recycle_bin">Move to Recycle bin</string>
 </resources>

@@ -32,7 +32,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class AlbumListActivity extends AppCompatActivity implements GalleryListener {
 	private static final String TAG = AlbumListActivity.class.getSimpleName();
 
-	ImageButton mBackButton;
 	TextView mAlbumName, mAlbumSummary;
 	RecyclerView mRecyclerView;
 
@@ -65,8 +64,6 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 		mAlbumName.setText(mDataAlbum.getName());
 
 		mAlbumSummary = findViewById(R.id.text_album_summary);
-
-		initStickyActionBar();
 
 		mRecyclerView = findViewById(R.id.view_recycler_gallery_list);
 		mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -126,8 +123,4 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 		startActivity(intent);
 	}
 
-	public void initStickyActionBar() {
-		mBackButton = findViewById(R.id.btn_back);
-		mBackButton.setOnClickListener(v -> onBackPressed());
-	}
 }

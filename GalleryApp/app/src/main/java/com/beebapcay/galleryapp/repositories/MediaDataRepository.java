@@ -327,4 +327,10 @@ public class MediaDataRepository {
 		Log.d(TAG + " LoadMediaAlbum", "Found: " + dataGallery.size() + " items");
 		return Single.just(dataGallery);
 	}
+
+	public void deleteItem(GalleryModel dataItem) {
+		Uri itemUri = dataItem.getUri();
+		ContentResolver contentResolver = mContext.getContentResolver();
+		contentResolver.delete(itemUri, null, null);
+	}
 }

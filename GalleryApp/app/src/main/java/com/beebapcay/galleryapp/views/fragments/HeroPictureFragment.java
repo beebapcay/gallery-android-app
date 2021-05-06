@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,10 @@ import android.widget.TextView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
+import com.beebapcay.galleryapp.factories.HeroItemViewModelFactory;
 import com.beebapcay.galleryapp.models.PictureModel;
+import com.beebapcay.galleryapp.repositories.MediaDataRepository;
+import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
 import com.bumptech.glide.Glide;
 
 public class HeroPictureFragment extends Fragment {
@@ -23,6 +27,8 @@ public class HeroPictureFragment extends Fragment {
 	ImageView mHeroImage;
 
 	private PictureModel mDataPicture;
+	private HeroItemViewModelFactory mHeroItemViewModelFactory;
+	private HeroItemViewModel mHeroItemViewModel;
 
 	public HeroPictureFragment() {
 	}
@@ -33,6 +39,10 @@ public class HeroPictureFragment extends Fragment {
 		if (getArguments() != null) {
 			mDataPicture = requireArguments().getParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA);
 		}
+
+		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
+		mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
+		mHeroItemViewModel.getLiveDataItem().setValue(mDataPicture);
 	}
 
 	@Override

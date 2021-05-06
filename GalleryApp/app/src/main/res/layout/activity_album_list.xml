@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_25sdp"
                 android:tag="sticky"
-                android:name="com.beebapcay.galleryapp.views.fragments.AlbumListStickyBarFragment"
+                android:name="com.beebapcay.galleryapp.views.fragments.AlbumListStickyActionBarFragment"
                 app:layout_constraintTop_toBottomOf="@id/view_header" />
 
             <androidx.recyclerview.widget.RecyclerView

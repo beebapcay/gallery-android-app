@@ -67,6 +67,9 @@
     <color name="colorHeroItemOptionBarBackground">#40000000</color>
     <color name="colorHeroItemOptionBarIcon">#FFFFFF</color>
 
+    <!--    Dialog    -->
+    <color name="colorDialogBackground">#FFFFFF</color>
+
     <!--    Other    -->
     <color name="colorFavourite">#D92555</color>
     <color name="colorLocation">#4081EC</color>

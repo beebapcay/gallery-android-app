@@ -5,17 +5,12 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,20 +18,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
-import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
-import com.beebapcay.galleryapp.views.fragments.AlbumsFragment;
-import com.beebapcay.galleryapp.views.fragments.GalleryFragment;
-import com.beebapcay.galleryapp.views.fragments.PicturesFragment;
-import com.beebapcay.galleryapp.views.fragments.VideosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
@@ -83,10 +69,24 @@ public class MainActivity extends AppCompatActivity {
 
 	@SuppressLint("NewApi")
 	private void checkReadExternalStoragePermission() {
-		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-			requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_READ_EXTERNAL_STORAGE);
+		boolean needPermission =
+				ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+						!= PackageManager.PERMISSION_GRANTED ||
+						ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE)
+								!= PackageManager.PERMISSION_GRANTED ||
+						ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+								!= PackageManager.PERMISSION_GRANTED;
+		if (needPermission) {
+			requestPermissions(new String[]{
+					Manifest.permission.READ_EXTERNAL_STORAGE,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE,
+					Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+			}, REQUEST_CODE_READ_EXTERNAL_STORAGE);
+		}
+		else loadMediaData();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 			case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
 				if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED)
 					Toast.makeText(this, "Cant not load media data", Toast.LENGTH_SHORT).show();
+				else loadMediaData();
 				break;
 			}
 			default:

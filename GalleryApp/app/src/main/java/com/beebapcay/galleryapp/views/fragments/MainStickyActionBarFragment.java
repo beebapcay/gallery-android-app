@@ -1,12 +1,16 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -16,13 +20,16 @@ import android.widget.ImageButton;
 
 
 import com.beebapcay.galleryapp.R;
+import com.beebapcay.galleryapp.configs.PrefKey;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class MainStickyActionBarFragment extends Fragment {
     private static final String TAG = MainStickyActionBarFragment.class.getSimpleName();
 
-    ImageButton mCameraButton, mMoreButton;
+    ImageButton mCameraButton,mMoreButton;
     PopupMenu mMorePopupMenu;
+
+    private SharedPreferences.Editor mEditor;
 
     public MainStickyActionBarFragment() { }
 
@@ -37,6 +44,7 @@ public class MainStickyActionBarFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main_sticky_action_bar, container, false);
     }
 
+    @SuppressLint("FragmentLiveDataObserve")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,5 +68,4 @@ public class MainStickyActionBarFragment extends Fragment {
         }
         mMorePopupMenu.show();
     }
-
 }
