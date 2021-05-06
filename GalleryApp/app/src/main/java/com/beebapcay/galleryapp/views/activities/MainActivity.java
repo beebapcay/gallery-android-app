@@ -75,12 +75,15 @@ public class MainActivity extends AppCompatActivity {
 						ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE)
 								!= PackageManager.PERMISSION_GRANTED ||
 						ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+								!= PackageManager.PERMISSION_GRANTED ||
+						ContextCompat.checkSelfPermission(this, Manifest.permission.SET_WALLPAPER)
 								!= PackageManager.PERMISSION_GRANTED;
 		if (needPermission) {
 			requestPermissions(new String[]{
 					Manifest.permission.READ_EXTERNAL_STORAGE,
 					Manifest.permission.WRITE_EXTERNAL_STORAGE,
 					Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+					Manifest.permission.SET_WALLPAPER,
 			}, REQUEST_CODE_READ_EXTERNAL_STORAGE);
 		}
 		else loadMediaData();

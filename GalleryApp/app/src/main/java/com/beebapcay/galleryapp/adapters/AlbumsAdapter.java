@@ -58,13 +58,11 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
 	}
 
 	public void loadData(List<AlbumModel> dataAlbums) {
-		final ALbumDiffCallback galleryDiffCallback = new ALbumDiffCallback(mDataAlbums, dataAlbums);
-		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(galleryDiffCallback);
 
 		mDataAlbums.clear();
 		mDataAlbums.addAll(dataAlbums);
 
-		diffResult.dispatchUpdatesTo(this);
+		notifyDataSetChanged();
 	}
 
 	static class AlbumViewHolder extends RecyclerView.ViewHolder {

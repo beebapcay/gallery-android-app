@@ -75,13 +75,9 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 	}
 
 	public void loadData(List<VideoModel> dataVideos) {
-		final VideoDiffCallback videoDiffCallback = new VideoDiffCallback(mDataVideos, dataVideos);
-		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(videoDiffCallback);
-
 		mDataVideos.clear();
 		mDataVideos.addAll(dataVideos);
-
-		diffResult.dispatchUpdatesTo(this);
+		notifyDataSetChanged();
 	}
 
 	static class VideoViewHolder extends RecyclerView.ViewHolder {

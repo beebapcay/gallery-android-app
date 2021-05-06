@@ -17,6 +17,7 @@ import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.utils.GalleryDiffCallback;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,12 +88,10 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 	}
 
 	public void loadData(List<GalleryModel> dataGallery) {
-		final GalleryDiffCallback galleryDiffCallback = new GalleryDiffCallback(mDataGallery, dataGallery);
-		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(galleryDiffCallback);
 
 		mDataGallery.clear();
 		mDataGallery.addAll(dataGallery);
 
-		diffResult.dispatchUpdatesTo(this);
+		notifyDataSetChanged();
 	}
 }

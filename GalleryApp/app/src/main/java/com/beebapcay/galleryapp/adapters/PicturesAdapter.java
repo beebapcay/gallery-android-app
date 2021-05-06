@@ -69,13 +69,9 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 	}
 
 	public void loadData(List<PictureModel> dataPictures) {
-		final PictureDiffCallback pictureDiffCallback = new PictureDiffCallback(mDataPictures, dataPictures);
-		final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(pictureDiffCallback);
-
 		mDataPictures.clear();
 		mDataPictures.addAll(dataPictures);
-
-		diffResult.dispatchUpdatesTo(this);
+		notifyDataSetChanged();
 	}
 
 	static class PictureViewHolder extends RecyclerView.ViewHolder {
