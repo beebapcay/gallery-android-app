@@ -1,5 +1,6 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,12 +21,14 @@ import android.widget.VideoView;
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.adapters.VideosAdapter;
+import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.VideoListener;
 import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
+import com.beebapcay.galleryapp.views.activities.HeroItemActivity;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class VideosFragment extends Fragment implements VideoListener {
@@ -81,6 +84,11 @@ public class VideosFragment extends Fragment implements VideoListener {
 
     @Override
     public void onVideoListener(VideoModel video, int position) {
-        Toast.makeText(requireActivity(), video.getUri().toString(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(requireActivity(), HeroItemActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(ExtraIntentKey.EXTRA_HERO_ITEM_TYPE, "video");
+        bundle.putParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA, video);
+        intent.putExtras(bundle);
+        requireActivity().startActivity(intent);
     }
 }

@@ -12,6 +12,8 @@
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/image_thumbnail"
         android:layout_width="match_parent"
+        app:riv_border_width="@dimen/_1sdp"
+        app:riv_border_color="@color/colorAlbumItemBorder"
         android:layout_height="@dimen/_160sdp"
         android:background="@drawable/bg_rectangle"
         android:backgroundTint="@color/colorPlaceholderBackground"
@@ -27,7 +29,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:includeFontPadding="false"
-        android:textColor="@color/colorAlbumItemName"
+        android:textColor="@color/colorTextPrimary"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintTop_toBottomOf="@id/image_thumbnail"
         android:layout_marginTop="@dimen/_12sdp"/>
@@ -38,7 +40,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:textColor="@color/colorAlbumItemQuantity"
+        android:textColor="@color/colorTextTertiary"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintTop_toBottomOf="@id/text_album_name"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

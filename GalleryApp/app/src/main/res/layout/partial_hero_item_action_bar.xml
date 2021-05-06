@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorAlbumListActionBarBackground"
+    android:background="@color/colorHeroItemActionBarBackground"
     android:paddingTop="@dimen/_5sdp"
     android:paddingBottom="@dimen/_5sdp"
     app:layout_constraintTop_toTopOf="parent">
@@ -14,14 +14,29 @@
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginStart="@dimen/_15sdp"
-        android:background="@drawable/bg_ripple_circle"
-        android:backgroundTint="@color/colorAlbumListActionBarBackground"
+        android:background="@drawable/bg_ripple_circle_hero_item"
+        android:backgroundTint="@color/colorHeroItemActionBarBackground"
         android:padding="@dimen/_10sdp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_arrow_back"
-        android:tint="@color/colorAlbumListActionBarIcon"
+        android:tint="@color/colorHeroItemActionBarIcon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/btn_eye"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_5ssp"
+        android:background="@drawable/bg_ripple_circle_hero_item"
+        android:backgroundTint="@color/colorHeroItemActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:src="@drawable/ic_eye"
+        android:tint="@color/colorHeroItemActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_more"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
@@ -30,28 +45,13 @@
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginEnd="@dimen/_15ssp"
-        android:background="@drawable/bg_ripple_circle"
-        android:backgroundTint="@color/colorAlbumListActionBarBackground"
+        android:background="@drawable/bg_ripple_circle_hero_item"
+        android:backgroundTint="@color/colorHeroItemActionBarBackground"
         android:padding="@dimen/_10sdp"
         android:src="@drawable/ic_more"
-        android:tint="@color/colorAlbumListActionBarIcon"
+        android:tint="@color/colorHeroItemActionBarIcon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
-    <ImageButton
-        android:id="@+id/btn_search"
-        android:layout_width="@dimen/_38sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:background="@drawable/bg_ripple_circle"
-        android:backgroundTint="@color/colorAlbumListActionBarBackground"
-        android:padding="@dimen/_10sdp"
-        android:src="@drawable/ic_search"
-        android:tint="@color/colorAlbumListActionBarIcon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_more"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

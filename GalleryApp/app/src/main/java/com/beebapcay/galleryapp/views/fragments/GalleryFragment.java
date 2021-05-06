@@ -1,5 +1,6 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,12 +23,16 @@ import android.widget.Toast;
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
+import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.GalleryListener;
 import com.beebapcay.galleryapp.models.GalleryModel;
+import com.beebapcay.galleryapp.models.PictureModel;
+import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
+import com.beebapcay.galleryapp.views.activities.HeroItemActivity;
 
 import io.reactivex.rxjava3.core.Completable;
 
@@ -85,6 +90,17 @@ public class GalleryFragment extends Fragment implements GalleryListener{
 
     @Override
     public void onGalleryClicked(GalleryModel gallery, int position) {
-        Toast.makeText(requireActivity(), gallery.getUri().toString(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(requireActivity(), HeroItemActivity.class);
+        Bundle bundle = new Bundle();
+        if (gallery instanceof PictureModel) {
+            bundle.putString(ExtraIntentKey.EXTRA_HERO_ITEM_TYPE, "picture");
+            bundle.putParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA, (PictureModel) gallery);
+        }
+        else {
+            bundle.putString(ExtraIntentKey.EXTRA_HERO_ITEM_TYPE, "video");
+            bundle.putParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA, (VideoModel) gallery);
+        }
+        intent.putExtras(bundle);
+        requireActivity().startActivity(intent);
     }
 }

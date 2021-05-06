@@ -3,7 +3,6 @@ package com.beebapcay.galleryapp.adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -66,8 +65,7 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 			((PicturesAdapter.PictureViewHolder) holder).onBind((PictureModel) mDataGallery.get(position));
 			((PicturesAdapter.PictureViewHolder) holder).mImageThumbnail
 					.setOnClickListener(v -> mGalleryListener.onGalleryClicked(mDataGallery.get(position), position));
-		}
-		else {
+		} else {
 			((VideosAdapter.VideoViewHolder) holder).onBind((VideoModel) mDataGallery.get(position));
 			((VideosAdapter.VideoViewHolder) holder).mImageThumbnail
 					.setOnClickListener(v -> mGalleryListener.onGalleryClicked(mDataGallery.get(position), position));

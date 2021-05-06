@@ -15,7 +15,7 @@ import com.beebapcay.galleryapp.views.fragments.RecentFragment;
 public class OptionListActivity extends AppCompatActivity {
 	private static final String TAG = OptionListActivity.class.getSimpleName();
 
-	Bundle mBundle;
+	private Bundle mBundle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,8 @@ public class OptionListActivity extends AppCompatActivity {
 
 	private void doInitialization() {
 		mBundle = getIntent().getExtras();
-		Log.d(TAG, mBundle.toString());
+
 		int destination = mBundle.getInt(ExtraIntentKey.EXTRA_OPTION_GALLERY_LIST_TYPE);
-		Log.d(TAG, String.valueOf(destination));
 		if (destination == R.string.title_favorites)
 			getSupportFragmentManager().beginTransaction()
 			.setReorderingAllowed(true)

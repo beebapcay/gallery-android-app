@@ -59,14 +59,22 @@
     <color name="colorAlbumListActionBarBackground">@color/colorBackground</color>
     <color name="colorAlbumListActionBarIcon">#252525</color>
 
+    <!--    Hero Item Action Bar    -->
+    <color name="colorHeroItemActionBarBackground">#40000000</color>
+    <color name="colorHeroItemActionBarIcon">#FFFFFF</color>
+
+    <!--    Hero Item Option Bar    -->
+    <color name="colorHeroItemOptionBarBackground">#40000000</color>
+    <color name="colorHeroItemOptionBarIcon">#FFFFFF</color>
+
     <!--    Other    -->
     <color name="colorFavourite">#D92555</color>
     <color name="colorLocation">#4081EC</color>
     <color name="colorRippleEffect">#C8C8C8</color>
+    <color name="colorRippleEffectHeroItem">#FFFFFF</color>
     <color name="colorDurationBackground">#80000000</color>
     <color name="colorDurationText">#FFFFFF</color>
-    <color name="colorAlbumItemName">@color/colorTextPrimary</color>
-    <color name="colorAlbumItemQuantity">@color/colorTextTertiary</color>
+    <color name="colorAlbumItemBorder">#787878</color>
 
 
 </resources>

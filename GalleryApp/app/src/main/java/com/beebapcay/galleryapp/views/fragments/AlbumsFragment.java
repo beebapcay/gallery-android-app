@@ -1,5 +1,6 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,13 @@ import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.AlbumsAdapter;
+import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.AlbumListener;
 import com.beebapcay.galleryapp.models.AlbumModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
+import com.beebapcay.galleryapp.views.activities.AlbumListActivity;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class AlbumsFragment extends Fragment implements AlbumListener {
@@ -76,6 +79,10 @@ public class AlbumsFragment extends Fragment implements AlbumListener {
 
     @Override
     public void onAlbumClicked(AlbumModel album, int position) {
-        Toast.makeText(requireActivity(), album.getUri().toString(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(requireActivity(), AlbumListActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ExtraIntentKey.EXTRA_ALBUM_DATA, album);
+        intent.putExtras(bundle);
+        requireActivity().startActivity(intent);
     }
 }
