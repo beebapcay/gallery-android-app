@@ -95,6 +95,54 @@ public class MediaDataRepository {
 		return Single.just(dataPictures);
 	}
 
+	public Single<List<PictureModel>> loadPicturesHaveFace() {
+		List<PictureModel> dataPictures = new ArrayList<>();
+
+		Uri collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+		String[] projection = new String[]{
+				MediaStore.Images.Media._ID,
+				MediaStore.Images.Media.DISPLAY_NAME,
+				MediaStore.Images.Media.SIZE,
+				MediaStore.Images.Media.DATA,
+				MediaStore.Images.Media.DATE_MODIFIED,
+				MediaStore.Images.Media.HEIGHT,
+				MediaStore.Images.Media.WIDTH
+		};
+		ContentResolver contentResolver = mContext.getContentResolver();
+
+		try (Cursor cursor = contentResolver.query(
+				collection,
+				projection,
+				null,
+				null,
+				MediaStore.Images.Media.DATE_MODIFIED + " DESC")) {
+			int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+			int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
+			int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE);
+			int pathColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			int dateModifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
+			int heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT);
+			int widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH);
+
+			while (cursor.moveToNext()) {
+				long id = cursor.getLong(idColumn);
+				Uri uri = ContentUris.withAppendedId(collection, id);
+				String name = cursor.getString(nameColumn);
+				long size = cursor.getLong(sizeColumn);
+				String path = cursor.getString(pathColumn);
+				Date dateModified = new Date(cursor.getLong(dateModifiedColumn) * 1000);
+				int height = cursor.getInt(heightColumn);
+				int width = cursor.getInt(widthColumn);
+
+				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width);
+				dataPictures.add(pictureModel);
+			}
+		}
+
+		Log.d(TAG, "Found: " + dataPictures.size() + " pictures");
+		return Single.just(dataPictures);
+	}
+
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	public Single<List<VideoModel>> loadVideos() {
 		List<VideoModel> dataVideos = new ArrayList<>();

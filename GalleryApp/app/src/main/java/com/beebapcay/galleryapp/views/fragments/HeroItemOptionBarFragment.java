@@ -2,6 +2,7 @@ package com.beebapcay.galleryapp.views.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,11 +25,12 @@ import com.beebapcay.galleryapp.factories.HeroItemViewModelFactory;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
+import com.bumptech.glide.Glide;
 
 public class HeroItemOptionBarFragment extends Fragment {
 	private static final String TAG = HeroItemOptionBarFragment.class.getSimpleName();
 
-	ImageButton mFavouriteButton, mDeleteButton;
+	ImageButton mFavouriteButton, mDeleteButton, mShareButton;
 	DeleteItemDialogFragment mDeleteItemDialogFragment;
 	SharedPreferences mSharedPreferences;
 
@@ -82,6 +84,17 @@ public class HeroItemOptionBarFragment extends Fragment {
 			mHeroItemViewModel.getLiveIsFavourite().setValue(isFavourite);
 		});
 
+		mShareButton = view.findViewById(R.id.btn_share);
+		mShareButton.setOnClickListener(v -> {
+			Intent sendIntent = new Intent();
+			sendIntent.setAction(Intent.ACTION_SEND);
+			sendIntent.setType("image/*");
+			sendIntent.putExtra(Intent.EXTRA_STREAM, mDataItem.getUri());
+
+			Intent shareIntent = Intent.createChooser(sendIntent, "Share Via");
+			startActivity(shareIntent);
+		});
+
 		mHeroItemViewModel.getLiveIsFavourite().observe(requireActivity(), isFavourite -> {
 			if (isFavourite) {
 				mFavouriteButton.setImageResource(R.drawable.ic_heart_filled);
@@ -103,4 +116,6 @@ public class HeroItemOptionBarFragment extends Fragment {
 	public void onStart() {
 		super.onStart();
 	}
+
+
 }
