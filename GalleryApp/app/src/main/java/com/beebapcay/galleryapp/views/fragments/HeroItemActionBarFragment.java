@@ -79,7 +79,7 @@ public class HeroItemActionBarFragment extends Fragment {
 				mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 				switch (item.getItemId()) {
 					case R.id.action_details:
-
+						onActionDetails();
 						return true;
 					case R.id.action_set_as_wallpaper:
 						setAsWallpaper(mDataItem);
@@ -91,7 +91,7 @@ public class HeroItemActionBarFragment extends Fragment {
 		mMorePopupMenu.show();
 	}
 
-	public void setAsWallpaper(GalleryModel dataPicture) {
+	private void setAsWallpaper(GalleryModel dataPicture) {
 		new Thread() {
 			@Override
 			public void run() {
@@ -103,5 +103,9 @@ public class HeroItemActionBarFragment extends Fragment {
 				}
 			}
 		}.start();
+	}
+
+	private void onActionDetails() {
+		new DetailDialogFragment().show(getChildFragmentManager(), DetailDialogFragment.TAG);
 	}
 }

@@ -50,4 +50,6 @@
     <string name="dialog_delete_item_message">Move 1 item to the Recycle bin?</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_move_to_recycle_bin">Move to Recycle bin</string>
+    <string name="dialog_detail_title">Details</string>
+    <string name="dialog_detail_edit">Edit</string>
 </resources>

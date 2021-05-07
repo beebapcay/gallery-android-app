@@ -69,6 +69,8 @@
 
     <!--    Dialog    -->
     <color name="colorDialogBackground">#FFFFFF</color>
+    <color name="colorDetailDialogBackground">@color/colorBackground</color>
+    <color name="colorDetailDialogIcon">#252525</color>
 
     <!--    Other    -->
     <color name="colorFavourite">#D92555</color>

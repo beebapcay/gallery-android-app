@@ -9,7 +9,7 @@ public class GalleryModel {
 	protected Uri mUri;
 	protected String mName;
 	protected long mSize;
-	protected Date mDateAdded;
+	protected String mPath;
 	protected Date mDateModified;
 	protected int mHeight;
 	protected int mWidth;
@@ -17,12 +17,12 @@ public class GalleryModel {
 	public GalleryModel() {
 	}
 
-	public GalleryModel(long id, Uri uri, String name, long size, Date dateAdded, Date dateModified, int height, int width) {
+	public GalleryModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width) {
 		mId = id;
 		mUri = uri;
 		mName = name;
 		mSize = size;
-		mDateAdded = dateAdded;
+		mPath = path;
 		mDateModified = dateModified;
 		mHeight = height;
 		mWidth = width;
@@ -60,12 +60,12 @@ public class GalleryModel {
 		mSize = size;
 	}
 
-	public Date getDateAdded() {
-		return mDateAdded;
+	public String getPath() {
+		return mPath;
 	}
 
-	public void setDateAdded(Date dateAdded) {
-		mDateAdded = dateAdded;
+	public void setPath(String path) {
+		mPath = path;
 	}
 
 	public Date getDateModified() {

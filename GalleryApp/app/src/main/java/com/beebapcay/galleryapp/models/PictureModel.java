@@ -24,8 +24,8 @@ public class PictureModel extends GalleryModel implements Parcelable {
 		super();
 	}
 
-	public PictureModel(long id, Uri uri, String name, long size, Date dateAdded, Date dateModified, int height, int width) {
-		super(id, uri, name, size, dateAdded, dateModified, height, width);
+	public PictureModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width) {
+		super(id, uri, name, size, path, dateModified, height, width);
 	}
 
 	protected PictureModel(Parcel in) {
@@ -33,7 +33,7 @@ public class PictureModel extends GalleryModel implements Parcelable {
 		mUri = in.readParcelable(Uri.class.getClassLoader());
 		mName = in.readString();
 		mSize = in.readLong();
-		mDateAdded = new Date(in.readLong());
+		mPath = in.readString();
 		mDateModified = new Date(in.readLong());
 		mHeight = in.readInt();
 		mWidth = in.readInt();
@@ -50,11 +50,9 @@ public class PictureModel extends GalleryModel implements Parcelable {
 		dest.writeParcelable(mUri, flags);
 		dest.writeString(mName);
 		dest.writeLong(mSize);
-		dest.writeLong(mDateAdded.getTime());
+		dest.writeString(mPath);
 		dest.writeLong(mDateModified.getTime());
 		dest.writeInt(mHeight);
 		dest.writeInt(mWidth);
 	}
-
-
 }

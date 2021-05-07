@@ -26,8 +26,8 @@ public class VideoModel extends GalleryModel implements Parcelable {
 		super();
 	}
 
-	public VideoModel(long id, Uri uri, String name, long size, Date dateAdded, Date dateModified, int height, int width,long duration) {
-		super(id, uri, name, size, dateAdded, dateModified, height, width);
+	public VideoModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width,long duration) {
+		super(id, uri, name, size, path, dateModified, height, width);
 		mDuration = duration;
 	}
 
@@ -37,7 +37,7 @@ public class VideoModel extends GalleryModel implements Parcelable {
 		mName = in.readString();
 		mSize = in.readLong();
 		mDuration = in.readLong();
-		mDateAdded = new Date(in.readLong());
+		mPath = in.readString();
 		mDateModified = new Date(in.readLong());
 		mHeight = in.readInt();
 		mWidth = in.readInt();
@@ -55,7 +55,7 @@ public class VideoModel extends GalleryModel implements Parcelable {
 		dest.writeString(mName);
 		dest.writeLong(mSize);
 		dest.writeLong(mDuration);
-		dest.writeLong(mDateAdded.getTime());
+		dest.writeString(mPath);
 		dest.writeLong(mDateModified.getTime());
 		dest.writeInt(mHeight);
 		dest.writeInt(mWidth);

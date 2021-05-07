@@ -55,7 +55,7 @@ public class MediaDataRepository {
 				MediaStore.Images.Media._ID,
 				MediaStore.Images.Media.DISPLAY_NAME,
 				MediaStore.Images.Media.SIZE,
-				MediaStore.Images.Media.DATE_ADDED,
+				MediaStore.Images.Media.DATA,
 				MediaStore.Images.Media.DATE_MODIFIED,
 				MediaStore.Images.Media.HEIGHT,
 				MediaStore.Images.Media.WIDTH
@@ -71,7 +71,7 @@ public class MediaDataRepository {
 			int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
 			int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
 			int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE);
-			int dateAddedColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED);
+			int pathColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			int dateModifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
 			int heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT);
 			int widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH);
@@ -81,13 +81,12 @@ public class MediaDataRepository {
 				Uri uri = ContentUris.withAppendedId(collection, id);
 				String name = cursor.getString(nameColumn);
 				long size = cursor.getLong(sizeColumn);
-
-				Date dateAdded = new Date(cursor.getLong(dateAddedColumn) * 1000);
+				String path = cursor.getString(pathColumn);
 				Date dateModified = new Date(cursor.getLong(dateModifiedColumn) * 1000);
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 
-				PictureModel pictureModel = new PictureModel(id, uri, name, size, dateAdded, dateModified, height, width);
+				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width);
 				dataPictures.add(pictureModel);
 			}
 		}
@@ -107,7 +106,7 @@ public class MediaDataRepository {
 				MediaStore.Video.Media.DISPLAY_NAME,
 				MediaStore.Video.Media.SIZE,
 				MediaStore.Video.Media.DURATION,
-				MediaStore.Video.Media.DATE_ADDED,
+				MediaStore.Video.Media.DATA,
 				MediaStore.Video.Media.DATE_MODIFIED,
 				MediaStore.Video.Media.HEIGHT,
 				MediaStore.Video.Media.WIDTH
@@ -123,7 +122,7 @@ public class MediaDataRepository {
 			int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID);
 			int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME);
 			int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
-			int dateAddedColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED);
+			int pathColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
 			int dateModifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_MODIFIED);
 			int heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.HEIGHT);
 			int widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.WIDTH);
@@ -134,13 +133,13 @@ public class MediaDataRepository {
 				Uri uri = ContentUris.withAppendedId(collection, id);
 				String name = cursor.getString(nameColumn);
 				long size = cursor.getLong(sizeColumn);
-				Date dateAdded = new Date(cursor.getLong(dateAddedColumn) * 1000);
+				String path = cursor.getString(pathColumn);
 				Date dateModified = new Date(cursor.getLong(dateModifiedColumn) * 1000);
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 				long duration = cursor.getLong(durationColumn);
 
-				VideoModel videoModel = new VideoModel(id, uri, name, size, dateAdded, dateModified, height, width, duration);
+				VideoModel videoModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration);
 				dataVideos.add(videoModel);
 			}
 		}
@@ -240,7 +239,7 @@ public class MediaDataRepository {
 				MediaStore.Images.Media._ID,
 				MediaStore.Images.Media.DISPLAY_NAME,
 				MediaStore.Images.Media.SIZE,
-				MediaStore.Images.Media.DATE_ADDED,
+				MediaStore.Images.Media.DATA,
 				MediaStore.Images.Media.DATE_MODIFIED,
 				MediaStore.Images.Media.HEIGHT,
 				MediaStore.Images.Media.WIDTH
@@ -258,7 +257,7 @@ public class MediaDataRepository {
 			int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
 			int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
 			int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE);
-			int dateAddedColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED);
+			int pathColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			int dateModifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
 			int heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT);
 			int widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH);
@@ -268,13 +267,12 @@ public class MediaDataRepository {
 				Uri uri = ContentUris.withAppendedId(collection, id);
 				String name = cursor.getString(nameColumn);
 				long size = cursor.getLong(sizeColumn);
-
-				Date dateAdded = new Date(cursor.getLong(dateAddedColumn) * 1000);
+				String path = cursor.getString(pathColumn);
 				Date dateModified = new Date(cursor.getLong(dateModifiedColumn) * 1000);
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 
-				GalleryModel galleryModel = new PictureModel(id, uri, name, size, dateAdded, dateModified, height, width);
+				GalleryModel galleryModel = new PictureModel(id, uri, name, size, path, dateModified, height, width);
 				dataGallery.add(galleryModel);
 			}
 		}
@@ -285,7 +283,7 @@ public class MediaDataRepository {
 				MediaStore.Video.Media.DISPLAY_NAME,
 				MediaStore.Video.Media.SIZE,
 				MediaStore.Video.Media.DURATION,
-				MediaStore.Video.Media.DATE_ADDED,
+				MediaStore.Video.Media.DATA,
 				MediaStore.Video.Media.DATE_MODIFIED,
 				MediaStore.Video.Media.HEIGHT,
 				MediaStore.Video.Media.WIDTH
@@ -302,7 +300,7 @@ public class MediaDataRepository {
 			int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID);
 			int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME);
 			int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
-			int dateAddedColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED);
+			int pathColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
 			int dateModifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_MODIFIED);
 			int heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.HEIGHT);
 			int widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.WIDTH);
@@ -313,13 +311,13 @@ public class MediaDataRepository {
 				Uri uri = ContentUris.withAppendedId(collection, id);
 				String name = cursor.getString(nameColumn);
 				long size = cursor.getLong(sizeColumn);
-				Date dateAdded = new Date(cursor.getLong(dateAddedColumn) * 1000);
+				String path = cursor.getString(pathColumn);
 				Date dateModified = new Date(cursor.getLong(dateModifiedColumn) * 1000);
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 				long duration = cursor.getLong(durationColumn);
 
-				GalleryModel galleryModel = new VideoModel(id, uri, name, size, dateAdded, dateModified, height, width, duration);
+				GalleryModel galleryModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration);
 				dataGallery.add(galleryModel);
 			}
 		}
