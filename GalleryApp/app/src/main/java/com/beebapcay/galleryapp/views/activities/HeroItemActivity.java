@@ -57,6 +57,7 @@ public class HeroItemActivity extends AppCompatActivity {
 
 		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(this));
 		mHeroItemViewModel = new ViewModelProvider(this, mHeroItemViewModelFactory).get(HeroItemViewModel.class);
+		mHeroItemViewModel.getLiveDataItem().setValue(mDataItem);
 	}
 
 }

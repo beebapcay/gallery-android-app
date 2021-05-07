@@ -10,6 +10,7 @@ import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 public class HeroItemViewModel extends ViewModel {
 	private final MediaDataRepository mMediaDataRepository;
 	private final MutableLiveData<GalleryModel> mLiveDataItem = new MutableLiveData<>();
+	private final MutableLiveData<Boolean> mLiveIsFavourite = new MutableLiveData<>();
 
 	public HeroItemViewModel(MediaDataRepository mediaDataRepository) {
 		mMediaDataRepository = mediaDataRepository;
@@ -21,5 +22,9 @@ public class HeroItemViewModel extends ViewModel {
 
 	public void delete(GalleryModel dataItem) {
 		mMediaDataRepository.deleteItem(dataItem);
+	}
+
+	public MutableLiveData<Boolean> getLiveIsFavourite() {
+		return mLiveIsFavourite;
 	}
 }
