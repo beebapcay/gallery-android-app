@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    General    -->
     <string name="app_name">Bộ sưu tập</string>
+
+    <!--    Title   -->
     <string name="title_dest_gallery">Bộ sưu tập</string>
     <string name="title_dest_pictures">Ảnh</string>
     <string name="title_dest_videos">Video</string>
     <string name="title_dest_albums">Album</string>
+
     <string name="title_favorites">Yêu thích</string>
     <string name="title_recent">Gần đây</string>
     <string name="title_people">Mọi người</string>
     <string name="title_locations">Vị trí</string>
+
+    <!--    Quick Option Button    -->
     <string name="label_favourites">Yêu thích</string>
     <string name="label_recent">Gần đây</string>
     <string name="label_people">Mọi người</string>
     <string name="label_locations">Vị trí</string>
+
+    <!--    Popup Menu Dest Fragment More    -->
     <string name="menu_sticky_action_bar_more_select_all">Chọn tất cả</string>
     <string name="menu_sticky_action_bar_more_share">Chia sẻ</string>
     <string name="menu_sticky_action_bar_more_slideshow">Trình chiếu</string>
@@ -20,18 +28,26 @@
     <string name="menu_sticky_action_bar_more_recycle_bin">Thùng rác</string>
     <string name="menu_sticky_action_bar_more_settings">Cài đặt</string>
     <string name="menu_sticky_action_bar_more_about_us">Thông tin</string>
+
+    <!--    Popup Menu Dest Fragment Filter    -->
     <string name="menu_sticky_action_bar_filter_order_by">Sắp xếp theo</string>
     <string name="menu_sticky_action_bar_filter_date">Ngày</string>
     <string name="menu_sticky_action_bar_filter_size">Kích cỡ</string>
     <string name="menu_sticky_action_bar_filter_name">Tên</string>
+
+    <!--    Bottom Navigation View    -->
     <string name="menu_nav_bottom_gallery">Bộ sưu tập</string>
     <string name="menu_nav_bottom_pictures">Ảnh</string>
     <string name="menu_nav_bottom_videos">Video</string>
     <string name="menu_nav_bottom_albums">Album</string>
+
+    <!--    Popup Menu Hero Item Action Bar More    -->
     <string name="menu_hero_item_action_bar_more_details">Chi tiết</string>
     <string name="menu_hero_item_action_bar_more_edit_location">Chỉnh vị trí</string>
     <string name="menu_hero_item_action_bar_more_set_as_wallpaper">Đặt hình nền</string>
     <string name="menu_hero_item_action_bar_more_move_to_privacy_folder">Chuyển vào Riêng tư</string>
+
+    <!--    Dialog    -->
     <string name="dialog_delete_item_message">Chuyển 1 mục vào Thùng rác</string>
     <string name="dialog_cancel">Hủy</string>
     <string name="dialog_move_to_recycle_bin">Chuyển vào Thùng rác</string>
