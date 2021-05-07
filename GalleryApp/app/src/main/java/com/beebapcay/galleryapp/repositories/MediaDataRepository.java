@@ -5,6 +5,8 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.media.FaceDetector;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -19,6 +21,7 @@ import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +38,8 @@ public class MediaDataRepository {
 
 	@SuppressLint("StaticFieldLeak")
 	private static MediaDataRepository sSingletonInstance = null;
+
+	private static FaceDetector faceDetector;
 
 	private final Context mContext;
 
@@ -95,7 +100,7 @@ public class MediaDataRepository {
 		return Single.just(dataPictures);
 	}
 
-	public Single<List<PictureModel>> loadPicturesHaveFace() {
+	public Single<List<PictureModel>> loadPicturesHaveFace() throws IOException {
 		List<PictureModel> dataPictures = new ArrayList<>();
 
 		Uri collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
@@ -139,8 +144,18 @@ public class MediaDataRepository {
 			}
 		}
 
-		Log.d(TAG, "Found: " + dataPictures.size() + " pictures");
-		return Single.just(dataPictures);
+		List<PictureModel> dataPicturesHaveFace = new ArrayList<>();
+		for (PictureModel item : dataPictures) {
+			Bitmap bitmap = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), item.getUri());
+			FaceDetector.Face[] faces = new FaceDetector.Face[0];
+			faceDetector.findFaces(bitmap, faces);
+			if (faces.length > 0) {
+				dataPicturesHaveFace.add(item);
+			}
+		}
+
+		Log.d(TAG, "Found: " + dataPicturesHaveFace.size() + " pictures have face");
+		return Single.just(dataPicturesHaveFace);
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
