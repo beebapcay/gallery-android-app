@@ -49,14 +49,14 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 						R.layout.item_picture,
 						parent,
 						false
-				)
+				), mContext
 		);
 		else return new VideosAdapter.VideoViewHolder(
 				LayoutInflater.from(parent.getContext()).inflate(
 						R.layout.item_video,
 						parent,
 						false
-				)
+				), mContext
 		);
 	}
 

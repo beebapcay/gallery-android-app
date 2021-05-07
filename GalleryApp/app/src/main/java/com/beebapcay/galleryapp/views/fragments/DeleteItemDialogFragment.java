@@ -43,7 +43,6 @@ public class DeleteItemDialogFragment extends DialogFragment {
 
 		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
 		mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
-		mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 	}
 
 	@Override
@@ -56,6 +55,8 @@ public class DeleteItemDialogFragment extends DialogFragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
+		mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 
 		mCancel = view.findViewById(R.id.action_cancel);
 		mCancel.setOnClickListener(v -> dismiss());

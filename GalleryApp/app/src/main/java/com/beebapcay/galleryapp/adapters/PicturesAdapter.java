@@ -1,9 +1,11 @@
 package com.beebapcay.galleryapp.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.configs.PrefName;
 import com.beebapcay.galleryapp.listeners.PictureListener;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
@@ -26,6 +29,7 @@ import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.PictureViewHolder> {
+
 	private final Context mContext;
 	private final List<PictureModel> mDataPictures;
 	private final PictureListener mPictureListener;
@@ -44,7 +48,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 						R.layout.item_picture,
 						parent,
 						false
-				)
+				), mContext
 		);
 	}
 
@@ -75,11 +79,16 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 	}
 
 	static class PictureViewHolder extends RecyclerView.ViewHolder {
-		ImageView mImageThumbnail;
+		Context mContext;
+		SharedPreferences mSharedPreferences;
+		ImageView mImageThumbnail, mFavouriteButton;
 
-		public PictureViewHolder(@NonNull View itemView) {
+		public PictureViewHolder(@NonNull View itemView, Context context) {
 			super(itemView);
+			mContext = context;
+			mSharedPreferences = mContext.getSharedPreferences(PrefName.FAVOURITES, Context.MODE_PRIVATE);
 			mImageThumbnail = itemView.findViewById(R.id.image_thumbnail);
+			mFavouriteButton = itemView.findViewById(R.id.btn_favourite);
 		}
 
 		public void onBind(PictureModel pictureModel) {
@@ -87,6 +96,9 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 					.load(pictureModel.getUri())
 					.placeholder(R.drawable.ic_placeholder)
 					.into(mImageThumbnail);
+			boolean isFavourite = mSharedPreferences.getBoolean(String.valueOf(pictureModel.getId()), false);
+			if (isFavourite)
+				mFavouriteButton.setVisibility(View.VISIBLE);
 		}
 	}
 }

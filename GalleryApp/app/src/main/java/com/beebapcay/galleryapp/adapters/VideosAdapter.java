@@ -1,10 +1,12 @@
 package com.beebapcay.galleryapp.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.FilterType;
+import com.beebapcay.galleryapp.configs.PrefName;
 import com.beebapcay.galleryapp.listeners.VideoListener;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
@@ -49,7 +52,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 						R.layout.item_video,
 						parent,
 						false
-				)
+				), mContext
 		);
 	}
 
@@ -81,13 +84,18 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 	}
 
 	static class VideoViewHolder extends RecyclerView.ViewHolder {
+		Context mContext;
+		SharedPreferences mSharedPreferences;
 		TextView mTextDuration;
-		ImageView mImageThumbnail;
+		ImageView mImageThumbnail, mFavouriteButton;
 
-		public VideoViewHolder(@NonNull View itemView) {
+		public VideoViewHolder(@NonNull View itemView, Context context) {
 			super(itemView);
+			mContext = context;
+			mSharedPreferences = mContext.getSharedPreferences(PrefName.FAVOURITES, Context.MODE_PRIVATE);
 			mImageThumbnail = itemView.findViewById(R.id.image_thumbnail);
 			mTextDuration = itemView.findViewById(R.id.text_duration);
+			mFavouriteButton = itemView.findViewById(R.id.btn_favourite);
 		}
 
 		public void onBind(VideoModel videoModel) {
@@ -97,6 +105,9 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 					.into(mImageThumbnail);
 			String duration = DurationFormatUtils.formatDuration(videoModel.getDuration(), "mm:ss");
 			mTextDuration.setText(duration);
+			boolean isFavourite = mSharedPreferences.getBoolean(String.valueOf(videoModel.getId()), false);
+			if (isFavourite)
+				mFavouriteButton.setVisibility(View.VISIBLE);
 		}
 	}
 }
