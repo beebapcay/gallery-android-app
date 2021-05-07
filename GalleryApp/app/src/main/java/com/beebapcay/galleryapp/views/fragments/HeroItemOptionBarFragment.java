@@ -1,6 +1,7 @@
 package com.beebapcay.galleryapp.views.fragments;
 
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -88,7 +89,12 @@ public class HeroItemOptionBarFragment extends Fragment {
 		mShareButton.setOnClickListener(v -> {
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
-			sendIntent.setType("image/*");
+			ContentResolver contentResolver = getContext().getContentResolver();
+			String type = contentResolver.getType(mDataItem.getUri());
+			if (type.equals("image/jpg") || type.equals("image/jpeg") || type.equals("image/png"))
+				sendIntent.setType("image/*");
+			else
+				sendIntent.setType("video/*");
 			sendIntent.putExtra(Intent.EXTRA_STREAM, mDataItem.getUri());
 
 			Intent shareIntent = Intent.createChooser(sendIntent, "Share Via");
