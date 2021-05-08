@@ -14,13 +14,25 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 
 import com.beebapcay.galleryapp.R;
+import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.configs.PrefKey;
+import com.beebapcay.galleryapp.factories.HeroItemViewModelFactory;
+import com.beebapcay.galleryapp.models.GalleryModel;
+import com.beebapcay.galleryapp.models.PictureModel;
+import com.beebapcay.galleryapp.repositories.MediaDataRepository;
+import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
+import com.beebapcay.galleryapp.views.activities.HeroItemActivity;
+import com.beebapcay.galleryapp.views.activities.SlideshowActivity;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class MainStickyActionBarFragment extends Fragment {
@@ -28,15 +40,10 @@ public class MainStickyActionBarFragment extends Fragment {
 
     ImageButton mCameraButton,mMoreButton;
     PopupMenu mMorePopupMenu;
-
-    private SharedPreferences.Editor mEditor;
-
     public MainStickyActionBarFragment() { }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,10 +69,23 @@ public class MainStickyActionBarFragment extends Fragment {
     }
 
     private void onMoreButtonClicked() {
-        if (mMorePopupMenu == null) {
-            mMorePopupMenu = new PopupMenu(requireContext(), mMoreButton);
-            mMorePopupMenu.inflate(R.menu.menu_sticky_action_bar_more);
-        }
+        mMorePopupMenu = new PopupMenu(getContext(), mMoreButton);
+        mMorePopupMenu.getMenuInflater().inflate(R.menu.menu_sticky_action_bar_more, mMorePopupMenu.getMenu());
+        mMorePopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.action_slideshow) {
+                    Toast.makeText(getContext(), "Slideshow", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(requireActivity(), SlideshowActivity.class);
+                    requireActivity().startActivity(intent);
+                }
+                return true;
+            }
+        });
         mMorePopupMenu.show();
+
     }
+
+
+
 }

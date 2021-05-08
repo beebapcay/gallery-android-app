@@ -27,6 +27,7 @@
         <activity android:name=".views.activities.HeroItemActivity" />
         <activity android:name=".views.activities.AlbumListActivity" />
         <activity android:name=".views.activities.OptionListActivity" />
+        <activity android:name=".views.activities.SlideshowActivity" />
         <activity android:name=".views.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
