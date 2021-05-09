@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.FaceDetector;
@@ -15,6 +16,8 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 
+import com.beebapcay.galleryapp.configs.PrefKey;
+import com.beebapcay.galleryapp.configs.PrefName;
 import com.beebapcay.galleryapp.models.AlbumModel;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
@@ -42,9 +45,15 @@ public class MediaDataRepository {
 	private static FaceDetector faceDetector;
 
 	private final Context mContext;
+	private final SharedPreferences mFavouritePref;
+	private final SharedPreferences mPrivacyPref;
+	private final SharedPreferences mLocationPref;
 
 	private MediaDataRepository(Context context) {
 		mContext = context;
+		mFavouritePref = mContext.getSharedPreferences(PrefName.FAVOURITES, Context.MODE_PRIVATE);
+		mPrivacyPref = mContext.getSharedPreferences(PrefName.PRIVACY, Context.MODE_PRIVATE);
+		mLocationPref = mContext.getSharedPreferences(PrefName.LOCATION, Context.MODE_PRIVATE);
 	}
 
 	public static MediaDataRepository getInstance(Context context) {
@@ -91,7 +100,14 @@ public class MediaDataRepository {
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 
-				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width);
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(id), false);
+				if (isPrivacy) continue;
+
+				boolean isFavourite = mFavouritePref.getBoolean(String.valueOf(id), false);
+				String location = mLocationPref.getString(String.valueOf(id), null);
+
+				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width,
+						isFavourite, location);
 				dataPictures.add(pictureModel);
 			}
 		}
@@ -139,7 +155,14 @@ public class MediaDataRepository {
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 
-				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width);
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(id), false);
+				if (isPrivacy) continue;
+
+				boolean isFavourite = mFavouritePref.getBoolean(String.valueOf(id), false);
+				String location = mLocationPref.getString(String.valueOf(id), null);
+
+				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width,
+						isFavourite, location);
 				dataPictures.add(pictureModel);
 			}
 		}
@@ -202,7 +225,14 @@ public class MediaDataRepository {
 				int width = cursor.getInt(widthColumn);
 				long duration = cursor.getLong(durationColumn);
 
-				VideoModel videoModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration);
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(id), false);
+				if (isPrivacy) continue;
+
+				boolean isFavourite = mFavouritePref.getBoolean(String.valueOf(id), false);
+				String location = mLocationPref.getString(String.valueOf(id), null);
+
+				VideoModel videoModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration,
+						isFavourite, location);
 				dataVideos.add(videoModel);
 			}
 		}
@@ -241,6 +271,9 @@ public class MediaDataRepository {
 				String bucketName = cursor.getString(bucketNameColumn);
 				if (bucketName == null) bucketName = "No name";
 
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(imgId), false);
+				if (isPrivacy) continue;
+
 				if (!listAlbumId.contains(bucketId)) {
 					Uri imgUri = ContentUris.withAppendedId(collection, imgId);
 
@@ -275,7 +308,10 @@ public class MediaDataRepository {
 				long videoId = cursor.getLong(videoIdColumn);
 				long bucketId = cursor.getLong(bucketIdColumn);
 				String bucketName = cursor.getString(bucketNameColumn);
-				if (bucketName == null) bucketName = "0";
+				if (bucketName == null) bucketName = "No Name";
+
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(videoId), false);
+				if (isPrivacy) continue;
 
 				if (!listAlbumId.contains(bucketId)) {
 					Uri imgUri = ContentUris.withAppendedId(collection, videoId);
@@ -335,7 +371,14 @@ public class MediaDataRepository {
 				int height = cursor.getInt(heightColumn);
 				int width = cursor.getInt(widthColumn);
 
-				GalleryModel galleryModel = new PictureModel(id, uri, name, size, path, dateModified, height, width);
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(id), false);
+				if (isPrivacy) continue;
+
+				boolean isFavourite = mFavouritePref.getBoolean(String.valueOf(id), false);
+				String location = mLocationPref.getString(String.valueOf(id), null);
+
+				GalleryModel galleryModel = new PictureModel(id, uri, name, size, path, dateModified, height, width,
+						 isFavourite, location);
 				dataGallery.add(galleryModel);
 			}
 		}
@@ -380,7 +423,14 @@ public class MediaDataRepository {
 				int width = cursor.getInt(widthColumn);
 				long duration = cursor.getLong(durationColumn);
 
-				GalleryModel galleryModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration);
+				boolean isPrivacy = mPrivacyPref.getBoolean(String.valueOf(id), false);
+				if (isPrivacy) continue;
+
+				boolean isFavourite = mFavouritePref.getBoolean(String.valueOf(id), false);
+				String location = mLocationPref.getString(String.valueOf(id), null);
+
+				GalleryModel galleryModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration,
+						isFavourite, location);
 				dataGallery.add(galleryModel);
 			}
 		}

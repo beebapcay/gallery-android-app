@@ -48,7 +48,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 						R.layout.item_picture,
 						parent,
 						false
-				), mContext
+				)
 		);
 	}
 
@@ -63,41 +63,28 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.Pictur
 		return mDataPictures.size();
 	}
 
-	public void sortFilter(FilterType filterType) {
-		if (filterType == FilterType.DATE)
-			Collections.sort(mDataPictures, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
-		else if (filterType == FilterType.NAME)
-			Collections.sort(mDataPictures, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-		else
-			Collections.sort(mDataPictures, (o1, o2) -> (int) (o1.getSize() - o2.getSize()));
-	}
-
 	public void loadData(List<PictureModel> dataPictures) {
 		mDataPictures.clear();
 		mDataPictures.addAll(dataPictures);
+		Collections.sort(mDataPictures, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
 		notifyDataSetChanged();
 	}
 
 	static class PictureViewHolder extends RecyclerView.ViewHolder {
-		Context mContext;
-		SharedPreferences mSharedPreferences;
 		ImageView mImageThumbnail, mFavouriteButton;
 
-		public PictureViewHolder(@NonNull View itemView, Context context) {
+		public PictureViewHolder(@NonNull View itemView) {
 			super(itemView);
-			mContext = context;
-			mSharedPreferences = mContext.getSharedPreferences(PrefName.FAVOURITES, Context.MODE_PRIVATE);
 			mImageThumbnail = itemView.findViewById(R.id.image_thumbnail);
 			mFavouriteButton = itemView.findViewById(R.id.btn_favourite);
 		}
 
-		public void onBind(PictureModel pictureModel) {
+		public void onBind(PictureModel picture) {
 			Glide.with(mImageThumbnail.getContext())
-					.load(pictureModel.getUri())
+					.load(picture.getUri())
 					.placeholder(R.drawable.ic_placeholder)
 					.into(mImageThumbnail);
-			boolean isFavourite = mSharedPreferences.getBoolean(String.valueOf(pictureModel.getId()), false);
-			if (isFavourite)
+			if (picture.isFavourite())
 				mFavouriteButton.setVisibility(View.VISIBLE);
 		}
 	}

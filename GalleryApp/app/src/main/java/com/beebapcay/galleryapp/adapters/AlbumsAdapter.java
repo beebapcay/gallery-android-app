@@ -58,10 +58,8 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumViewH
 	}
 
 	public void loadData(List<AlbumModel> dataAlbums) {
-
 		mDataAlbums.clear();
 		mDataAlbums.addAll(dataAlbums);
-
 		notifyDataSetChanged();
 	}
 

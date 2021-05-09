@@ -52,7 +52,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 						R.layout.item_video,
 						parent,
 						false
-				), mContext
+				)
 		);
 	}
 
@@ -68,45 +68,32 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 		return mDataVideos.size();
 	}
 
-	public void sortFilter(FilterType filterType) {
-		if (filterType == FilterType.DATE)
-			Collections.sort(mDataVideos, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
-		else if (filterType == FilterType.NAME)
-			Collections.sort(mDataVideos, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-		else
-			Collections.sort(mDataVideos, (o1, o2) -> (int) (o1.getSize() - o2.getSize()));
-	}
-
 	public void loadData(List<VideoModel> dataVideos) {
 		mDataVideos.clear();
 		mDataVideos.addAll(dataVideos);
+		Collections.sort(mDataVideos, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
 		notifyDataSetChanged();
 	}
 
 	static class VideoViewHolder extends RecyclerView.ViewHolder {
-		Context mContext;
-		SharedPreferences mSharedPreferences;
 		TextView mTextDuration;
 		ImageView mImageThumbnail, mFavouriteButton;
 
-		public VideoViewHolder(@NonNull View itemView, Context context) {
+		public VideoViewHolder(@NonNull View itemView) {
 			super(itemView);
-			mContext = context;
-			mSharedPreferences = mContext.getSharedPreferences(PrefName.FAVOURITES, Context.MODE_PRIVATE);
 			mImageThumbnail = itemView.findViewById(R.id.image_thumbnail);
 			mTextDuration = itemView.findViewById(R.id.text_duration);
 			mFavouriteButton = itemView.findViewById(R.id.btn_favourite);
 		}
 
-		public void onBind(VideoModel videoModel) {
+		public void onBind(VideoModel video) {
 			Glide.with(mImageThumbnail.getContext())
-					.load(videoModel.getUri())
+					.load(video.getUri())
 					.placeholder(R.drawable.ic_placeholder)
 					.into(mImageThumbnail);
-			String duration = DurationFormatUtils.formatDuration(videoModel.getDuration(), "mm:ss");
+			String duration = DurationFormatUtils.formatDuration(video.getDuration(), "mm:ss");
 			mTextDuration.setText(duration);
-			boolean isFavourite = mSharedPreferences.getBoolean(String.valueOf(videoModel.getId()), false);
-			if (isFavourite)
+			if (video.isFavourite())
 				mFavouriteButton.setVisibility(View.VISIBLE);
 		}
 	}

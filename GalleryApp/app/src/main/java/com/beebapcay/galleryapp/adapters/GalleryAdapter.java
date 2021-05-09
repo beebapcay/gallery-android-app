@@ -37,7 +37,7 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 
 	@Override
 	public int getItemViewType(int position) {
-		if (mDataGallery.get(position) instanceof PictureModel) return TYPE_LAYOUT_PICTURE;
+ 		if (mDataGallery.get(position) instanceof PictureModel) return TYPE_LAYOUT_PICTURE;
 		return TYPE_LAYOUT_VIDEO;
 	}
 
@@ -49,14 +49,14 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 						R.layout.item_picture,
 						parent,
 						false
-				), mContext
+				)
 		);
-		else return new VideosAdapter.VideoViewHolder(
+		return new VideosAdapter.VideoViewHolder(
 				LayoutInflater.from(parent.getContext()).inflate(
 						R.layout.item_video,
 						parent,
 						false
-				), mContext
+				)
 		);
 	}
 
@@ -78,19 +78,10 @@ public class GalleryAdapter extends RecyclerView.Adapter {
 		return mDataGallery.size();
 	}
 
-	public void sortFilter(FilterType filterType) {
-		if (filterType == FilterType.DATE)
-			Collections.sort(mDataGallery, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
-		else if (filterType == FilterType.NAME)
-			Collections.sort(mDataGallery, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-		else
-			Collections.sort(mDataGallery, (o1, o2) -> (int) (o1.getSize() - o2.getSize()));
-	}
-
 	public void loadData(List<GalleryModel> dataGallery) {
-
 		mDataGallery.clear();
 		mDataGallery.addAll(dataGallery);
+		Collections.sort(mDataGallery, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
 
 		notifyDataSetChanged();
 	}

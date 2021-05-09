@@ -21,6 +21,7 @@ import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
 import com.bumptech.glide.Glide;
 
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class HeroPictureFragment extends Fragment {
 	private static final String TAG = HeroPictureFragment.class.getSimpleName();
 
@@ -36,13 +37,9 @@ public class HeroPictureFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (getArguments() != null) {
-			mDataPicture = requireArguments().getParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA);
-		}
-
 		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
 		mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
-		mHeroItemViewModel.getLiveDataItem().setValue(mDataPicture);
+
 	}
 
 	@Override
@@ -54,6 +51,8 @@ public class HeroPictureFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
+		mDataPicture = (PictureModel) mHeroItemViewModel.getLiveDataItem().getValue();
 
 		mHeroImage = view.findViewById(R.id.image_hero_image);
 		Glide.with(requireActivity())

@@ -78,10 +78,8 @@ public class GalleryFragment extends Fragment implements GalleryListener{
 
         mRecyclerView.setAdapter(mGalleryAdapter);
 
-        mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery -> {
-            mGalleryAdapter.loadData(dataGallery);
-            mGalleryAdapter.sortFilter(FilterType.DATE);
-        });
+        mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery ->
+            mGalleryAdapter.loadData(dataGallery));
     }
 
     @Override

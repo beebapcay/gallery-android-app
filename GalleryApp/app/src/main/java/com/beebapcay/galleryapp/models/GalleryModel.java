@@ -14,10 +14,14 @@ public class GalleryModel {
 	protected int mHeight;
 	protected int mWidth;
 
+	protected boolean mIsFavourite;
+	protected String mLocation;
+
 	public GalleryModel() {
 	}
 
-	public GalleryModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width) {
+	public GalleryModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width,
+						boolean isFavourite, String location) {
 		mId = id;
 		mUri = uri;
 		mName = name;
@@ -26,6 +30,9 @@ public class GalleryModel {
 		mDateModified = dateModified;
 		mHeight = height;
 		mWidth = width;
+
+		mIsFavourite = isFavourite;
+		mLocation = location;
 	}
 
 	public long getId() {
@@ -90,5 +97,21 @@ public class GalleryModel {
 
 	public void setWidth(int width) {
 		mWidth = width;
+	}
+
+	public boolean isFavourite() {
+		return mIsFavourite;
+	}
+
+	public void setFavourite(boolean favourite) {
+		mIsFavourite = favourite;
+	}
+
+	public String getLocation() {
+		return mLocation;
+	}
+
+	public void setLocation(String location) {
+		mLocation = location;
 	}
 }

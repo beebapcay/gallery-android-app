@@ -71,9 +71,8 @@ public class AlbumsFragment extends Fragment implements AlbumListener {
         mAlbumsAdapter = new AlbumsAdapter(requireContext(), this);
         mRecyclerView.setAdapter(mAlbumsAdapter);
 
-        mMediaViewModel.getLiveDataAlbums().observe(requireActivity(), dataAlbums -> {
-            mAlbumsAdapter.loadData(dataAlbums);
-        });
+        mMediaViewModel.getLiveDataAlbums().observe(requireActivity(), dataAlbums ->
+            mAlbumsAdapter.loadData(dataAlbums));
     }
 
     @Override

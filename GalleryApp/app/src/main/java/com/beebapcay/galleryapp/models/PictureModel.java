@@ -1,8 +1,11 @@
 package com.beebapcay.galleryapp.models;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.Date;
 
@@ -24,8 +27,9 @@ public class PictureModel extends GalleryModel implements Parcelable {
 		super();
 	}
 
-	public PictureModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width) {
-		super(id, uri, name, size, path, dateModified, height, width);
+	public PictureModel(long id, Uri uri, String name, long size, String path, Date dateModified, int height, int width,
+						boolean isFavourite, String location) {
+		super(id, uri, name, size, path, dateModified, height, width, isFavourite, location);
 	}
 
 	protected PictureModel(Parcel in) {
@@ -37,6 +41,9 @@ public class PictureModel extends GalleryModel implements Parcelable {
 		mDateModified = new Date(in.readLong());
 		mHeight = in.readInt();
 		mWidth = in.readInt();
+		mIsFavourite = in.readByte() != 0;
+		mLocation = in.readString();
+
 	}
 
 	@Override
@@ -54,5 +61,7 @@ public class PictureModel extends GalleryModel implements Parcelable {
 		dest.writeLong(mDateModified.getTime());
 		dest.writeInt(mHeight);
 		dest.writeInt(mWidth);
+		dest.writeByte((byte) (mIsFavourite ? 1 : 0));
+		dest.writeString(mLocation);
 	}
 }

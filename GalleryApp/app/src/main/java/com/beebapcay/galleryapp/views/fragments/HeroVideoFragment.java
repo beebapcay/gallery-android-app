@@ -25,7 +25,7 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
 
-
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class HeroVideoFragment extends Fragment {
 	private static final String TAG = HeroVideoFragment.class.getSimpleName();
 
@@ -42,12 +42,8 @@ public class HeroVideoFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (getArguments() != null) {
-			mDataVideo = getArguments().getParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA);
-		}
 		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
 		mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
-		mHeroItemViewModel.getLiveDataItem().setValue(mDataVideo);
 	}
 
 	@Override
@@ -59,6 +55,8 @@ public class HeroVideoFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
+		mDataVideo = (VideoModel) mHeroItemViewModel.getLiveDataItem().getValue();
 
 		mHeroVideo = view.findViewById(R.id.video_hero_video);
 		mMediaController = new MediaController(requireActivity());

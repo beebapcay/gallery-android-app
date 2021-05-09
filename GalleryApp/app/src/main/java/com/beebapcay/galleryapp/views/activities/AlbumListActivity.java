@@ -73,7 +73,6 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 
 		mAlbumListViewModel.getLiveDataGallery().observe(this, dataGallery -> {
 			mGalleryAdapter.loadData(dataGallery);
-			mGalleryAdapter.sortFilter(FilterType.DATE);
 		});
 	}
 
@@ -81,7 +80,6 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 	@Override
 	protected void onStart() {
 		super.onStart();
-
 		loadMediaData();
 	}
 

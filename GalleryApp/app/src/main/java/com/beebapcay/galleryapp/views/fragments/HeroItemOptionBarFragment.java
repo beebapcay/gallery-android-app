@@ -28,6 +28,9 @@ import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
 import com.bumptech.glide.Glide;
 
+import java.util.Objects;
+
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class HeroItemOptionBarFragment extends Fragment {
 	private static final String TAG = HeroItemOptionBarFragment.class.getSimpleName();
 
@@ -61,11 +64,9 @@ public class HeroItemOptionBarFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
 		mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
-		isFavourite = mSharedPreferences.getBoolean(String.valueOf(mDataItem.getId()), false);
 
-		mHeroItemViewModel.getLiveIsFavourite().setValue(isFavourite);
+		isFavourite = Objects.requireNonNull(mDataItem).isFavourite();
 
 		mDeleteButton = view.findViewById(R.id.btn_delete);
 		mDeleteButton.setOnClickListener(v -> {
@@ -82,6 +83,9 @@ public class HeroItemOptionBarFragment extends Fragment {
 		else mFavouriteButton.setImageResource(R.drawable.ic_heart_outlined);
 		mFavouriteButton.setOnClickListener(v -> {
 			isFavourite = !isFavourite;
+			GalleryModel dataTemp = mHeroItemViewModel.getLiveDataItem().getValue();
+			Objects.requireNonNull(dataTemp).setFavourite(isFavourite);
+			mHeroItemViewModel.getLiveDataItem().setValue(dataTemp);
 			mHeroItemViewModel.getLiveIsFavourite().setValue(isFavourite);
 		});
 
@@ -89,7 +93,7 @@ public class HeroItemOptionBarFragment extends Fragment {
 		mShareButton.setOnClickListener(v -> {
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
-			ContentResolver contentResolver = getContext().getContentResolver();
+			ContentResolver contentResolver = requireContext().getContentResolver();
 			String type = contentResolver.getType(mDataItem.getUri());
 			if (type.equals("image/jpg") || type.equals("image/jpeg") || type.equals("image/png"))
 				sendIntent.setType("image/*");
@@ -106,13 +110,11 @@ public class HeroItemOptionBarFragment extends Fragment {
 				mFavouriteButton.setImageResource(R.drawable.ic_heart_filled);
 				mFavouriteButton.setImageTintList(requireContext().getColorStateList(R.color.colorFavourite));
 				mSharedPreferences.edit().putBoolean(String.valueOf(mDataItem.getId()), true).apply();
-
 			}
 			else {
 				mFavouriteButton.setImageResource(R.drawable.ic_heart_outlined);
 				mFavouriteButton.setImageTintList(requireContext().getColorStateList(R.color.colorHeroItemOptionBarIcon));
 				mSharedPreferences.edit().remove(String.valueOf(mDataItem.getId())).apply();
-
 			}
 		});
 
@@ -122,6 +124,4 @@ public class HeroItemOptionBarFragment extends Fragment {
 	public void onStart() {
 		super.onStart();
 	}
-
-
 }

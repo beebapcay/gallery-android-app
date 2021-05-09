@@ -31,6 +31,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.internal.observers.LambdaObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class HeroItemActionBarFragment extends Fragment {
 	private static final String TAG = HeroItemActionBarFragment.class.getSimpleName();
 
@@ -50,7 +51,6 @@ public class HeroItemActionBarFragment extends Fragment {
 
 		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
 		mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
-		mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 	}
 
 	@Override
@@ -62,6 +62,8 @@ public class HeroItemActionBarFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
+		mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 
 		mBackButton = view.findViewById(R.id.btn_back);
 		mBackButton.setOnClickListener(v -> requireActivity().onBackPressed());
@@ -76,7 +78,6 @@ public class HeroItemActionBarFragment extends Fragment {
 			mMorePopupMenu = new PopupMenu(requireContext(), mMoreButton);
 			mMorePopupMenu.inflate(R.menu.menu_hero_item_action_bar_more);
 			mMorePopupMenu.setOnMenuItemClickListener(item -> {
-				mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 				switch (item.getItemId()) {
 					case R.id.action_details:
 						onActionDetails();
