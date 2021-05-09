@@ -10,9 +10,13 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
+import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
+import com.beebapcay.galleryapp.repositories.MediaDataRepository;
+import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 import com.beebapcay.galleryapp.views.activities.OptionListActivity;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})

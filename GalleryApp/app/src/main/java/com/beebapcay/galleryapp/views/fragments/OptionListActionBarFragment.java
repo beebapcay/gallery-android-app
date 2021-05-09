@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
@@ -26,6 +27,14 @@ public class OptionListActionBarFragment extends Fragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		getParentFragmentManager().setFragmentResultListener("content", this, (requestKey, result) -> {
+			String title = result.getString("title");
+			String summary = result.getString("summary");
+
+			mTitle.setText(title);
+			mSummary.setText(summary);
+		});
 	}
 
 	@Override
@@ -41,9 +50,8 @@ public class OptionListActionBarFragment extends Fragment {
 		mBackButton.setOnClickListener(v -> requireActivity().onBackPressed());
 
 		mTitle = view.findViewById(R.id.text_title);
-		mTitle.setText(requireArguments().getString(ExtraIntentKey.EXTRA_OPTION_GALLERY_LIST_TYPE));
 
 		mSummary = view.findViewById(R.id.text_summary);
-		mSummary.setText("0 pictures 0 videos");
+
 	}
 }
