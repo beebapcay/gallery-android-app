@@ -608,7 +608,7 @@ public class MediaDataRepository {
 				if (location == null) continue;
 
 				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width,
-						true, location);
+						isFavourite, location);
 				dataFavourites.add(pictureModel);
 			}
 		}
@@ -659,7 +659,7 @@ public class MediaDataRepository {
 				if (location == null) continue;
 
 				VideoModel videoModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration,
-						true, location);
+						isFavourite, location);
 				dataFavourites.add(videoModel);
 			}
 		}
@@ -715,7 +715,7 @@ public class MediaDataRepository {
 				String location = mLocationPref.getString(String.valueOf(id), null);
 
 				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width,
-						true, location);
+						isFavourite, location);
 				dataFavourites.add(pictureModel);
 			}
 		}
@@ -764,7 +764,7 @@ public class MediaDataRepository {
 				String location = mLocationPref.getString(String.valueOf(id), null);
 
 				VideoModel videoModel = new VideoModel(id, uri, name, size, path, dateModified, height, width, duration,
-						true, location);
+						isFavourite, location);
 				dataFavourites.add(videoModel);
 			}
 		}
