@@ -64,6 +64,7 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 		else if (destination == R.string.title_recent) onDestIsRecent();
 		else if (destination == R.string.title_people) onDestIsPeople();
 		else if (destination == R.string.title_locations) onDestIsLocations();
+		else if (destination == R.string.title_privacy) onDestIsPrivacy();
 		else throw new IllegalArgumentException("Option Fragment Unknown");
 
 		mOptionListViewModel.getLiveDataItems().observe(this, dataItems -> {
@@ -114,9 +115,10 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 					String summary = ((mNumPictures != 0) ? (mNumPictures + " pictures") : "") +
 							((mNumPictures != 0 && mNumVideos != 0) ? "\t\t" : "") +
 							((mNumVideos != 0) ? (mNumVideos + " videos") : "");
+					if (summary.equals("")) summary = summary.concat("Empty");
 
 					Bundle bundle = new Bundle();
-					bundle.putString("title", getString(R.string.title_favorites));
+					bundle.putString("title", getString(R.string.title_people));
 					bundle.putString("summary", summary);
 					getSupportFragmentManager().setFragmentResult("content", bundle);
 
@@ -124,8 +126,30 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 				});
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	private void onDestIsLocations() {
+		mOptionListViewModel.clearData();
+		mOptionListViewModel.loadLocations()
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(dataItems -> {
+					for (GalleryModel item : dataItems) {
+						if (item instanceof PictureModel) mNumPictures++;
+						else mNumVideos++;
+					}
 
+					String summary = ((mNumPictures != 0) ? (mNumPictures + " pictures") : "") +
+							((mNumPictures != 0 && mNumVideos != 0) ? "\t\t" : "") +
+							((mNumVideos != 0) ? (mNumVideos + " videos") : "");
+					if (summary.equals("")) summary = summary.concat("Empty");
+
+					Bundle bundle = new Bundle();
+					bundle.putString("title", getString(R.string.title_locations));
+					bundle.putString("summary", summary);
+					getSupportFragmentManager().setFragmentResult("content", bundle);
+
+					mOptionListViewModel.getLiveDataItems().setValue(dataItems);
+				});
 	}
 
 	@Override
@@ -142,5 +166,30 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 		}
 		intent.putExtras(bundle);
 		startActivity(intent);
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.Q)
+	public void onDestIsPrivacy() {
+		mOptionListViewModel.clearData();
+		mOptionListViewModel.loadPrivacy()
+				.subscribeOn(Schedulers.newThread())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(dataPrivacy -> {
+					for (GalleryModel item : dataPrivacy) {
+						if (item instanceof PictureModel) mNumPictures++;
+						else mNumVideos++;
+					}
+
+					String summary = ((mNumPictures != 0) ? (mNumPictures + " pictures") : "") +
+							((mNumPictures != 0 && mNumVideos != 0) ? "\t\t" : "") +
+							((mNumVideos != 0) ? (mNumVideos + " videos") : "");
+
+					Bundle bundle = new Bundle();
+					bundle.putString("title", getString(R.string.title_privacy));
+					bundle.putString("summary", summary);
+					getSupportFragmentManager().setFragmentResult("content", bundle);
+
+					mOptionListViewModel.getLiveDataItems().setValue(dataPrivacy);
+				});
 	}
 }

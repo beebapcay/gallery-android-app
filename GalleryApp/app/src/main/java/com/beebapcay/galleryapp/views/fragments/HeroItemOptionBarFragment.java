@@ -83,9 +83,8 @@ public class HeroItemOptionBarFragment extends Fragment {
 		else mFavouriteButton.setImageResource(R.drawable.ic_heart_outlined);
 		mFavouriteButton.setOnClickListener(v -> {
 			isFavourite = !isFavourite;
-			GalleryModel dataTemp = mHeroItemViewModel.getLiveDataItem().getValue();
-			Objects.requireNonNull(dataTemp).setFavourite(isFavourite);
-			mHeroItemViewModel.getLiveDataItem().setValue(dataTemp);
+			mDataItem.setFavourite(isFavourite);
+			mHeroItemViewModel.getLiveDataItem().setValue(mDataItem);
 			mHeroItemViewModel.getLiveIsFavourite().setValue(isFavourite);
 		});
 

@@ -68,19 +68,22 @@ public class MainStickyActionBarFragment extends Fragment {
         startActivity(intent);
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void onMoreButtonClicked() {
         mMorePopupMenu = new PopupMenu(getContext(), mMoreButton);
         mMorePopupMenu.getMenuInflater().inflate(R.menu.menu_sticky_action_bar_more, mMorePopupMenu.getMenu());
-        mMorePopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_slideshow) {
+        mMorePopupMenu.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.action_slideshow:
                     Toast.makeText(getContext(), "Slideshow", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(requireActivity(), SlideshowActivity.class);
                     requireActivity().startActivity(intent);
-                }
-                return true;
+                    return true;
+                case R.id.action_privacy:
+                    new OpenPrivacyDialogFragment().show(getParentFragmentManager(), OpenPrivacyDialogFragment.TAG);
+                    return true;
             }
+            return false;
         });
         mMorePopupMenu.show();
 

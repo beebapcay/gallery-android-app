@@ -80,10 +80,16 @@ public class HeroItemActionBarFragment extends Fragment {
 			mMorePopupMenu.setOnMenuItemClickListener(item -> {
 				switch (item.getItemId()) {
 					case R.id.action_details:
-						onActionDetails();
+						new DetailDialogFragment().show(getChildFragmentManager(), DetailDialogFragment.TAG);
 						return true;
 					case R.id.action_set_as_wallpaper:
 						setAsWallpaper(mDataItem);
+						return true;
+					case R.id.action_edit_location:
+						new AddItemLocationDialogFragment().show(getChildFragmentManager(), AddItemLocationDialogFragment.TAG);
+						return true;
+					case R.id.action_move_to_privacy:
+						new AddItemToPrivacyDialogFragment().show(getChildFragmentManager(), AddItemToPrivacyDialogFragment.TAG);
 						return true;
 				}
 				return false;
@@ -104,9 +110,5 @@ public class HeroItemActionBarFragment extends Fragment {
 				}
 			}
 		}.start();
-	}
-
-	private void onActionDetails() {
-		new DetailDialogFragment().show(getChildFragmentManager(), DetailDialogFragment.TAG);
 	}
 }

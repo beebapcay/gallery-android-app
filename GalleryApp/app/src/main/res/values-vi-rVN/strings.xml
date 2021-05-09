@@ -13,6 +13,7 @@
     <string name="title_recent">Gần đây</string>
     <string name="title_people">Mọi người</string>
     <string name="title_locations">Vị trí</string>
+    <string name="title_privacy">Riêng tư</string>
 
     <!--    Quick Option Button    -->
     <string name="label_favourites">Yêu thích</string>
@@ -53,4 +54,9 @@
     <string name="dialog_move_to_recycle_bin">Chuyển vào Thùng rác</string>
     <string name="dialog_detail_title">Chi tiết</string>
     <string name="dialog_detail_edit">Chỉnh sửa</string>
+    <string name="dialog_add_item_location_message">Thêm tag vị trí</string>
+    <string name="dialog_confirm">Xác nhận</string>
+    <string name="dialog_add_item_privacy_message">Chuyển 1 mục vào Riêng tư</string>
+    <string name="dialog_move_to_privacy">Chuyển vào Riêng tư</string>
+    <string name="dialog_open_privacy_message">Nhập mã PIN để mở thư mục Riêng tư</string>
 </resources>

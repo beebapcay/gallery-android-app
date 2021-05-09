@@ -33,9 +33,17 @@ public class OptionListViewModel extends ViewModel {
 		return mMediaDataRepository.loadFavourites();
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.Q)
+	public Single<List<GalleryModel>> loadLocations() {
+		return mMediaDataRepository.loadLocations();
+	}
+
 	public Single<List<GalleryModel>> loadPicturesHaveFace() {
 		return mMediaDataRepository.loadPicturesHaveFace();
 	}
+
+	@RequiresApi(api = Build.VERSION_CODES.Q)
+	public Single<List<GalleryModel>> loadPrivacy() {return mMediaDataRepository.loadPrivacy();}
 
 
 	public MutableLiveData<List<GalleryModel>> getLiveDataItems() {
