@@ -10,21 +10,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.PicturesAdapter;
+import com.beebapcay.galleryapp.configs.DisplayType;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
-import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.PictureListener;
 import com.beebapcay.galleryapp.models.PictureModel;
-import com.beebapcay.galleryapp.models.VideoModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 import com.beebapcay.galleryapp.views.activities.HeroItemActivity;
@@ -39,6 +36,7 @@ public class PicturesFragment extends Fragment implements PictureListener {
     private MediaViewModelFactory mMediaViewModelFactory;
     private MediaViewModel mMediaViewModel;
     private PicturesAdapter mPicturesAdapter;
+    private GridLayoutManager mLayoutManager;
 
     public PicturesFragment() { }
 
@@ -64,7 +62,8 @@ public class PicturesFragment extends Fragment implements PictureListener {
         mDestTitle.setText(R.string.title_dest_pictures);
 
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        mLayoutManager = new GridLayoutManager(requireActivity(), 3);
+        mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
     @Override
@@ -75,7 +74,14 @@ public class PicturesFragment extends Fragment implements PictureListener {
         mRecyclerView.setAdapter(mPicturesAdapter);
 
         mMediaViewModel.getLiveDataPictures().observe(requireActivity(), dataPictures -> {
-            mPicturesAdapter.loadData(dataPictures);
+            mPicturesAdapter.loadData(dataPictures, DisplayType.DATE);
+            mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (mPicturesAdapter.isSessionPos(position)) return 3;
+                    return 1;
+                }
+            });
         });
     }
 

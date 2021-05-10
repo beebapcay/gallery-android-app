@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
+import com.beebapcay.galleryapp.configs.DisplayType;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.factories.OptionListViewModelFactory;
 import com.beebapcay.galleryapp.listeners.GalleryListener;
@@ -36,6 +37,7 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 	private OptionListViewModel mOptionListViewModel;
 	private int mNumPictures = 0, mNumVideos = 0;
 	private GalleryAdapter mGalleryAdapter;
+	private GridLayoutManager mLayoutManager;
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
@@ -55,7 +57,8 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 		int destination = mBundle.getInt(ExtraIntentKey.EXTRA_OPTION_GALLERY_LIST_TYPE);
 
 		mRecyclerView = findViewById(R.id.view_recycler_gallery_list);
-		mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+		mLayoutManager = new GridLayoutManager(this, 3);
+		mRecyclerView.setLayoutManager(mLayoutManager);
 
 		mGalleryAdapter = new GalleryAdapter(this, this);
 		mRecyclerView.setAdapter(mGalleryAdapter);
@@ -68,7 +71,17 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 		else throw new IllegalArgumentException("Option Fragment Unknown");
 
 		mOptionListViewModel.getLiveDataItems().observe(this, dataItems -> {
-			mGalleryAdapter.loadData(dataItems);
+			if (destination == R.string.title_locations) {
+				mGalleryAdapter.loadData(dataItems, DisplayType.LOCATION);
+				mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+					@Override
+					public int getSpanSize(int position) {
+						if (mGalleryAdapter.isSessionPos(position)) return 3;
+						return 1;
+					}
+				});
+			}
+			else mGalleryAdapter.loadData(dataItems, DisplayType.NULL);
 		});
 	}
 

@@ -1,52 +1,70 @@
 package com.beebapcay.galleryapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
-import com.beebapcay.galleryapp.configs.FilterType;
-import com.beebapcay.galleryapp.configs.PrefName;
+import com.beebapcay.galleryapp.configs.DisplayType;
 import com.beebapcay.galleryapp.listeners.VideoListener;
-import com.beebapcay.galleryapp.models.PictureModel;
+import com.beebapcay.galleryapp.models.GalleryModel;
+import com.beebapcay.galleryapp.models.ItemModel;
+import com.beebapcay.galleryapp.models.SessionModel;
 import com.beebapcay.galleryapp.models.VideoModel;
-import com.beebapcay.galleryapp.utils.PictureDiffCallback;
-import com.beebapcay.galleryapp.utils.VideoDiffCallback;
+import com.beebapcay.galleryapp.utils.DisplayItemUtil;
 import com.bumptech.glide.Glide;
 
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
-public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> {
+public class VideosAdapter extends RecyclerView.Adapter {
+	private static final int TYPE_LAYOUT_SESSION = 0;
+	private static final int TYPE_LAYOUT_ITEM = 1;
+
 	private final Context mContext;
 	private final List<VideoModel> mDataVideos;
+	private final List<ItemModel> mDataItems;
 	private final VideoListener mVideoListener;
 
 	public VideosAdapter(Context context, VideoListener videoListener) {
 		mContext = context;
+		mDataItems = new ArrayList<>();
 		mDataVideos = new ArrayList<>();
 		mVideoListener = videoListener;
 	}
 
+	@Override
+	public int getItemViewType(int position) {
+		if (mDataItems.get(position) instanceof SessionModel) return TYPE_LAYOUT_SESSION;
+		else return TYPE_LAYOUT_ITEM;
+	}
+
 	@NonNull
 	@Override
-	public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		if (viewType == TYPE_LAYOUT_SESSION)
+			return new GalleryAdapter.SessionViewHolder(
+					LayoutInflater.from(parent.getContext()).inflate(
+							R.layout.item_session,
+							parent,
+							false
+					)
+			);
 		return new VideoViewHolder(
 				LayoutInflater.from(parent.getContext()).inflate(
 						R.layout.item_video,
@@ -58,21 +76,36 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 
 	@RequiresApi(api = Build.VERSION_CODES.O)
 	@Override
-	public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
-		holder.onBind(mDataVideos.get(position));
-		holder.mImageThumbnail.setOnClickListener(v -> mVideoListener.onVideoListener(mDataVideos.get(position), position));
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+		if (holder instanceof GalleryAdapter.SessionViewHolder)
+			((GalleryAdapter.SessionViewHolder) holder).onBind((SessionModel) mDataItems.get(position));
+		else {
+			((VideoViewHolder) holder).onBind((VideoModel) mDataItems.get(position));
+			((VideoViewHolder) holder).mImageThumbnail.setOnClickListener(v -> mVideoListener.onVideoListener((VideoModel) mDataItems.get(position), position));
+		}
 	}
 
 	@Override
 	public int getItemCount() {
-		return mDataVideos.size();
+		return mDataItems.size();
 	}
 
-	public void loadData(List<VideoModel> dataVideos) {
+	public void loadData(List<VideoModel> dataVideos, DisplayType displayType) {
+		if (dataVideos == null) return;
 		mDataVideos.clear();
 		mDataVideos.addAll(dataVideos);
-		Collections.sort(mDataVideos, (o1, o2) -> o2.getDateModified().compareTo(o1.getDateModified()));
+		loadDataItems(displayType);
 		notifyDataSetChanged();
+	}
+
+	public void loadDataItems(DisplayType displayType) {
+		mDataItems.clear();
+		List<GalleryModel> dataList = new ArrayList<>(mDataVideos);
+		mDataItems.addAll(DisplayItemUtil.loadDataItems(dataList, displayType));
+	}
+
+	public boolean isSessionPos(int pos) {
+		return mDataItems.get(pos) instanceof SessionModel;
 	}
 
 	static class VideoViewHolder extends RecyclerView.ViewHolder {

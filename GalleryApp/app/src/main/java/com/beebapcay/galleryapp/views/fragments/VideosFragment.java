@@ -13,16 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.beebapcay.galleryapp.R;
-import com.beebapcay.galleryapp.adapters.PicturesAdapter;
 import com.beebapcay.galleryapp.adapters.VideosAdapter;
+import com.beebapcay.galleryapp.configs.DisplayType;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
-import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.VideoListener;
 import com.beebapcay.galleryapp.models.VideoModel;
@@ -40,6 +36,7 @@ public class VideosFragment extends Fragment implements VideoListener {
     private MediaViewModelFactory mMediaViewModelFactory;
     private MediaViewModel mMediaViewModel;
     private VideosAdapter mVideosAdapter;
+    private GridLayoutManager mLayoutManager;
 
     public VideosFragment() {}
 
@@ -65,7 +62,8 @@ public class VideosFragment extends Fragment implements VideoListener {
         mDestTitle.setText(R.string.title_dest_videos);
 
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        mLayoutManager = new GridLayoutManager(requireActivity(), 3);
+        mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
     @Override
@@ -76,7 +74,14 @@ public class VideosFragment extends Fragment implements VideoListener {
         mRecyclerView.setAdapter(mVideosAdapter);
 
         mMediaViewModel.getLiveDataVideos().observe(requireActivity(), dataVideos -> {
-            mVideosAdapter.loadData(dataVideos);
+            mVideosAdapter.loadData(dataVideos, DisplayType.DATE);
+            mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (mVideosAdapter.isSessionPos(position)) return 3;
+                    return 1;
+                }
+            });
         });
     }
 

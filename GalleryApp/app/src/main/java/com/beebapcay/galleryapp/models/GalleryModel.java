@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import java.util.Date;
 
-public class GalleryModel {
+public class GalleryModel extends ItemModel{
 	protected long mId;
 	protected Uri mUri;
 	protected String mName;

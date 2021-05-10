@@ -1,8 +1,6 @@
 package com.beebapcay.galleryapp.views.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +17,8 @@ import android.widget.TextView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
+import com.beebapcay.galleryapp.configs.DisplayType;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
-import com.beebapcay.galleryapp.configs.FilterType;
-import com.beebapcay.galleryapp.configs.PrefKey;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.listeners.GalleryListener;
 import com.beebapcay.galleryapp.models.GalleryModel;
@@ -41,6 +37,7 @@ public class GalleryFragment extends Fragment implements GalleryListener{
 
     private MediaViewModelFactory mMediaViewModelFactory;
     private MediaViewModel mMediaViewModel;
+    private GridLayoutManager mLayoutManager;
     private GalleryAdapter mGalleryAdapter;
 
     public GalleryFragment() { }
@@ -67,7 +64,8 @@ public class GalleryFragment extends Fragment implements GalleryListener{
         mDestTitle.setText(R.string.title_dest_gallery);
 
         mRecyclerView = view.findViewById(R.id.view_recycler_gallery_list);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        mLayoutManager = new GridLayoutManager(requireActivity(), 3);
+        mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
     @Override
@@ -78,8 +76,16 @@ public class GalleryFragment extends Fragment implements GalleryListener{
 
         mRecyclerView.setAdapter(mGalleryAdapter);
 
-        mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery ->
-            mGalleryAdapter.loadData(dataGallery));
+        mMediaViewModel.getLiveDataGallery().observe(requireActivity(), dataGallery -> {
+            mGalleryAdapter.loadData(dataGallery, DisplayType.DATE);
+            mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (mGalleryAdapter.isSessionPos(position)) return 3;
+                    return 1;
+                }
+            });
+        });
     }
 
     @Override

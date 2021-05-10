@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -15,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.adapters.GalleryAdapter;
+import com.beebapcay.galleryapp.configs.DisplayType;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
-import com.beebapcay.galleryapp.configs.FilterType;
 import com.beebapcay.galleryapp.factories.AlbumListViewModelFactory;
 import com.beebapcay.galleryapp.listeners.GalleryListener;
 import com.beebapcay.galleryapp.models.AlbumModel;
@@ -41,7 +40,6 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 	private AlbumListViewModel mAlbumListViewModel;
 	private int mNumPictures, mNumVideos;
 	private GalleryAdapter mGalleryAdapter;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +70,7 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 		mRecyclerView.setAdapter(mGalleryAdapter);
 
 		mAlbumListViewModel.getLiveDataGallery().observe(this, dataGallery -> {
-			mGalleryAdapter.loadData(dataGallery);
+			mGalleryAdapter.loadData(dataGallery, DisplayType.NULL);
 		});
 	}
 
@@ -112,8 +110,7 @@ public class AlbumListActivity extends AppCompatActivity implements GalleryListe
 		if (gallery instanceof PictureModel) {
 			bundle.putString(ExtraIntentKey.EXTRA_HERO_ITEM_TYPE, "picture");
 			bundle.putParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA, (PictureModel) gallery);
-		}
-		else {
+		} else {
 			bundle.putString(ExtraIntentKey.EXTRA_HERO_ITEM_TYPE, "video");
 			bundle.putParcelable(ExtraIntentKey.EXTRA_HERO_ITEM_DATA, (VideoModel) gallery);
 		}
