@@ -1,7 +1,10 @@
 package com.beebapcay.galleryapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +17,22 @@ import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SlidingImageAdapter extends PagerAdapter {
 
-    private List<PictureModel> mDataPictures;
+    private List<String> mUriPitures;
     private LayoutInflater inflater;
     private Context mContext;
 
     public SlidingImageAdapter(Context context, List<PictureModel> pictures) {
-        this.mContext = context;
-        this.mDataPictures = pictures;
+        mContext = context;
+        mUriPitures = new ArrayList<>();
+        for (PictureModel picture : pictures)
+            mUriPitures.add(picture.getUri().toString());
         inflater = LayoutInflater.from(context);
+        Log.d("length", String.valueOf(mUriPitures.size()));
     }
 
     @Override
@@ -35,7 +42,7 @@ public class SlidingImageAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mDataPictures.size();
+        return mUriPitures.size();
     }
 
     @NonNull
@@ -44,10 +51,12 @@ public class SlidingImageAdapter extends PagerAdapter {
         View imageLayout = inflater.inflate(R.layout.item_slideshow, view, false);
 
         assert imageLayout != null;
-        final ImageView imageView = view.findViewById(R.id.image_slideshow);
+        Log.d("getData", mUriPitures.get(position));
+
+        ImageView imageView = imageLayout.findViewById(R.id.image_slideshow);
 
         Glide.with(mContext)
-                .load(mDataPictures.get(position).getUri())
+                .load(mUriPitures.get(position))
                 .into(imageView);
 
         view.addView(imageLayout, 0);
