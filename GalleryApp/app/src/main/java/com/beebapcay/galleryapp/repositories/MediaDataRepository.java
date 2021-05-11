@@ -175,9 +175,10 @@ public class MediaDataRepository {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			FaceDetector.Face[] faces = new FaceDetector.Face[0];
+			faceDetector = new FaceDetector(bitmap.getWidth(), bitmap.getHeight(), 1);
+			FaceDetector.Face[] faces = new FaceDetector.Face[1];
 			faceDetector.findFaces(bitmap, faces);
-			if (faces.length > 0) {
+			if (faces[0] != null) {
 				dataPicturesHaveFace.add(item);
 			}
 		}
