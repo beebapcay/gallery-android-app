@@ -42,8 +42,6 @@ public class MediaDataRepository {
 	@SuppressLint("StaticFieldLeak")
 	private static MediaDataRepository sSingletonInstance = null;
 
-	private static FaceDetector faceDetector;
-
 	private final Context mContext;
 	private final SharedPreferences mFavouritePref;
 	private final SharedPreferences mPrivacyPref;
@@ -169,17 +167,22 @@ public class MediaDataRepository {
 
 		List<GalleryModel> dataPicturesHaveFace = new ArrayList<>();
 		for (GalleryModel item : dataPictures) {
-			Bitmap bitmap = null;
 			try {
-				bitmap = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), item.getUri());
+				Bitmap srcImg = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), item.getUri());
+				Bitmap srcFace = srcImg.copy(Bitmap.Config.RGB_565, true);
+				srcImg = null;
+				int w = srcFace.getWidth();
+				int h = srcFace.getHeight();
+				if (w % 2 == 1)
+					srcFace = Bitmap.createScaledBitmap(srcFace, ++w, h, false);
+				if (h % 2 == 1)
+					srcFace = Bitmap.createScaledBitmap(srcFace, w, ++h, false);
+				FaceDetector faceDetector = new FaceDetector(w, h , 1);
+				FaceDetector.Face[] faces = new FaceDetector.Face[1];
+				faceDetector.findFaces(srcFace, faces);
+				if (faces[0] != null) dataPicturesHaveFace.add(item);
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			faceDetector = new FaceDetector(bitmap.getWidth(), bitmap.getHeight(), 1);
-			FaceDetector.Face[] faces = new FaceDetector.Face[1];
-			faceDetector.findFaces(bitmap, faces);
-			if (faces[0] != null) {
-				dataPicturesHaveFace.add(item);
 			}
 		}
 
