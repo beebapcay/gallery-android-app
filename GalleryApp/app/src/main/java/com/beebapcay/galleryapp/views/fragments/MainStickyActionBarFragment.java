@@ -1,38 +1,23 @@
 package com.beebapcay.galleryapp.views.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 
 import com.beebapcay.galleryapp.R;
-import com.beebapcay.galleryapp.configs.ExtraIntentKey;
-import com.beebapcay.galleryapp.configs.PrefKey;
-import com.beebapcay.galleryapp.factories.HeroItemViewModelFactory;
-import com.beebapcay.galleryapp.models.GalleryModel;
-import com.beebapcay.galleryapp.models.PictureModel;
-import com.beebapcay.galleryapp.repositories.MediaDataRepository;
-import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
-import com.beebapcay.galleryapp.views.activities.HeroItemActivity;
-import com.beebapcay.galleryapp.views.activities.SlideshowActivity;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class MainStickyActionBarFragment extends Fragment {
@@ -75,9 +60,8 @@ public class MainStickyActionBarFragment extends Fragment {
         mMorePopupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_slideshow:
-                    Toast.makeText(getContext(), "Slideshow", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(requireActivity(), SlideshowActivity.class);
-                    requireActivity().startActivity(intent);
+                    Toast.makeText(getContext(), "Start slideshow", Toast.LENGTH_SHORT).show();
+                    new SlideShowDialogFragment().show(getChildFragmentManager(), SlideShowDialogFragment.TAG);
                     return true;
                 case R.id.action_privacy:
                     new OpenPrivacyDialogFragment().show(getParentFragmentManager(), OpenPrivacyDialogFragment.TAG);

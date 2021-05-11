@@ -4,11 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorDetailDialogBackground"
     tools:context=".views.fragments.HeroPictureFragment">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorDetailDialogBackground"
+        android:padding="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
