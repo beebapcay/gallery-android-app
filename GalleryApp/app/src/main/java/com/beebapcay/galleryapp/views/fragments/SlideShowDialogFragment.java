@@ -75,12 +75,6 @@ public class SlideShowDialogFragment extends DialogFragment {
 		mPagerAdapter = new SlidingImageAdapter(requireContext(), mDataPictures);
 		mPager.setAdapter(mPagerAdapter);
 
-		CirclePageIndicator indicator = (CirclePageIndicator) view.findViewById(R.id.indicator);
-		indicator.setViewPager(mPager);
-
-		final float density = getResources().getDisplayMetrics().density;
-		indicator.setRadius(5 * density);
-
 		mNumPages = mDataPictures.size();
 
 		final Handler handler = new Handler();
@@ -97,22 +91,6 @@ public class SlideShowDialogFragment extends DialogFragment {
 				handler.post(update);
 			}
 		}, 3000, 3000);
-		indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-			@Override
-			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-			}
-
-			@Override
-			public void onPageSelected(int position) {
-				mCurrentPage = position;
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int state) {
-
-			}
-		});
 	}
 
 	@Override

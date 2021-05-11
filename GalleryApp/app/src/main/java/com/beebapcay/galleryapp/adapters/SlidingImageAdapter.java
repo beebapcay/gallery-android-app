@@ -51,7 +51,6 @@ public class SlidingImageAdapter extends PagerAdapter {
         View imageLayout = inflater.inflate(R.layout.item_slideshow, view, false);
 
         assert imageLayout != null;
-        Log.d("getData", mUriPitures.get(position));
 
         ImageView imageView = imageLayout.findViewById(R.id.image_slideshow);
 
