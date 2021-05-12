@@ -2,6 +2,7 @@ package com.beebapcay.galleryapp.views.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -39,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
 	BottomNavigationView mBottomNavigationView;
 	NavController mNavController;
 
+	ComponentName mDetectFaceService;
+	Intent mDetectFaceServiceIntent;
+
+
+
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
 		super.onStart();
 
 		loadMediaData();
+
+		//Start Service Detect Face
+		if (mDetectFaceServiceIntent == null || mDetectFaceService == null) {
+			mDetectFaceServiceIntent = new Intent(MainActivity.this, DetectFaceService.class);
+			mDetectFaceService = startService(mDetectFaceServiceIntent);
+		}
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
@@ -69,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
 		mNavController = Navigation.findNavController(this, R.id.view_dest_container);
 		NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
 
-		//Start Service Detect Face
-		Intent intent = new Intent(MainActivity.this, DetectFaceService.class);
-		startService(intent);
 	}
 
 	@SuppressLint("NewApi")
@@ -142,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.d(TAG, "onDestroy: ");
-		Intent intent = new Intent(this, DetectFaceService.class);
-		stopService(intent);
+		stopService(mDetectFaceServiceIntent);
 	}
 }
