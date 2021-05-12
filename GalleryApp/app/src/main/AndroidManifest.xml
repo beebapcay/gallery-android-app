@@ -13,7 +13,6 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
-
     <application
         android:name=".GalleryApplication"
         android:allowBackup="true"
@@ -24,6 +23,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GalleryApp">
+        <service
+            android:name=".services.DetectFaceService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name=".views.activities.HeroItemActivity" />
         <activity android:name=".views.activities.AlbumListActivity" />
         <activity android:name=".views.activities.OptionListActivity" />

@@ -46,12 +46,14 @@ public class MediaDataRepository {
 	private final SharedPreferences mFavouritePref;
 	private final SharedPreferences mPrivacyPref;
 	private final SharedPreferences mLocationPref;
+	private final SharedPreferences mHaveFacePref;
 
 	private MediaDataRepository(Context context) {
 		mContext = context;
 		mFavouritePref = mContext.getSharedPreferences(PrefName.FAVOURITES, Context.MODE_PRIVATE);
 		mPrivacyPref = mContext.getSharedPreferences(PrefName.PRIVACY, Context.MODE_PRIVATE);
 		mLocationPref = mContext.getSharedPreferences(PrefName.LOCATION, Context.MODE_PRIVATE);
+		mHaveFacePref = mContext.getSharedPreferences(PrefName.HAVE_FACE, Context.MODE_PRIVATE);
 	}
 
 	public static MediaDataRepository getInstance(Context context) {
@@ -115,7 +117,7 @@ public class MediaDataRepository {
 	}
 
 	public Single<List<GalleryModel>> loadPicturesHaveFace() {
-		List<GalleryModel> dataPictures = new ArrayList<>();
+		List<GalleryModel> dataPicturesHaveFace = new ArrayList<>();
 
 		Uri collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 		String[] projection = new String[]{
@@ -159,32 +161,38 @@ public class MediaDataRepository {
 				boolean isFavourite = mFavouritePref.getBoolean(String.valueOf(id), false);
 				String location = mLocationPref.getString(String.valueOf(id), null);
 
+				boolean haveFace = mHaveFacePref.getBoolean(String.valueOf(id), false);
+				if (!haveFace) continue;
+
 				PictureModel pictureModel = new PictureModel(id, uri, name, size, path, dateModified, height, width,
 						isFavourite, location);
-				dataPictures.add(pictureModel);
+				dataPicturesHaveFace.add(pictureModel);
 			}
 		}
 
-		List<GalleryModel> dataPicturesHaveFace = new ArrayList<>();
-		for (GalleryModel item : dataPictures) {
-			try {
-				Bitmap srcImg = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), item.getUri());
-				Bitmap srcFace = srcImg.copy(Bitmap.Config.RGB_565, true);
-				srcImg = null;
-				int w = srcFace.getWidth();
-				int h = srcFace.getHeight();
-				if (w % 2 == 1)
-					srcFace = Bitmap.createScaledBitmap(srcFace, ++w, h, false);
-				if (h % 2 == 1)
-					srcFace = Bitmap.createScaledBitmap(srcFace, w, ++h, false);
-				FaceDetector faceDetector = new FaceDetector(w, h , 1);
-				FaceDetector.Face[] faces = new FaceDetector.Face[1];
-				faceDetector.findFaces(srcFace, faces);
-				if (faces[0] != null) dataPicturesHaveFace.add(item);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+//		List<GalleryModel> dataPicturesHaveFace = new ArrayList<>();
+//		for (GalleryModel item : dataPictures) {
+//			try {
+//				Bitmap srcImg = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), item.getUri());
+//				Bitmap srcFace = srcImg.copy(Bitmap.Config.RGB_565, true);
+//				srcImg = null;
+//				int w = srcFace.getWidth();
+//				int h = srcFace.getHeight();
+//				if (w % 2 == 1)
+//					srcFace = Bitmap.createScaledBitmap(srcFace, ++w, h, false);
+//				if (h % 2 == 1)
+//					srcFace = Bitmap.createScaledBitmap(srcFace, w, ++h, false);
+//				FaceDetector faceDetector = new FaceDetector(w, h , 1);
+//				FaceDetector.Face[] faces = new FaceDetector.Face[1];
+//				faceDetector.findFaces(srcFace, faces);
+//				if (faces[0] != null) {
+//					Log.d("FindFace", "true");
+//					dataPicturesHaveFace.add(item);
+//				}
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 		Log.d(TAG, "Found: " + dataPicturesHaveFace.size() + " pictures have face");
 		return Single.just(dataPicturesHaveFace);

@@ -117,7 +117,7 @@ public class OptionListActivity extends AppCompatActivity implements GalleryList
 	private void onDestIsPeople() {
 		mOptionListViewModel.clearData();
 		mOptionListViewModel.loadPicturesHaveFace()
-				.subscribeOn(Schedulers.newThread())
+				.subscribeOn(Schedulers.computation())
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(dataItems -> {
 					for (GalleryModel item : dataItems) {

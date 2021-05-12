@@ -2,9 +2,11 @@ package com.beebapcay.galleryapp.views.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.factories.MediaViewModelFactory;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
+import com.beebapcay.galleryapp.services.DetectFaceService;
 import com.beebapcay.galleryapp.viewmodels.MediaViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -65,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
 		mBottomNavigationView = findViewById(R.id.view_bottom_nav);
 		mNavController = Navigation.findNavController(this, R.id.view_dest_container);
 		NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
+
+		//Start Service Detect Face
+		Intent intent = new Intent(MainActivity.this, DetectFaceService.class);
+		startService(intent);
 	}
 
 	@SuppressLint("NewApi")
@@ -129,5 +136,13 @@ public class MainActivity extends AppCompatActivity {
 				.subscribeOn(Schedulers.newThread())
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(dataAlbums -> mMediaViewModel.getLiveDataAlbums().setValue(dataAlbums));
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy: ");
+		Intent intent = new Intent(this, DetectFaceService.class);
+		stopService(intent);
 	}
 }
