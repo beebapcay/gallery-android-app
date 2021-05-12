@@ -38,7 +38,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class HeroItemActionBarFragment extends Fragment {
 	private static final String TAG = HeroItemActionBarFragment.class.getSimpleName();
 
-	ImageButton mBackButton, mMoreButton, mCropButton;
+	ImageButton mBackButton, mMoreButton;
 	PopupMenu mMorePopupMenu;
 
 	private GalleryModel mDataItem;
@@ -74,8 +74,6 @@ public class HeroItemActionBarFragment extends Fragment {
 		mMoreButton = view.findViewById(R.id.btn_more);
 		mMoreButton.setOnClickListener(v -> onMoreButtonClicked());
 
-		mCropButton = view.findViewById(R.id.btn_crop);
-		mCropButton.setOnClickListener(v -> onCropButtonClicked());
 	}
 
 	@SuppressLint("NonConstantResourceId")
@@ -104,14 +102,10 @@ public class HeroItemActionBarFragment extends Fragment {
 		mMorePopupMenu.show();
 	}
 
-	private void onCropButtonClicked() {
-		HeroItemViewModelFactory mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
-		HeroItemViewModel mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
-		mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
-
-		CropImage.activity(mDataItem.getUri()).start(getActivity());
-
-	}
+	/*private void onCropButtonClicked() {
+		EditItemDialogFragment mEditItemDialogFragment = new EditItemDialogFragment();
+		mEditItemDialogFragment.show(getChildFragmentManager(), EditItemDialogFragment.TAG);
+	}*/
 
 	private void setAsWallpaper(GalleryModel dataPicture) {
 		new Thread() {

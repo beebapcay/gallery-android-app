@@ -34,8 +34,9 @@ import java.util.Objects;
 public class HeroItemOptionBarFragment extends Fragment {
 	private static final String TAG = HeroItemOptionBarFragment.class.getSimpleName();
 
-	ImageButton mFavouriteButton, mDeleteButton, mShareButton;
+	ImageButton mFavouriteButton, mDeleteButton, mShareButton, mEditButton;
 	DeleteItemDialogFragment mDeleteItemDialogFragment;
+	EditItemDialogFragment mEditItemDialogFragment;
 	SharedPreferences mSharedPreferences;
 
 	private GalleryModel mDataItem;
@@ -72,6 +73,12 @@ public class HeroItemOptionBarFragment extends Fragment {
 		mDeleteButton.setOnClickListener(v -> {
 			mDeleteItemDialogFragment = new DeleteItemDialogFragment();
 			mDeleteItemDialogFragment.show(getChildFragmentManager(), DeleteItemDialogFragment.TAG);
+		});
+
+		mEditButton = view.findViewById(R.id.btn_edit);
+		mEditButton.setOnClickListener(v -> {
+			mEditItemDialogFragment = new EditItemDialogFragment();
+			mEditItemDialogFragment.show(getChildFragmentManager(), EditItemDialogFragment.TAG);
 		});
 
 		mFavouriteButton = view.findViewById(R.id.btn_favourite);

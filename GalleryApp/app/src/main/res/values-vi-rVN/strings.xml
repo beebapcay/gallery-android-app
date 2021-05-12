@@ -59,4 +59,5 @@
     <string name="dialog_add_item_privacy_message">Chuyển 1 mục vào Riêng tư</string>
     <string name="dialog_move_to_privacy">Chuyển vào Riêng tư</string>
     <string name="dialog_open_privacy_message">Nhập mã PIN để mở thư mục Riêng tư</string>
+    <string name="save">Save</string>
 </resources>
