@@ -26,6 +26,21 @@
         tools:ignore="ContentDescription" />
 
     <ImageButton
+        android:id="@+id/btn_crop"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_5ssp"
+        android:background="@drawable/bg_ripple_circle_hero_item"
+        android:backgroundTint="@color/colorHeroItemActionBarBackground"
+        android:padding="@dimen/_10sdp"
+        android:src="@drawable/ic_crop"
+        android:tint="@color/colorHeroItemActionBarIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_eye"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
         android:id="@+id/btn_eye"
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"

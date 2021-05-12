@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 		mMediaViewModelFactory = new MediaViewModelFactory(MediaDataRepository.getInstance(this));
 		mMediaViewModel = new ViewModelProvider(this, mMediaViewModelFactory).get(MediaViewModel.class);
 
-		checkReadExternalStoragePermission();
+		checkPermissionAndLoadData();
 
 		//Set Navigate of NavigationBottomView
 		mBottomNavigationView = findViewById(R.id.view_bottom_nav);
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	@SuppressLint("NewApi")
-	private void checkReadExternalStoragePermission() {
+	private void checkPermissionAndLoadData() {
 		boolean needPermission =
 				ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
 						!= PackageManager.PERMISSION_GRANTED ||
