@@ -60,12 +60,6 @@ public class MainActivity extends AppCompatActivity {
 		super.onStart();
 
 		loadMediaData();
-
-		//Start Service Detect Face
-		if (mDetectFaceServiceIntent == null || mDetectFaceService == null) {
-			mDetectFaceServiceIntent = new Intent(MainActivity.this, DetectFaceService.class);
-			mDetectFaceService = startService(mDetectFaceServiceIntent);
-		}
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
@@ -102,7 +96,14 @@ public class MainActivity extends AppCompatActivity {
 					Manifest.permission.SET_WALLPAPER,
 			}, REQUEST_CODE_READ_EXTERNAL_STORAGE);
 		}
-		else loadMediaData();
+		else {
+			loadMediaData();
+			//Start Service Detect Face
+			if (mDetectFaceServiceIntent == null || mDetectFaceService == null) {
+				mDetectFaceServiceIntent = new Intent(MainActivity.this, DetectFaceService.class);
+				mDetectFaceService = startService(mDetectFaceServiceIntent);
+			}
+		}
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
@@ -114,7 +115,14 @@ public class MainActivity extends AppCompatActivity {
 			case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
 				if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED)
 					Toast.makeText(this, "Cant not load media data", Toast.LENGTH_SHORT).show();
-				else loadMediaData();
+				else {
+					loadMediaData();
+					//Start Service Detect Face
+					if (mDetectFaceServiceIntent == null || mDetectFaceService == null) {
+						mDetectFaceServiceIntent = new Intent(MainActivity.this, DetectFaceService.class);
+						mDetectFaceService = startService(mDetectFaceServiceIntent);
+					}
+				}
 				break;
 			}
 			default:
