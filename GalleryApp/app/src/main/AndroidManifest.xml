@@ -41,7 +41,6 @@
                 <action android:name="android.intent.action.PICK"/>
                 <action android:name="android.intent.action.GET_CONTENT"/>
                 <action android:name="android.intent.action.QUICK_VIEW"/>
-                
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />

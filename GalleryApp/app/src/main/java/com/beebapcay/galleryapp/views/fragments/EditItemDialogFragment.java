@@ -2,6 +2,7 @@ package com.beebapcay.galleryapp.views.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.bumptech.glide.Glide;
 import com.mukesh.image_processing.ImageProcessor;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 public class EditItemDialogFragment extends DialogFragment{
     public static String TAG = EditItemDialogFragment.class.getSimpleName();
@@ -66,9 +69,21 @@ public class EditItemDialogFragment extends DialogFragment{
         mCropButton = view.findViewById(R.id.btn_crop);
         mCropButton.setOnClickListener(v -> {
             CropImage.activity(mDataItem.getUri())
-                    .start(getContext(),this);
+                    .start(requireContext(),this);
         });
+    }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
+                mHeroItemViewModel.getUriCrop().setValue(resultUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception e = result.getError();
+            }
+        }
     }
 }

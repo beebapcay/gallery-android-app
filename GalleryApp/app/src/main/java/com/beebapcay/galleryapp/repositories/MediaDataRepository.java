@@ -785,4 +785,8 @@ public class MediaDataRepository {
 		return Single.just(dataFavourites);
 	}
 
+	public void updatePicture(PictureModel pictureOrigin, Uri uriCrop) {
+		
+	}
+
 }

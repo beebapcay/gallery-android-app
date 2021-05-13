@@ -1,5 +1,7 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,7 +41,6 @@ public class HeroPictureFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		mHeroItemViewModelFactory = new HeroItemViewModelFactory(MediaDataRepository.getInstance(requireActivity()));
 		mHeroItemViewModel = new ViewModelProvider(requireActivity(), mHeroItemViewModelFactory).get(HeroItemViewModel.class);
-
 	}
 
 	@Override
@@ -58,5 +59,16 @@ public class HeroPictureFragment extends Fragment {
 		Glide.with(requireActivity())
 				.load(mDataPicture.getUri())
 				.into(mHeroImage);
+
+		mHeroItemViewModel.getUriCrop().observe(requireActivity(), uriCrop -> {
+			if (uriCrop != null) {
+				Glide.with(requireActivity())
+						.load(uriCrop)
+						.into(mHeroImage);
+				mHeroItemViewModel.updatePicture(mDataPicture, uriCrop);
+			}
+		});
+
+		//Bitmap
 	}
 }
