@@ -26,7 +26,7 @@
         <service
             android:name=".services.DetectFaceService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".views.activities.HeroItemActivity" />
         <activity android:name=".views.activities.AlbumListActivity" />
@@ -34,11 +34,21 @@
         <activity android:name=".views.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.PICK"/>
+                <action android:name="android.intent.action.GET_CONTENT"/>
+                <action android:name="android.intent.action.QUICK_VIEW"/>
+                
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
         </activity>
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            tools:ignore="MissingClass" />
     </application>
 
 </manifest>

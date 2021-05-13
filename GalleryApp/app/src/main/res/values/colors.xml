@@ -81,6 +81,4 @@
     <color name="colorDurationText">#FFFFFF</color>
     <color name="colorAlbumItemBorder">#787878</color>
     <color name="colorHeroItemBackground">@color/colorBackground</color>
-
-
 </resources>

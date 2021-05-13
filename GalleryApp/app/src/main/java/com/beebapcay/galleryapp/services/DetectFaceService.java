@@ -73,14 +73,12 @@ public class DetectFaceService extends Service {
 						FaceDetector faceDetector = new FaceDetector(w, h , 1);
 						FaceDetector.Face[] faces = new FaceDetector.Face[1];
 						faceDetector.findFaces(srcFace, faces);
-						if (faces[0] != null)
-						{
+						if (faces[0] != null) {
 							mHaveFacePref.edit().putBoolean(String.valueOf(idImg), true).apply();
 							Log.d("faceDetect", "true");
 						}
 						else
 							mHaveFacePref.edit().putBoolean(String.valueOf(idImg), false).apply();
-
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
