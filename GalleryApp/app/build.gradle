@@ -96,4 +96,7 @@ dependencies {
     //crop
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
+    //image processing
+    implementation 'com.github.mukeshsolanki:photofilter:1.0.2'
+
 }

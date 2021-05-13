@@ -1,5 +1,6 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,15 +22,14 @@ import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
 import com.bumptech.glide.Glide;
+import com.mukesh.image_processing.ImageProcessor;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class EditItemDialogFragment extends DialogFragment{
     public static String TAG = EditItemDialogFragment.class.getSimpleName();
 
-    ImageButton mBackButton, mRotateButton, mCropButton;
-    Button mSaveButton;
-    CropImageView mCropImageView;
+    ImageButton mCropButton, mFilterButton;
 
     private GalleryModel mDataItem;
     private HeroItemViewModelFactory mHeroItemViewModelFactory;
@@ -60,17 +60,15 @@ public class EditItemDialogFragment extends DialogFragment{
 
         mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 
-        mBackButton = view.findViewById(R.id.btn_back);
-        mBackButton.setOnClickListener(v -> dismiss());
-
-        mCropImageView = view.findViewById(R.id.image_edit);
-        mCropImageView.setImageUriAsync(mDataItem.getUri());
-        Bitmap bitmap = mCropImageView.getCroppedImage();
+        mFilterButton = view.findViewById(R.id.btn_filter);
+        mFilterButton.setOnClickListener(v -> dismiss());
 
         mCropButton = view.findViewById(R.id.btn_crop);
         mCropButton.setOnClickListener(v -> {
             CropImage.activity(mDataItem.getUri())
                     .start(getContext(),this);
         });
+
+
     }
 }
