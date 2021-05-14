@@ -69,12 +69,6 @@
     <string name="filter_style_light">Sáng</string>
     <string name="filter_style_saturation">Bão hòa</string>
     <string name="filter_style_contrast">Tương phản</string>
-    <string name="filter_style_sepia">Sepia</string>
     <string name="filter_style_snow">Tuyết</string>
     <string name="filter_style_engrave">Chạm khắc</string>
-    <string name="filter_style_blurry">Làm mờ</string>
-    <string name="filter_style_shadow">Đổ bóng</string>
-    <string name="filter_style_flea">Flea</string>
-    <string name="filter_style_black">Màu đen</string>
-    <string name="filter_style_hue">Đa sắc</string>
 </resources>

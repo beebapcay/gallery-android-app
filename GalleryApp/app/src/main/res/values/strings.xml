@@ -69,12 +69,7 @@
     <string name="filter_style_light">Light</string>
     <string name="filter_style_saturation">Saturation</string>
     <string name="filter_style_contrast">Contrast</string>
-    <string name="filter_style_sepia">Sepia</string>
     <string name="filter_style_snow">Snow</string>
     <string name="filter_style_engrave">Engrave</string>
-    <string name="filter_style_blurry">Blurry</string>
-    <string name="filter_style_shadow">Shadow</string>
-    <string name="filter_style_flea">Flea</string>
-    <string name="filter_style_black">Black</string>
-    <string name="filter_style_hue">Hue</string>
+
 </resources>

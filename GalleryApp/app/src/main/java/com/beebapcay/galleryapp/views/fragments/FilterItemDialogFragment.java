@@ -52,8 +52,7 @@ public class FilterItemDialogFragment extends DialogFragment {
 	private HeroItemViewModelFactory mHeroItemViewModelFactory;
 	private HeroItemViewModel mHeroItemViewModel;
 	private Bitmap mOriginalBitmap, mGrayBitmap, mDarkBitmap, mLightBitmap, mFilterBitmap,
-			mContrastBitmap, mSepiaBitmap, mSnowBitmap, mSaturationBitmap, mEngraveBitmap,
-			mBlurBitmap, mShadowBitmap, mFleaBitmap, mHueBitmap, mBlackBitmap;
+			mContrastBitmap, mSnowBitmap, mSaturationBitmap, mEngraveBitmap;
 
 	public FilterItemDialogFragment() {
 	}
@@ -101,15 +100,9 @@ public class FilterItemDialogFragment extends DialogFragment {
 		mDarkView = view.findViewById(R.id.dark_image);
 		mLightView = view.findViewById(R.id.light_image);
 		mContrastView = view.findViewById(R.id.contrast_image);
-		mSepiaView = view.findViewById(R.id.sepia_image);
 		mSnowView = view.findViewById(R.id.snow_image);
 		mSaturationView = view.findViewById(R.id.saturation_image);
 		mEngraveView = view.findViewById(R.id.engrave_image);
-		mBlurView = view.findViewById(R.id.blur_image);
-		mShadowView = view.findViewById(R.id.shadow_image);
-		mFleaView = view.findViewById(R.id.flea_image);
-		mHueView = view.findViewById(R.id.hue_image);
-		mBlackView = view.findViewById(R.id.black_image);
 
 		mProgressBar.setVisibility(View.VISIBLE);
 		mFilterStyleView.setVisibility(View.GONE);
@@ -135,6 +128,10 @@ public class FilterItemDialogFragment extends DialogFragment {
 					Glide.with(this).load(mGrayBitmap).into(mGrayView);
 					Glide.with(this).load(mDarkBitmap).into(mDarkView);
 					Glide.with(this).load(mLightBitmap).into(mLightView);
+					Glide.with(this).load(mContrastBitmap).into(mContrastView);
+					Glide.with(this).load(mSnowBitmap).into(mSnowView);
+					Glide.with(this).load(mSaturationBitmap).into(mSaturationView);
+					Glide.with(this).load(mEngraveBitmap).into(mEngraveView);
 				});
 
 		mOriginalView.setOnClickListener(v -> {
@@ -156,10 +153,6 @@ public class FilterItemDialogFragment extends DialogFragment {
 		mContrastView.setOnClickListener(v -> {
 			mFilterBitmap = mContrastBitmap;
 			Glide.with(this).load(mContrastBitmap).into(mFilterView);
-		});
-		mSepiaView.setOnClickListener(v -> {
-			mFilterBitmap = mSepiaBitmap;
-			Glide.with(this).load(mSepiaBitmap).into(mFilterView);
 		});
 		mSnowView.setOnClickListener(v -> {
 			mFilterBitmap = mSnowBitmap;
