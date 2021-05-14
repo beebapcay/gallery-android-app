@@ -28,6 +28,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import java.io.IOException;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -85,6 +86,15 @@ public class HeroItemActionBarFragment extends Fragment {
 				switch (item.getItemId()) {
 					case R.id.action_details:
 						new DetailDialogFragment().show(getChildFragmentManager(), DetailDialogFragment.TAG);
+						return true;
+					case R.id.action_copy:
+						Completable.fromCallable(() -> {
+							mHeroItemViewModel.saveCopyPicture(mDataItem.getUri(), mDataItem.getName(), null);
+							return null;
+						}).subscribeOn(Schedulers.newThread())
+								.observeOn(AndroidSchedulers.mainThread())
+								.subscribe(() ->
+										Toast.makeText(requireActivity(), "Save picture successfully", Toast.LENGTH_SHORT).show());
 						return true;
 					case R.id.action_set_as_wallpaper:
 						setAsWallpaper(mDataItem);

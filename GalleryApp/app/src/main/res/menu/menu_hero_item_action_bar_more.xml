@@ -2,6 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_details"
         android:title="@string/menu_hero_item_action_bar_more_details"/>
+    <item android:id="@+id/action_copy"
+        android:title="@string/menu_hero_item_action_bar_more_edit_copy"/>
     <item android:id="@+id/action_edit_location"
         android:title="@string/menu_hero_item_action_bar_more_edit_location"/>
     <item android:id="@+id/action_set_as_wallpaper"

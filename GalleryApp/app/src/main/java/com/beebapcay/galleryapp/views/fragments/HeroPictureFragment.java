@@ -1,5 +1,6 @@
 package com.beebapcay.galleryapp.views.fragments;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,11 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beebapcay.galleryapp.R;
 import com.beebapcay.galleryapp.configs.ExtraIntentKey;
@@ -22,6 +26,12 @@ import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
 import com.bumptech.glide.Glide;
+
+import java.util.Random;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @SuppressWarnings({"UnusedDeclaration", "FieldCanBeLocal"})
 public class HeroPictureFragment extends Fragment {
@@ -62,13 +72,24 @@ public class HeroPictureFragment extends Fragment {
 
 		mHeroItemViewModel.getUriCrop().observe(requireActivity(), uriCrop -> {
 			if (uriCrop != null) {
-				Glide.with(requireActivity())
-						.load(uriCrop)
-						.into(mHeroImage);
-				mHeroItemViewModel.updatePicture(mDataPicture, uriCrop);
+				Completable.fromCallable(() -> {
+					mHeroItemViewModel.saveCropPicture(uriCrop, mDataPicture.getName(), null);
+					return null;
+				}).subscribeOn(Schedulers.newThread())
+						.observeOn(AndroidSchedulers.mainThread())
+						.subscribe(() -> Toast.makeText(requireActivity(), "Save crop image", Toast.LENGTH_SHORT).show());
 			}
 		});
 
-		//Bitmap
+		mHeroItemViewModel.getFilterBitmap().observe(requireActivity(), filterBitmap -> {
+			if (filterBitmap != null) {
+				Completable.fromCallable(() -> {
+					mHeroItemViewModel.saveFilterPicture(filterBitmap, mDataPicture.getName(), null);
+					return null;
+				}).subscribeOn(Schedulers.newThread())
+						.observeOn(AndroidSchedulers.mainThread())
+						.subscribe(() -> Toast.makeText(requireActivity(), "Save filter image", Toast.LENGTH_SHORT).show());
+			}
+		});
 	}
 }

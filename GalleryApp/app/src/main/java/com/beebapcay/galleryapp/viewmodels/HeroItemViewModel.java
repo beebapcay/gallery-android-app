@@ -42,7 +42,15 @@ public class HeroItemViewModel extends ViewModel {
 		return mFilterBitmap;
 	}
 
-	public void updatePicture(PictureModel pictureOrigin, Uri uriCrop) {
-		mMediaDataRepository.updatePicture(pictureOrigin, uriCrop);
+	public void saveCropPicture(Uri uriCrop, String name, String des) {
+		mMediaDataRepository.createPictureFromUri(uriCrop, name, des);
+	}
+
+	public void saveCopyPicture(Uri uri, String name, String des) {
+		mMediaDataRepository.createPictureFromUri(uri, name, des);
+	}
+
+	public void saveFilterPicture(Bitmap filterBitmap, String name, String des) {
+		mMediaDataRepository.createPictureFromBitmap(filterBitmap, name, des);
 	}
 }

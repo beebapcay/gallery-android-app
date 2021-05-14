@@ -44,6 +44,7 @@
 
     <!--    Popup Menu Hero Item Action Bar More    -->
     <string name="menu_hero_item_action_bar_more_details">Chi tiết</string>
+    <string name="menu_hero_item_action_bar_more_edit_copy">Sao chép</string>
     <string name="menu_hero_item_action_bar_more_edit_location">Chỉnh vị trí</string>
     <string name="menu_hero_item_action_bar_more_set_as_wallpaper">Đặt làm hình nền</string>
     <string name="menu_hero_item_action_bar_more_move_to_privacy_folder">Chuyển vào Riêng tư</string>
@@ -59,9 +60,10 @@
     <string name="dialog_add_item_privacy_message">Chuyển 1 mục vào Riêng tư</string>
     <string name="dialog_move_to_privacy">Chuyển vào Riêng tư</string>
     <string name="dialog_open_privacy_message">Nhập mã PIN để mở thư mục Riêng tư</string>
-    <string name="grayscale">Ảnh xám</string>
-    <string name="save">Lưu</string>
-    <string name="origin">Ảnh gốc</string>
-    <string name="dark">Tối</string>
-    <string name="light">Sáng</string>
+
+    <string name="filter_style_grayscale">Ảnh xám</string>
+    <string name="action_save">Lưu</string>
+    <string name="filter_style_origin">Ảnh gốc</string>
+    <string name="filter_style_dark">Tối</string>
+    <string name="filter_style_light">Sáng</string>
 </resources>

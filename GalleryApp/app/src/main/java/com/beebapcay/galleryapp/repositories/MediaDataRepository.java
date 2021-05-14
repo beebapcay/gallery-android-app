@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.FaceDetector;
 import android.net.Uri;
 import android.os.Build;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.util.Log;
 
@@ -25,10 +27,13 @@ import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.models.VideoModel;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.FileDescriptor;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Callable;
 
 import io.reactivex.rxjava3.core.Completable;
@@ -786,19 +791,55 @@ public class MediaDataRepository {
 		return Single.just(dataFavourites);
 	}
 
-	public void updatePicture(PictureModel pictureOrigin, Uri uriCrop) {
-		/*ContentResolver resolver = mContext.getContentResolver();
-		//String selection = MediaStore.Images.Media._ID + " = ?";
-		//String[] selectionArgs = new String[] {String.valueOf(pictureOrigin.getId())};
-		Uri collection;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-			collection = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-		} else {
-			collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+	public void createPictureFromUri(Uri uriImg, String name, String des) {
+		ContentResolver contentResolver = mContext.getContentResolver();
+
+		ContentValues values = new ContentValues();
+		values.put(MediaStore.Images.Media.TITLE, name);
+		values.put(MediaStore.Images.Media.DISPLAY_NAME, name);
+		values.put(MediaStore.Images.Media.DESCRIPTION, des);
+		values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+
+		Uri uri = null;
+		try {
+			uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+
+			ParcelFileDescriptor parcelFileDescriptor = contentResolver.openFileDescriptor(uriImg, "r");
+			FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+			Bitmap imageBitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+			parcelFileDescriptor.close();
+
+			if (imageBitmap != null) {
+				OutputStream imageOut = contentResolver.openOutputStream(uri);
+				imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, imageOut);
+				imageOut.close();
+				long id = ContentUris.parseId(uri);
+			} else contentResolver.delete(uri, null, null);
+		} catch (Exception e) {
+			if (uri != null) contentResolver.delete(uri, null, null);
 		}
-		ContentValues updateCropImage = new ContentValues();
-		updateCropImage.put(MediaStore.Images.Media.DISPLAY_NAME, pictureOrigin.getName() + "_crop");
-		resolver.insert(collection, updateCropImage);*/
 	}
 
+	public void createPictureFromBitmap(Bitmap imageBitmap, String name, String des) {
+		ContentResolver contentResolver = mContext.getContentResolver();
+
+		ContentValues values = new ContentValues();
+		values.put(MediaStore.Images.Media.TITLE, name);
+		values.put(MediaStore.Images.Media.DISPLAY_NAME, name);
+		values.put(MediaStore.Images.Media.DESCRIPTION, des);
+		values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+
+		Uri uri = null;
+		try {
+			uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+			if (imageBitmap != null) {
+				OutputStream imageOut = contentResolver.openOutputStream(uri);
+				imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, imageOut);
+				imageOut.close();
+				long id = ContentUris.parseId(uri);
+			} else contentResolver.delete(uri, null, null);
+		} catch (Exception e) {
+			if (uri != null) contentResolver.delete(uri, null, null);
+		}
+	}
 }

@@ -43,6 +43,7 @@
 
     <!--    Popup Menu Hero Item Action Bar More    -->
     <string name="menu_hero_item_action_bar_more_details">Details</string>
+    <string name="menu_hero_item_action_bar_more_edit_copy">Copy</string>
     <string name="menu_hero_item_action_bar_more_edit_location">Edit Location</string>
     <string name="menu_hero_item_action_bar_more_set_as_wallpaper">Set as wallpaper</string>
     <string name="menu_hero_item_action_bar_more_move_to_privacy_folder">Move to Privacy Folder</string>
@@ -58,9 +59,11 @@
     <string name="dialog_add_item_privacy_message">Move 1 item to the Privacy?</string>
     <string name="dialog_move_to_privacy">Move to Privacy</string>
     <string name="dialog_open_privacy_message">Input PIN to open Privacy Folder</string>
-    <string name="grayscale">Grayscale</string>
-    <string name="save">Save</string>
-    <string name="origin">Origin</string>
-    <string name="dark">Dark</string>
-    <string name="light">Light</string>
+
+
+    <string name="filter_style_grayscale">Grayscale</string>
+    <string name="action_save">Save</string>
+    <string name="filter_style_origin">Origin</string>
+    <string name="filter_style_dark">Dark</string>
+    <string name="filter_style_light">Light</string>
 </resources>
