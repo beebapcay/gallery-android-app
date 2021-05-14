@@ -62,4 +62,6 @@
     <string name="grayscale">Ảnh xám</string>
     <string name="save">Lưu</string>
     <string name="origin">Ảnh gốc</string>
+    <string name="dark">Tối</string>
+    <string name="light">Sáng</string>
 </resources>

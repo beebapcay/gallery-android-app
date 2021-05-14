@@ -24,11 +24,11 @@ public class FilterActivity extends AppCompatActivity {
     private static final String TAG = FilterActivity.class.getSimpleName();
 
     private ImageButton mBackButton;
-    private ImageView mFilterView, mOriginalView, mGrayView;
+    private ImageView mFilterView, mOriginalView, mGrayView, mDarkView, mLightView;
     private ImageProcessor mProcessor;
     private Bundle mBundle;
     private GalleryModel mDataItem;
-    private Bitmap mOriginalBitmap, mGrayBitmap;
+    private Bitmap mOriginalBitmap, mGrayBitmap, mDarkBitmap, mLightBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,14 @@ public class FilterActivity extends AppCompatActivity {
         mGrayBitmap = mProcessor.doGreyScale(mOriginalBitmap);
         mGrayView.setImageBitmap(mGrayBitmap);
 
+        mDarkView = findViewById(R.id.dark_image);
+        mDarkBitmap = mProcessor.doBrightness(mOriginalBitmap, -40);
+        mDarkView.setImageBitmap(mDarkBitmap);
+
+        mLightView = findViewById(R.id.light_image);
+        mLightBitmap = mProcessor.doBrightness(mOriginalBitmap, 40);
+        mLightView.setImageBitmap(mLightBitmap);
+
         onClickFilterListener();
 
     }
@@ -80,6 +88,20 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mFilterView.setImageBitmap(mGrayBitmap);
+            }
+        });
+
+        mDarkView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFilterView.setImageBitmap(mDarkBitmap);
+            }
+        });
+
+        mLightView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFilterView.setImageBitmap(mLightBitmap);
             }
         });
     }

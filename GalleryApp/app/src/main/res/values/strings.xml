@@ -61,4 +61,6 @@
     <string name="grayscale">Grayscale</string>
     <string name="save">Save</string>
     <string name="origin">Origin</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
 </resources>
