@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDetailDialogBackground"
+    tools:context=".views.fragments.HeroPictureFragment">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:background="@drawable/bg_ripple_circle"
+        android:backgroundTint="@color/colorDetailDialogBackground"
+        android:padding="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:backgroundTint="@color/colorDetailDialogBackground"
+        android:padding="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:text="@string/save"
+        android:textColor="@color/colorTextPrimary"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
+
+    <ImageView
+        android:id="@+id/view_filter_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_350sdp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/view_filter_image"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/original_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/original_image"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/origin"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/grayscale_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/grayscale_image"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/grayscale"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextPrimary"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

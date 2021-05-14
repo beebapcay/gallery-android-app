@@ -58,5 +58,7 @@
     <string name="dialog_add_item_privacy_message">Move 1 item to the Privacy?</string>
     <string name="dialog_move_to_privacy">Move to Privacy</string>
     <string name="dialog_open_privacy_message">Input PIN to open Privacy Folder</string>
+    <string name="grayscale">Grayscale</string>
     <string name="save">Save</string>
+    <string name="origin">Origin</string>
 </resources>

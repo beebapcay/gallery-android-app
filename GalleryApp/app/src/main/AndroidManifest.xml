@@ -23,6 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GalleryApp">
+        <activity android:name=".views.activities.FilterActivity"></activity>
+
         <service
             android:name=".services.DetectFaceService"
             android:enabled="true"
@@ -34,20 +36,24 @@
         <activity android:name=".views.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter tools:ignore="AppLinkUrlError">
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.intent.action.PICK"/>
-                <action android:name="android.intent.action.GET_CONTENT"/>
-                <action android:name="android.intent.action.QUICK_VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.PICK" />
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <action android:name="android.intent.action.QUICK_VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="image/*" />
                 <data android:mimeType="video/*" />
             </intent-filter>
         </activity>
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Theme.AppCompat" />
     </application>
 
 </manifest>

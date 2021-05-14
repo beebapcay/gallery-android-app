@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,14 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.beebapcay.galleryapp.R;
+import com.beebapcay.galleryapp.configs.ExtraIntentKey;
 import com.beebapcay.galleryapp.factories.HeroItemViewModelFactory;
 import com.beebapcay.galleryapp.models.GalleryModel;
 import com.beebapcay.galleryapp.models.PictureModel;
 import com.beebapcay.galleryapp.repositories.MediaDataRepository;
 import com.beebapcay.galleryapp.viewmodels.HeroItemViewModel;
+import com.beebapcay.galleryapp.views.activities.FilterActivity;
+import com.beebapcay.galleryapp.views.activities.OptionListActivity;
 import com.bumptech.glide.Glide;
 import com.mukesh.image_processing.ImageProcessor;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -64,7 +68,13 @@ public class EditItemDialogFragment extends DialogFragment{
         mDataItem = mHeroItemViewModel.getLiveDataItem().getValue();
 
         mFilterButton = view.findViewById(R.id.btn_filter);
-        mFilterButton.setOnClickListener(v -> dismiss());
+        mFilterButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), FilterActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(ExtraIntentKey.FILTER_HERO_ITEM_DATA, (Parcelable) mDataItem);
+            intent.putExtras(bundle);
+            requireActivity().startActivity(intent);
+        });
 
         mCropButton = view.findViewById(R.id.btn_crop);
         mCropButton.setOnClickListener(v -> {

@@ -3,6 +3,7 @@ package com.beebapcay.galleryapp.repositories;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -786,7 +787,18 @@ public class MediaDataRepository {
 	}
 
 	public void updatePicture(PictureModel pictureOrigin, Uri uriCrop) {
-		
+		/*ContentResolver resolver = mContext.getContentResolver();
+		//String selection = MediaStore.Images.Media._ID + " = ?";
+		//String[] selectionArgs = new String[] {String.valueOf(pictureOrigin.getId())};
+		Uri collection;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+			collection = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+		} else {
+			collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+		}
+		ContentValues updateCropImage = new ContentValues();
+		updateCropImage.put(MediaStore.Images.Media.DISPLAY_NAME, pictureOrigin.getName() + "_crop");
+		resolver.insert(collection, updateCropImage);*/
 	}
 
 }
