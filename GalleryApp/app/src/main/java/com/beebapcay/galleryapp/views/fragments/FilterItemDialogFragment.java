@@ -41,7 +41,9 @@ public class FilterItemDialogFragment extends DialogFragment {
 
 	ImageButton mBackButton;
 	Button mSaveButton;
-	ImageView mFilterView, mOriginalView, mGrayView, mDarkView, mLightView;
+	ImageView mFilterView, mOriginalView, mGrayView, mDarkView, mLightView,
+			mContrastView, mSepiaView, mSnowView, mSaturationView, mEngraveView,
+			mBlurView, mShadowView, mFleaView, mHueView, mBlackView;
 	ImageProcessor mProcessor;
 	ProgressBar mProgressBar;
 	HorizontalScrollView mFilterStyleView;
@@ -49,7 +51,9 @@ public class FilterItemDialogFragment extends DialogFragment {
 	private GalleryModel mDataItem;
 	private HeroItemViewModelFactory mHeroItemViewModelFactory;
 	private HeroItemViewModel mHeroItemViewModel;
-	private Bitmap mOriginalBitmap, mGrayBitmap, mDarkBitmap, mLightBitmap, mFilterBitmap;
+	private Bitmap mOriginalBitmap, mGrayBitmap, mDarkBitmap, mLightBitmap, mFilterBitmap,
+			mContrastBitmap, mSepiaBitmap, mSnowBitmap, mSaturationBitmap, mEngraveBitmap,
+			mBlurBitmap, mShadowBitmap, mFleaBitmap, mHueBitmap, mBlackBitmap;
 
 	public FilterItemDialogFragment() {
 	}
@@ -96,6 +100,16 @@ public class FilterItemDialogFragment extends DialogFragment {
 		mGrayView = view.findViewById(R.id.grayscale_image);
 		mDarkView = view.findViewById(R.id.dark_image);
 		mLightView = view.findViewById(R.id.light_image);
+		mContrastView = view.findViewById(R.id.contrast_image);
+		mSepiaView = view.findViewById(R.id.sepia_image);
+		mSnowView = view.findViewById(R.id.snow_image);
+		mSaturationView = view.findViewById(R.id.saturation_image);
+		mEngraveView = view.findViewById(R.id.engrave_image);
+		mBlurView = view.findViewById(R.id.blur_image);
+		mShadowView = view.findViewById(R.id.shadow_image);
+		mFleaView = view.findViewById(R.id.flea_image);
+		mHueView = view.findViewById(R.id.hue_image);
+		mBlackView = view.findViewById(R.id.black_image);
 
 		mProgressBar.setVisibility(View.VISIBLE);
 		mFilterStyleView.setVisibility(View.GONE);
@@ -104,6 +118,11 @@ public class FilterItemDialogFragment extends DialogFragment {
 			mGrayBitmap = mProcessor.doGreyScale(mOriginalBitmap);
 			mDarkBitmap = mProcessor.doBrightness(mOriginalBitmap, -40);
 			mLightBitmap = mProcessor.doBrightness(mOriginalBitmap, 40);
+			mContrastBitmap = mProcessor.createContrast(mOriginalBitmap, 1.5);
+			mSepiaBitmap = mProcessor.createSepiaToningEffect(mOriginalBitmap, 1, 2, 1, 5);
+			mSnowBitmap = mProcessor.applySnowEffect(mOriginalBitmap);
+			mSaturationBitmap = mProcessor.applySaturationFilter(mOriginalBitmap, 3);
+			mEngraveBitmap = mProcessor.engrave(mOriginalBitmap);
 			return null;
 		}).subscribeOn(Schedulers.newThread())
 				.doOnTerminate(() -> {
@@ -134,6 +153,26 @@ public class FilterItemDialogFragment extends DialogFragment {
 			mFilterBitmap = mLightBitmap;
 			Glide.with(this).load(mLightBitmap).into(mFilterView);
 		});
+		mContrastView.setOnClickListener(v -> {
+			mFilterBitmap = mContrastBitmap;
+			Glide.with(this).load(mContrastBitmap).into(mFilterView);
+		});
+		mSepiaView.setOnClickListener(v -> {
+			mFilterBitmap = mSepiaBitmap;
+			Glide.with(this).load(mSepiaBitmap).into(mFilterView);
+		});
+		mSnowView.setOnClickListener(v -> {
+			mFilterBitmap = mSnowBitmap;
+			Glide.with(this).load(mSnowBitmap).into(mFilterView);
+		});
+		mSaturationView.setOnClickListener(v -> {
+			mFilterBitmap = mSaturationBitmap;
+			Glide.with(this).load(mSaturationBitmap).into(mFilterView);
+		});
+		mEngraveView.setOnClickListener(v -> {
+			mFilterBitmap = mEngraveBitmap;
+			Glide.with(this).load(mEngraveBitmap).into(mFilterView);
+		});
 
 		mSaveButton = view.findViewById(R.id.btn_save);
 		mSaveButton.setOnClickListener(v -> {
@@ -153,5 +192,4 @@ public class FilterItemDialogFragment extends DialogFragment {
 			dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		}
 	}
-
 }

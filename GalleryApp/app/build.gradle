@@ -98,5 +98,5 @@ dependencies {
 
     //image processing
     implementation 'com.github.mukeshsolanki:photofilter:1.0.2'
-
+    
 }

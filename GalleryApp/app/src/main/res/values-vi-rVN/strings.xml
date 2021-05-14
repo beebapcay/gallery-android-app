@@ -61,9 +61,20 @@
     <string name="dialog_move_to_privacy">Chuyển vào Riêng tư</string>
     <string name="dialog_open_privacy_message">Nhập mã PIN để mở thư mục Riêng tư</string>
 
+    <!--    Filter    -->
     <string name="filter_style_grayscale">Ảnh xám</string>
     <string name="action_save">Lưu</string>
     <string name="filter_style_origin">Ảnh gốc</string>
     <string name="filter_style_dark">Tối</string>
     <string name="filter_style_light">Sáng</string>
+    <string name="filter_style_saturation">Bão hòa</string>
+    <string name="filter_style_contrast">Tương phản</string>
+    <string name="filter_style_sepia">Sepia</string>
+    <string name="filter_style_snow">Tuyết</string>
+    <string name="filter_style_engrave">Chạm khắc</string>
+    <string name="filter_style_blurry">Làm mờ</string>
+    <string name="filter_style_shadow">Đổ bóng</string>
+    <string name="filter_style_flea">Flea</string>
+    <string name="filter_style_black">Màu đen</string>
+    <string name="filter_style_hue">Đa sắc</string>
 </resources>
