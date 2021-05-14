@@ -112,7 +112,6 @@ public class FilterItemDialogFragment extends DialogFragment {
 			mDarkBitmap = mProcessor.doBrightness(mOriginalBitmap, -40);
 			mLightBitmap = mProcessor.doBrightness(mOriginalBitmap, 40);
 			mContrastBitmap = mProcessor.createContrast(mOriginalBitmap, 1.5);
-			mSepiaBitmap = mProcessor.createSepiaToningEffect(mOriginalBitmap, 1, 2, 1, 5);
 			mSnowBitmap = mProcessor.applySnowEffect(mOriginalBitmap);
 			mSaturationBitmap = mProcessor.applySaturationFilter(mOriginalBitmap, 3);
 			mEngraveBitmap = mProcessor.engrave(mOriginalBitmap);
