@@ -30,28 +30,34 @@
         android:backgroundTint="@color/colorDetailDialogBackground"
         android:padding="@dimen/_10sdp"
         android:paddingTop="@dimen/_10sdp"
+        android:scaleType="fitCenter"
         android:text="@string/save"
         android:textColor="@color/colorTextPrimary"
-        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/view_filter_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_350sdp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/view_filter_style"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        tools:ignore="ContentDescription" />
 
     <HorizontalScrollView
+        android:id="@+id/view_filter_style"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/view_filter_image"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_filter_image">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -65,7 +71,7 @@
                     android:id="@+id/original_image"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -73,7 +79,7 @@
                     android:padding="@dimen/_4sdp"
                     android:text="@string/origin"
                     android:textAlignment="center"
-                    android:textColor="@color/colorTextPrimary"/>
+                    android:textColor="@color/colorTextPrimary" />
 
             </LinearLayout>
 
@@ -88,7 +94,7 @@
                     android:id="@+id/grayscale_image"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -96,7 +102,7 @@
                     android:padding="@dimen/_4sdp"
                     android:text="@string/grayscale"
                     android:textAlignment="center"
-                    android:textColor="@color/colorTextPrimary"/>
+                    android:textColor="@color/colorTextPrimary" />
 
             </LinearLayout>
 
@@ -111,7 +117,7 @@
                     android:id="@+id/dark_image"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -119,7 +125,7 @@
                     android:padding="@dimen/_4sdp"
                     android:text="@string/dark"
                     android:textAlignment="center"
-                    android:textColor="@color/colorTextPrimary"/>
+                    android:textColor="@color/colorTextPrimary" />
 
             </LinearLayout>
 
@@ -134,7 +140,7 @@
                     android:id="@+id/light_image"
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -142,11 +148,9 @@
                     android:padding="@dimen/_4sdp"
                     android:text="@string/light"
                     android:textAlignment="center"
-                    android:textColor="@color/colorTextPrimary"/>
+                    android:textColor="@color/colorTextPrimary" />
 
             </LinearLayout>
-
         </LinearLayout>
     </HorizontalScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

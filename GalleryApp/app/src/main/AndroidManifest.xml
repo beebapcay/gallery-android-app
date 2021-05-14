@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GalleryApp">
-        <activity android:name=".views.activities.FilterActivity"></activity>
+        <activity android:name=".views.activities.FilterActivity" />
 
         <service
             android:name=".services.DetectFaceService"
